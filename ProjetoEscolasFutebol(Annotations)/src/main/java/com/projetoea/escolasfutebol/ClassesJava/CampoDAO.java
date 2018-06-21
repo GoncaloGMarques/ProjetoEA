@@ -11,11 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import com.projetoea.escolasfutebol.HelloWorld;
 import org.orm.*;
 import org.hibernate.Query;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 

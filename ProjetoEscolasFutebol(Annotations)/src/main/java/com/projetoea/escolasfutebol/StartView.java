@@ -1,26 +1,42 @@
 package com.projetoea.escolasfutebol;
 
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
-public class StartView extends VerticalLayout implements View {
-    public StartView() {
-        setSizeFull();
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 
-        Button button = new Button("Go to Main View",
-                new Button.ClickListener() {
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                        UI.getCurrent().getNavigator().navigateTo(EscolasfutebolApplication.VaadinUI.MAINVIEW);
-                    }
-                });
-        addComponent(button);
-        setComponentAlignment(button, Alignment.MIDDLE_CENTER);
-    }
+@Theme("valo")
+public class StartView implements View {
 
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-        Notification.show("Welcome to the Animal Farm");
-    }
+//    public StartView() {
+//        VerticalLayout layout = new VerticalLayout();
+//        Label label = new Label("Página Inicial");
+//        layout.addComponent(label);
+//        layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+//        Button btn = new Button("Go to 'Campos'");
+//        btn.addClickListener(new Button.ClickListener() {
+//            @Override
+//            public void buttonClick(Button.ClickEvent clickEvent) {
+//                navigador().navigateTo(MAINVIEW);
+//            }
+//        });
+//        layout.addComponent(btn);
+//    }
+//
+//    @WebServlet(urlPatterns = "EscolasFutebol/")
+//    @VaadinServletConfiguration(ui = EscolasfutebolApplication.VaadinUI.class, productionMode =    false)
+//    public class Servlet extends VaadinServlet
+//    {
+//
+//    }
+
+
 }
