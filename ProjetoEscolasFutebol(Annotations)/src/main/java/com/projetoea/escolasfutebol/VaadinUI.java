@@ -1,11 +1,14 @@
 package com.projetoea.escolasfutebol;
 
+import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import org.orm.PersistentException;
 
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol/*")
@@ -14,6 +17,14 @@ public class VaadinUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
+
+        Utilizador ut = UtilizadorDAO.createUtilizador();
+        ut.setNome("dnwn");
+        try {
+            UtilizadorDAO.save(ut);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
 
         Button view1 = new Button("View 1", e -> getNavigator().navigateTo("view1"));
         view1.setWidth("100%");
