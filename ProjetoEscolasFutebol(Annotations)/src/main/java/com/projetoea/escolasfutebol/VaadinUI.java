@@ -1,9 +1,6 @@
 package com.projetoea.escolasfutebol;
 
-import com.projetoea.escolasfutebol.Views.Calendario;
-import com.projetoea.escolasfutebol.Views.Campeonato;
-import com.projetoea.escolasfutebol.Views.PaginaInicial;
-import com.projetoea.escolasfutebol.Views.Torneios;
+import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -18,21 +15,13 @@ public class VaadinUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
 
-        Button view1 = new Button("Página Inicial", e -> getNavigator().navigateTo(""));
-        view1.setWidth("100%");
-        view1.setStyleName("v-button-MenuLinks");
-        Button view2 = new Button("Calendário", e -> getNavigator().navigateTo("calendario"));
-        view2.setWidth("100%");
-        view2.setStyleName("v-button-MenuLinks");
-        Button view3 = new Button("Torneios", e -> getNavigator().navigateTo("torneios"));
-        view3.setWidth("100%");
-        view3.setStyleName("v-button-MenuLinks");
-        Button view4 = new Button("Campeonato", e -> getNavigator().navigateTo("campeonato"));
-        view4.setWidth("100%");
-        view4.setStyleName("v-button-MenuLinks");
+        VerticalLayout menuLinks = new VerticalLayout();
+        addMenuEntry(menuLinks, "Página Inicial", "");
+        addMenuEntry(menuLinks, "Login", "login");
+        addMenuEntry(menuLinks, "Calendário", "calendario");
+        addMenuEntry(menuLinks, "Torneios", "torneios");
+        addMenuEntry(menuLinks, "Campeonato", "campeonato");
 
-
-        VerticalLayout menuLinks = new VerticalLayout(view1, view2, view3, view4);
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
         VerticalLayout menu = new VerticalLayout(title, menuLinks);
@@ -55,8 +44,18 @@ public class VaadinUI extends UI {
 
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicial.class);
+        navigator.addView("login", LoginView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);
+    }
+
+
+
+    private void addMenuEntry(Layout layout, String caption, String navigateTo){
+        Button view1 = new Button(caption, e -> getNavigator().navigateTo(navigateTo));
+        view1.setWidth("100%");
+        view1.setStyleName("v-button-MenuLinks");
+        layout.addComponent(view1);
     }
 }

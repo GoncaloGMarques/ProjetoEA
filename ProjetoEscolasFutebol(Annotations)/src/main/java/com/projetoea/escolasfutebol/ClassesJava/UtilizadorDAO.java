@@ -203,7 +203,7 @@ public class UtilizadorDAO {
 	public static Utilizador loadUtilizadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
-			return loadUtilizadorByQuery(session, condition, orderBy);
+			return loadUtilizadorByQuery(session, condition, orderBy, LockMode.NONE);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -220,14 +220,6 @@ public class UtilizadorDAO {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
-	}
-	
-	public static Utilizador loadUtilizadorByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		Utilizador[] utilizadors = listUtilizadorByQuery(session, condition, orderBy);
-		if (utilizadors != null && utilizadors.length > 0)
-			return utilizadors[0];
-		else
-			return null;
 	}
 	
 	public static Utilizador loadUtilizadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {

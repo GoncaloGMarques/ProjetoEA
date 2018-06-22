@@ -28,7 +28,7 @@ public class EscolasfutebolApplication {
     @Service
     public static class MyService {
         public String sayHi() {
-            return "Hello Spring Initializr!";
+            return "Hello Spring Initialized!";
         }
 
     }

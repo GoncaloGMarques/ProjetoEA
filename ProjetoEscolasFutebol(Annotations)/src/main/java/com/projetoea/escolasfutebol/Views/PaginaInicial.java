@@ -6,6 +6,7 @@ import com.vaadin.ui.Composite;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 
+@SpringView
 public class PaginaInicial extends Composite implements View {
 
     public PaginaInicial() {
