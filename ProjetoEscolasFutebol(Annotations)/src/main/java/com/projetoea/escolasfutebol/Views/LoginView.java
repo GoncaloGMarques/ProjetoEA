@@ -13,13 +13,15 @@ import org.orm.PersistentException;
 @SpringView
 public class LoginView  extends Composite implements View {
 
+    private VerticalLayout verticalLayout;
+
     private Label errorUsernameLabel;
     private Label daoError;
 
     private String emptyUsername = "Username cannot be empty!";
 
     public LoginView(){
-        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout = new VerticalLayout();
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         HorizontalLayout horizontalLayout1 = new HorizontalLayout();
 
@@ -44,33 +46,34 @@ public class LoginView  extends Composite implements View {
 
             daoError.setValue("");
             errorUsernameLabel.setValue("");
-
+            Utilizador user = null;
             String username = usernameField.getValue();
             if(username == null || username.isEmpty()) {
                 errorUsernameLabel.setValue(emptyUsername);
                 return;
             }
             String password = passwordField.getValue();
-            if(password == null || password.isEmpty())
-                password = "";
+            if(password == null || password.isEmpty()) password = "";
             try {
-                tryLogin(username, password);
+                user = tryLogin(username, password);
             } catch (PersistentException e) {
                 daoError.setValue(e.getMessage());
-                daoError.setEnabled(true);
             }
+
+            if(user != null)
+                verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
         });
         verticalLayout.addComponent(loginBtn);
 
         setCompositionRoot(verticalLayout);
     }
 
-    private void tryLogin(String username, String password) throws PersistentException {
-        String condition = "Nome = " + username;
+    private Utilizador tryLogin(String username, String password) throws PersistentException {
+        String condition = " Nome = '" + username + "'";
         if(!password.isEmpty()) {
-            condition += " and Password = " + password;
+            condition += " and Password = '" + password + "'";
         }
-        UtilizadorDAO.loadUtilizadorByQuery(condition,"orderby id");
+        return UtilizadorDAO.loadUtilizadorByQuery(condition,"Nome");
     }
 
     @Override
