@@ -15,14 +15,20 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Torneio")
+@Table(name="torneio")
 public class Torneio implements Serializable {
 	public Torneio() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_TORNEIO_EQUIPAS) {
-			return ORM_equipas;
+		if (key == ORMConstants.KEY_TORNEIO_RONDATORNEIO) {
+			return ORM_rondatorneio;
+		}
+		else if (key == ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO) {
+			return ORM_partcipantetorneio;
+		}
+		else if (key == ORMConstants.KEY_TORNEIO_GRUPO) {
+			return ORM_grupo;
 		}
 		
 		return null;
@@ -42,11 +48,26 @@ public class Torneio implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="TORNEIO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@ManyToMany(targetEntity=Equipa.class)	
+	@Column(name="datainicio", nullable=true, length=10)	
+	private Integer datainicio;
+	
+	@Column(name="datafim", nullable=true, length=10)	
+	private Integer datafim;
+	
+	@OneToMany(mappedBy="torneio", targetEntity=Rondatorneio.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinTable(name="Equipa_Torneio", joinColumns={ @JoinColumn(name="TorneioID") }, inverseJoinColumns={ @JoinColumn(name="EquipaID") })	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set ORM_equipas = new java.util.HashSet();
+	private java.util.Set ORM_rondatorneio = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="torneio", targetEntity=Partcipantetorneio.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_partcipantetorneio = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="torneio", targetEntity=Grupo.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_grupo = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -60,16 +81,62 @@ public class Torneio implements Serializable {
 		return getID();
 	}
 	
-	private void setORM_Equipas(java.util.Set value) {
-		this.ORM_equipas = value;
+	public void setDatainicio(int value) {
+		setDatainicio(new Integer(value));
 	}
 	
-	private java.util.Set getORM_Equipas() {
-		return ORM_equipas;
+	public void setDatainicio(Integer value) {
+		this.datainicio = value;
+	}
+	
+	public Integer getDatainicio() {
+		return datainicio;
+	}
+	
+	public void setDatafim(int value) {
+		setDatafim(new Integer(value));
+	}
+	
+	public void setDatafim(Integer value) {
+		this.datafim = value;
+	}
+	
+	public Integer getDatafim() {
+		return datafim;
+	}
+	
+	private void setORM_Rondatorneio(java.util.Set value) {
+		this.ORM_rondatorneio = value;
+	}
+	
+	private java.util.Set getORM_Rondatorneio() {
+		return ORM_rondatorneio;
 	}
 	
 	@Transient	
-	public final EquipaSetCollection equipas = new EquipaSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_EQUIPAS, ORMConstants.KEY_EQUIPA_TORNEIOS, ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final RondatorneioSetCollection rondatorneio = new RondatorneioSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_RONDATORNEIO, ORMConstants.KEY_RONDATORNEIO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Partcipantetorneio(java.util.Set value) {
+		this.ORM_partcipantetorneio = value;
+	}
+	
+	private java.util.Set getORM_Partcipantetorneio() {
+		return ORM_partcipantetorneio;
+	}
+	
+	@Transient	
+	public final PartcipantetorneioSetCollection partcipantetorneio = new PartcipantetorneioSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO, ORMConstants.KEY_PARTCIPANTETORNEIO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Grupo(java.util.Set value) {
+		this.ORM_grupo = value;
+	}
+	
+	private java.util.Set getORM_Grupo() {
+		return ORM_grupo;
+	}
+	
+	@Transient	
+	public final GrupoSetCollection grupo = new GrupoSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_GRUPO, ORMConstants.KEY_GRUPO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

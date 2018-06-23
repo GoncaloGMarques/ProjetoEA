@@ -15,14 +15,17 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Campeonato")
+@Table(name="campeonato")
 public class Campeonato implements Serializable {
 	public Campeonato() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_CAMPEONATO_JOGOS) {
-			return ORM_jogos;
+		if (key == ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO) {
+			return ORM_participantecampeonato;
+		}
+		else if (key == ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO) {
+			return ORM_rondacampeonato;
 		}
 		
 		return null;
@@ -42,15 +45,18 @@ public class Campeonato implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="CAMPEONATO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@OneToOne(optional=false, targetEntity=Equipa.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="EquipaID2", referencedColumnName="ID", nullable=false) })	
-	private Equipa equipa;
+	@Column(name="Nome", nullable=true, length=255)	
+	private String nome;
 	
-	@OneToMany(mappedBy="campeonato", targetEntity=Jogo.class)	
+	@OneToMany(mappedBy="campeonato", targetEntity=Participantecampeonato.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set ORM_jogos = new java.util.HashSet();
+	private java.util.Set ORM_participantecampeonato = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="campeonato", targetEntity=Rondacampeonato.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_rondacampeonato = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -64,33 +70,35 @@ public class Campeonato implements Serializable {
 		return getID();
 	}
 	
-	public void setEquipa(Equipa value) {
-		if (this.equipa != value) {
-			Equipa lequipa = this.equipa;
-			this.equipa = value;
-			if (value != null) {
-				equipa.setCampeonato(this);
-			}
-			if (lequipa != null && lequipa.getCampeonato() == this) {
-				lequipa.setCampeonato(null);
-			}
-		}
+	public void setNome(String value) {
+		this.nome = value;
 	}
 	
-	public Equipa getEquipa() {
-		return equipa;
+	public String getNome() {
+		return nome;
 	}
 	
-	private void setORM_Jogos(java.util.Set value) {
-		this.ORM_jogos = value;
+	private void setORM_Participantecampeonato(java.util.Set value) {
+		this.ORM_participantecampeonato = value;
 	}
 	
-	private java.util.Set getORM_Jogos() {
-		return ORM_jogos;
+	private java.util.Set getORM_Participantecampeonato() {
+		return ORM_participantecampeonato;
 	}
 	
 	@Transient	
-	public final JogoSetCollection jogos = new JogoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPEONATO_JOGOS, ORMConstants.KEY_JOGO_CAMPEONATO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final ParticipantecampeonatoSetCollection participantecampeonato = new ParticipantecampeonatoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO, ORMConstants.KEY_PARTICIPANTECAMPEONATO_CAMPEONATO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Rondacampeonato(java.util.Set value) {
+		this.ORM_rondacampeonato = value;
+	}
+	
+	private java.util.Set getORM_Rondacampeonato() {
+		return ORM_rondacampeonato;
+	}
+	
+	@Transient	
+	public final RondacampeonatoSetCollection rondacampeonato = new RondacampeonatoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO, ORMConstants.KEY_RONDACAMPEONATO_CAMPEONATO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

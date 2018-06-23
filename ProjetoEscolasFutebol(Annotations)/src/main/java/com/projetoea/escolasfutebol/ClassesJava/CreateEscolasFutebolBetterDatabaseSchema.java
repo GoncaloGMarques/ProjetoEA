@@ -3,11 +3,11 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * License Type: Academic
  */
 import org.orm.*;
-public class CreateEscolasFutebolDatabaseSchema {
+public class CreateEscolasFutebolBetterDatabaseSchema {
 	public static void main(String[] args) {
 		try {
-			ORMDatabaseInitiator.createSchema(EscolasFutebolPersistentManager.instance());
-			EscolasFutebolPersistentManager.instance().disposePersistentManager();
+			ORMDatabaseInitiator.createSchema(EscolasFutebolBetterPersistentManager.instance());
+			EscolasFutebolBetterPersistentManager.instance().disposePersistentManager();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

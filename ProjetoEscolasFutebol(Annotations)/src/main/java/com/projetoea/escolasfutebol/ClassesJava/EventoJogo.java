@@ -15,9 +15,45 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="EventoJogo")
-public class EventoJogo implements Serializable {
-	public EventoJogo() {
+@Table(name="eventojogo")
+@IdClass(EventojogoPK.class)
+public class Eventojogo implements Serializable {
+	public Eventojogo() {
+	}
+	
+	public boolean equals(Object aObj) {
+		if (aObj == this)
+			return true;
+		if (!(aObj instanceof Eventojogo))
+			return false;
+		Eventojogo eventojogo = (Eventojogo)aObj;
+		if (getID() != eventojogo.getID())
+			return false;
+		if (getJogo() == null) {
+			if (eventojogo.getJogo() != null)
+				return false;
+		}
+		else if (!getJogo().equals(eventojogo.getJogo()))
+			return false;
+		if (getTipoeventojogo() == null) {
+			if (eventojogo.getTipoeventojogo() != null)
+				return false;
+		}
+		else if (!getTipoeventojogo().equals(eventojogo.getTipoeventojogo()))
+			return false;
+		return true;
+	}
+	
+	public int hashCode() {
+		int hashcode = 0;
+		hashcode = hashcode + (int) getID();
+		if (getJogo() != null) {
+			hashcode = hashcode + (int) getJogo().getORMID();
+		}
+		if (getTipoeventojogo() != null) {
+			hashcode = hashcode + (int) getTipoeventojogo().getORMID();
+		}
+		return hashcode;
 	}
 	
 	private void this_setOwner(Object owner, int key) {
@@ -25,8 +61,8 @@ public class EventoJogo implements Serializable {
 			this.jogo = (Jogo) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_EVENTOJOGO_TIPODEEVENTO) {
-			this.TipoDeEvento = (TipoEventoJogo) owner;
+		else if (key == ORMConstants.KEY_EVENTOJOGO_TIPOEVENTOJOGO) {
+			this.tipoeventojogo = (Tipoeventojogo) owner;
 		}
 	}
 	
@@ -44,23 +80,50 @@ public class EventoJogo implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="EVENTOJOGO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@ManyToOne(targetEntity=TipoEventoJogo.class, fetch=FetchType.LAZY)	
-	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="TipoEventoJogoID2", referencedColumnName="ID", nullable=false) })	
-	private TipoEventoJogo TipoDeEvento;
+	@Column(name="Minuto", nullable=false, length=10)	
+	private int minuto;
 	
+	@PrimaryKeyJoinColumn	
 	@ManyToOne(targetEntity=Jogo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="JogoID2", referencedColumnName="ID", nullable=false) })	
+	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
 	private Jogo jogo;
 	
-	@Column(name="Minuto", nullable=false, length=10)	
-	private double minuto;
+	@Column(name="jogoID", nullable=false, insertable=false, updatable=false)	
+	@Id	
+	@GeneratedValue(generator="EVENTOJOGO_JOGOID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="EVENTOJOGO_JOGOID_GENERATOR", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="jogo"))	
+	private int jogoId;
 	
-	@Column(name="TipoDeEventoId", nullable=true, length=10)	
-	private int tipoDeEventoId;
+	private void setJogoId(int value) {
+		this.jogoId = value;
+	}
 	
-	private void setID(int value) {
+	public int getJogoId() {
+		return jogoId;
+	}
+	
+	@PrimaryKeyJoinColumn	
+	@ManyToOne(targetEntity=Tipoeventojogo.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
+	private Tipoeventojogo tipoeventojogo;
+	
+	@Column(name="tipoeventojogoID", nullable=false, insertable=false, updatable=false)	
+	@Id	
+	@GeneratedValue(generator="EVENTOJOGO_TIPOEVENTOJOGOID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="EVENTOJOGO_TIPOEVENTOJOGOID_GENERATOR", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="tipoeventojogo"))	
+	private int tipoeventojogoId;
+	
+	private void setTipoeventojogoId(int value) {
+		this.tipoeventojogoId = value;
+	}
+	
+	public int getTipoeventojogoId() {
+		return tipoeventojogoId;
+	}
+	
+	public void setID(int value) {
 		this.ID = value;
 	}
 	
@@ -68,32 +131,20 @@ public class EventoJogo implements Serializable {
 		return ID;
 	}
 	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setMinuto(double value) {
+	public void setMinuto(int value) {
 		this.minuto = value;
 	}
 	
-	public double getMinuto() {
+	public int getMinuto() {
 		return minuto;
-	}
-	
-	public void setTipoDeEventoId(int value) {
-		this.tipoDeEventoId = value;
-	}
-	
-	public int getTipoDeEventoId() {
-		return tipoDeEventoId;
 	}
 	
 	public void setJogo(Jogo value) {
 		if (jogo != null) {
-			jogo.eventos.remove(this);
+			jogo.eventojogo.remove(this);
 		}
 		if (value != null) {
-			value.eventos.add(this);
+			value.eventojogo.add(this);
 		}
 	}
 	
@@ -112,32 +163,32 @@ public class EventoJogo implements Serializable {
 		return jogo;
 	}
 	
-	public void setTipoDeEvento(TipoEventoJogo value) {
-		if (TipoDeEvento != null) {
-			TipoDeEvento.eventoJogo.remove(this);
+	public void setTipoeventojogo(Tipoeventojogo value) {
+		if (tipoeventojogo != null) {
+			tipoeventojogo.eventojogo.remove(this);
 		}
 		if (value != null) {
-			value.eventoJogo.add(this);
+			value.eventojogo.add(this);
 		}
 	}
 	
-	public TipoEventoJogo getTipoDeEvento() {
-		return TipoDeEvento;
+	public Tipoeventojogo getTipoeventojogo() {
+		return tipoeventojogo;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_TipoDeEvento(TipoEventoJogo value) {
-		this.TipoDeEvento = value;
+	public void setORM_Tipoeventojogo(Tipoeventojogo value) {
+		this.tipoeventojogo = value;
 	}
 	
-	private TipoEventoJogo getORM_TipoDeEvento() {
-		return TipoDeEvento;
+	private Tipoeventojogo getORM_Tipoeventojogo() {
+		return tipoeventojogo;
 	}
 	
 	public String toString() {
-		return String.valueOf(getID());
+		return String.valueOf(getID() + " " + ((getJogo() == null) ? "" : String.valueOf(getJogo().getORMID())) + " " + ((getTipoeventojogo() == null) ? "" : String.valueOf(getTipoeventojogo().getORMID())));
 	}
 	
 }

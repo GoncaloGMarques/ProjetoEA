@@ -69,11 +69,11 @@ public class JogadorSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>name</li>
+	 * <li>nome</li>
 	 * <li>idade</li>
 	 * <li>NCartoesVermelhos</li>
 	 * <li>NCartoesAmarelos</li>
-	 * <li>Golos</li>
+	 * <li>golos</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -85,11 +85,11 @@ public class JogadorSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>name</li>
+	 * <li>nome</li>
 	 * <li>idade</li>
 	 * <li>NCartoesVermelhos</li>
 	 * <li>NCartoesAmarelos</li>
-	 * <li>Golos</li>
+	 * <li>golos</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
@@ -99,7 +99,7 @@ public class JogadorSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolPersistentManager.instance();
+		return EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

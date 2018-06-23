@@ -13,12 +13,12 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  */
 import org.orm.*;
 
-public class TorneioSetCollection extends org.orm.util.ORMSet {
-	public TorneioSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
+public class EscolasSetCollection extends org.orm.util.ORMSet {
+	public EscolasSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
 		super(owner, adapter, ownerKey, targetKey, true, collType);
 	}
 	
-	public TorneioSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
+	public EscolasSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
 		super(owner, adapter, ownerKey, -1, false, collType);
 	}
 	
@@ -34,7 +34,7 @@ public class TorneioSetCollection extends org.orm.util.ORMSet {
 	 * Add the specified persistent object to ORMSet
 	 * @param value the persistent object
 	 */
-	public void add(Torneio value) {
+	public void add(Escolas value) {
 		if (value != null) {
 			super.add(value, value._ormAdapter);
 		}
@@ -44,7 +44,7 @@ public class TorneioSetCollection extends org.orm.util.ORMSet {
 	 * Remove the specified persistent object from ORMSet
 	 * @param value the persistent object
 	 */
-	public void remove(Torneio value) {
+	public void remove(Escolas value) {
 		super.remove(value, value._ormAdapter);
 	}
 	
@@ -53,7 +53,7 @@ public class TorneioSetCollection extends org.orm.util.ORMSet {
 	 * @param value the persistent object
 	 * @return True if this contains the specified persistent object
 	 */
-	public boolean contains(Torneio value) {
+	public boolean contains(Escolas value) {
 		return super.contains(value);
 	}
 	
@@ -61,18 +61,20 @@ public class TorneioSetCollection extends org.orm.util.ORMSet {
 	 * Return an array containing all of the persistent objects in ORMSet
 	 * @return The persistent objects array
 	 */
-	public Torneio[] toArray() {
-		return (Torneio[]) super.toArray(new Torneio[size()]);
+	public Escolas[] toArray() {
+		return (Escolas[]) super.toArray(new Escolas[size()]);
 	}
 	
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
+	 * <li>nome</li>
+	 * <li>diretoescolaID</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
-	public Torneio[] toArray(String propertyName) {
+	public Escolas[] toArray(String propertyName) {
 		return toArray(propertyName, true);
 	}
 	
@@ -80,16 +82,18 @@ public class TorneioSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
+	 * <li>nome</li>
+	 * <li>diretoescolaID</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
 	 */
-	public Torneio[] toArray(String propertyName, boolean ascending) {
-		return (Torneio[]) super.toArray(new Torneio[size()], propertyName, ascending);
+	public Escolas[] toArray(String propertyName, boolean ascending) {
+		return (Escolas[]) super.toArray(new Escolas[size()], propertyName, ascending);
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolPersistentManager.instance();
+		return EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

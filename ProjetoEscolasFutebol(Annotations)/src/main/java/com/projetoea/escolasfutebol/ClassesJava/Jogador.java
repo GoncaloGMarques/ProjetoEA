@@ -15,7 +15,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Jogador")
+@Table(name="jogador")
 public class Jogador implements Serializable {
 	public Jogador() {
 	}
@@ -40,25 +40,25 @@ public class Jogador implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="JOGADOR_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
+	@Column(name="Nome", nullable=true, length=255)	
+	private String nome;
+	
+	@Column(name="Idade", nullable=true, length=10)	
+	private Integer idade;
+	
+	@Column(name="NCartoesVermelhos", nullable=true, length=10)	
+	private Integer NCartoesVermelhos;
+	
+	@Column(name="NCartoesAmarelos", nullable=true, length=10)	
+	private Integer NCartoesAmarelos;
+	
+	@Column(name="Golos", nullable=true, length=10)	
+	private Integer golos;
+	
 	@ManyToOne(targetEntity=Equipa.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="EquipaID2", referencedColumnName="ID", nullable=false) })	
+	@JoinColumns({ @JoinColumn(name="equipaID", referencedColumnName="ID", nullable=false) })	
 	private Equipa equipa;
-	
-	@Column(name="Name", nullable=false, length=10)	
-	private int name;
-	
-	@Column(name="Idade", nullable=false, length=10)	
-	private int idade;
-	
-	@Column(name="NCartoesVermelhos", nullable=false, length=10)	
-	private int NCartoesVermelhos;
-	
-	@Column(name="NCartoesAmarelos", nullable=false, length=10)	
-	private int NCartoesAmarelos;
-	
-	@Column(name="Golos", nullable=false, length=10)	
-	private int Golos;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -72,52 +72,68 @@ public class Jogador implements Serializable {
 		return getID();
 	}
 	
-	public void setName(int value) {
-		this.name = value;
+	public void setNome(String value) {
+		this.nome = value;
 	}
 	
-	public int getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 	
 	public void setIdade(int value) {
+		setIdade(new Integer(value));
+	}
+	
+	public void setIdade(Integer value) {
 		this.idade = value;
 	}
 	
-	public int getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
 	
 	public void setNCartoesVermelhos(int value) {
+		setNCartoesVermelhos(new Integer(value));
+	}
+	
+	public void setNCartoesVermelhos(Integer value) {
 		this.NCartoesVermelhos = value;
 	}
 	
-	public int getNCartoesVermelhos() {
+	public Integer getNCartoesVermelhos() {
 		return NCartoesVermelhos;
 	}
 	
 	public void setNCartoesAmarelos(int value) {
+		setNCartoesAmarelos(new Integer(value));
+	}
+	
+	public void setNCartoesAmarelos(Integer value) {
 		this.NCartoesAmarelos = value;
 	}
 	
-	public int getNCartoesAmarelos() {
+	public Integer getNCartoesAmarelos() {
 		return NCartoesAmarelos;
 	}
 	
 	public void setGolos(int value) {
-		this.Golos = value;
+		setGolos(new Integer(value));
 	}
 	
-	public int getGolos() {
-		return Golos;
+	public void setGolos(Integer value) {
+		this.golos = value;
+	}
+	
+	public Integer getGolos() {
+		return golos;
 	}
 	
 	public void setEquipa(Equipa value) {
 		if (equipa != null) {
-			equipa.jogadores.remove(this);
+			equipa.jogador.remove(this);
 		}
 		if (value != null) {
-			value.jogadores.add(this);
+			value.jogador.add(this);
 		}
 	}
 	

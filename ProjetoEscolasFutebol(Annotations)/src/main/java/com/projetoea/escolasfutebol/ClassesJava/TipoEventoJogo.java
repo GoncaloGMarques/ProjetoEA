@@ -15,14 +15,14 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="TipoEventoJogo")
-public class TipoEventoJogo implements Serializable {
-	public TipoEventoJogo() {
+@Table(name="tipoeventojogo")
+public class Tipoeventojogo implements Serializable {
+	public Tipoeventojogo() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
 		if (key == ORMConstants.KEY_TIPOEVENTOJOGO_EVENTOJOGO) {
-			return ORM_eventoJogo;
+			return ORM_eventojogo;
 		}
 		
 		return null;
@@ -43,12 +43,12 @@ public class TipoEventoJogo implements Serializable {
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
-	private String Nome;
+	private String nome;
 	
-	@OneToMany(mappedBy="TipoDeEvento", targetEntity=EventoJogo.class)	
+	@OneToMany(mappedBy="tipoeventojogo", targetEntity=Eventojogo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set ORM_eventoJogo = new java.util.HashSet();
+	private java.util.Set ORM_eventojogo = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -63,23 +63,23 @@ public class TipoEventoJogo implements Serializable {
 	}
 	
 	public void setNome(String value) {
-		this.Nome = value;
+		this.nome = value;
 	}
 	
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 	
-	private void setORM_EventoJogo(java.util.Set value) {
-		this.ORM_eventoJogo = value;
+	private void setORM_Eventojogo(java.util.Set value) {
+		this.ORM_eventojogo = value;
 	}
 	
-	private java.util.Set getORM_EventoJogo() {
-		return ORM_eventoJogo;
+	private java.util.Set getORM_Eventojogo() {
+		return ORM_eventojogo;
 	}
 	
 	@Transient	
-	public final EventoJogoSetCollection eventoJogo = new EventoJogoSetCollection(this, _ormAdapter, ORMConstants.KEY_TIPOEVENTOJOGO_EVENTOJOGO, ORMConstants.KEY_EVENTOJOGO_TIPODEEVENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final EventojogoSetCollection eventojogo = new EventojogoSetCollection(this, _ormAdapter, ORMConstants.KEY_TIPOEVENTOJOGO_EVENTOJOGO, ORMConstants.KEY_EVENTOJOGO_TIPOEVENTOJOGO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());
