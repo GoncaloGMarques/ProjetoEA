@@ -11,9 +11,12 @@ import com.vaadin.ui.*;
 @SpringUI(path = "EscolasFutebol/*")
 public class VaadinUI extends UI {
 
+    public Label userName;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
+        userName = new Label("Not Logged in");
 
         VerticalLayout menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
@@ -24,15 +27,15 @@ public class VaadinUI extends UI {
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
-        VerticalLayout menu = new VerticalLayout(title, menuLinks);
+        VerticalLayout menu = new VerticalLayout(title, userName, menuLinks);
         menu.setStyleName("v-horizontal-layout-menu");
         menu.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+        menu.setComponentAlignment(userName, Alignment.MIDDLE_CENTER);
 
         VerticalLayout viewContainer = new VerticalLayout();
 
         HorizontalLayout mainLayout = new HorizontalLayout(menu, viewContainer);
         mainLayout.setSizeFull();
-//        mainLayout.setExpandRatio(viewContainer, 1);
 
         setContent(mainLayout);
         mainLayout.setExpandRatio(menu, 2f);

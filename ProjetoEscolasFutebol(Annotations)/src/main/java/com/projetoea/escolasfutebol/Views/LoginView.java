@@ -3,6 +3,7 @@ package com.projetoea.escolasfutebol.Views;
 import ch.qos.logback.core.util.ContentTypeUtil;
 import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
+import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
@@ -14,6 +15,10 @@ import org.orm.PersistentException;
 public class LoginView  extends Composite implements View {
 
     private VerticalLayout verticalLayout;
+
+    private Button loginPresidenteBtn;
+    private Button loginArbitroBtn;
+    private Button loginUserBtn;
 
     private Label errorUsernameLabel;
     private Label daoError;
@@ -40,13 +45,20 @@ public class LoginView  extends Composite implements View {
 
         TextField passwordField = new TextField("Password");
         horizontalLayout1.addComponent(passwordField);
-        horizontalLayout.addComponent(daoError);
+        horizontalLayout1.addComponent(daoError);
+        loginPresidenteBtn = new Button("Login Presidente", event -> {
 
-        Button loginBtn = new Button("Login", event -> {
+        });
+        loginArbitroBtn = new Button("Login Arbitro", event -> {
+
+        });
+        loginUserBtn = new Button("Login", event -> {
 
             daoError.setValue("");
             errorUsernameLabel.setValue("");
+
             Utilizador user = null;
+
             String username = usernameField.getValue();
             if(username == null || username.isEmpty()) {
                 errorUsernameLabel.setValue(emptyUsername);
@@ -60,10 +72,15 @@ public class LoginView  extends Composite implements View {
                 daoError.setValue(e.getMessage());
             }
 
-            if(user != null)
+            if(user != null) {
+                VaadinUI currentUI = (VaadinUI)UI.getCurrent();
+                currentUI.userName.setValue(user.getNome());
                 verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
+            }
         });
-        verticalLayout.addComponent(loginBtn);
+        verticalLayout.addComponent(loginUserBtn);
+        verticalLayout.addComponent(loginArbitroBtn);
+        verticalLayout.addComponent(loginPresidenteBtn);
 
         setCompositionRoot(verticalLayout);
     }
