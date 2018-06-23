@@ -13,12 +13,12 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  */
 import org.orm.*;
 
-public class EventoJogoSetCollection extends org.orm.util.ORMSet {
-	public EventoJogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
+public class EventojogoSetCollection extends org.orm.util.ORMSet {
+	public EventojogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
 		super(owner, adapter, ownerKey, targetKey, true, collType);
 	}
 	
-	public EventoJogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
+	public EventojogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int collType) {
 		super(owner, adapter, ownerKey, -1, false, collType);
 	}
 	
@@ -34,7 +34,7 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * Add the specified persistent object to ORMSet
 	 * @param value the persistent object
 	 */
-	public void add(EventoJogo value) {
+	public void add(Eventojogo value) {
 		if (value != null) {
 			super.add(value, value._ormAdapter);
 		}
@@ -44,7 +44,7 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * Remove the specified persistent object from ORMSet
 	 * @param value the persistent object
 	 */
-	public void remove(EventoJogo value) {
+	public void remove(Eventojogo value) {
 		super.remove(value, value._ormAdapter);
 	}
 	
@@ -53,7 +53,7 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * @param value the persistent object
 	 * @return True if this contains the specified persistent object
 	 */
-	public boolean contains(EventoJogo value) {
+	public boolean contains(Eventojogo value) {
 		return super.contains(value);
 	}
 	
@@ -61,8 +61,8 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * Return an array containing all of the persistent objects in ORMSet
 	 * @return The persistent objects array
 	 */
-	public EventoJogo[] toArray() {
-		return (EventoJogo[]) super.toArray(new EventoJogo[size()]);
+	public Eventojogo[] toArray() {
+		return (Eventojogo[]) super.toArray(new Eventojogo[size()]);
 	}
 	
 	/**
@@ -70,11 +70,10 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>minuto</li>
-	 * <li>tipoDeEventoId</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
-	public EventoJogo[] toArray(String propertyName) {
+	public Eventojogo[] toArray(String propertyName) {
 		return toArray(propertyName, true);
 	}
 	
@@ -83,17 +82,16 @@ public class EventoJogoSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>minuto</li>
-	 * <li>tipoDeEventoId</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
 	 */
-	public EventoJogo[] toArray(String propertyName, boolean ascending) {
-		return (EventoJogo[]) super.toArray(new EventoJogo[size()], propertyName, ascending);
+	public Eventojogo[] toArray(String propertyName, boolean ascending) {
+		return (Eventojogo[]) super.toArray(new Eventojogo[size()], propertyName, ascending);
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolPersistentManager.instance();
+		return EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

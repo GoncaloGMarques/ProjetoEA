@@ -69,10 +69,9 @@ public class JogoSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>Data</li>
-	 * <li>ResultadoVisitado</li>
-	 * <li>ResultadoVisitante</li>
-	 * <li>VencedorID</li>
+	 * <li>data</li>
+	 * <li>golosEquipaCasa</li>
+	 * <li>golosEquipaFora</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -84,10 +83,9 @@ public class JogoSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>Data</li>
-	 * <li>ResultadoVisitado</li>
-	 * <li>ResultadoVisitante</li>
-	 * <li>VencedorID</li>
+	 * <li>data</li>
+	 * <li>golosEquipaCasa</li>
+	 * <li>golosEquipaFora</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
@@ -97,7 +95,7 @@ public class JogoSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolPersistentManager.instance();
+		return EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

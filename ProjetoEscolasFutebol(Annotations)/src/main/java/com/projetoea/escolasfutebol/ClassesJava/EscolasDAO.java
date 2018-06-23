@@ -19,7 +19,7 @@ import java.util.List;
 public class EscolasDAO {
 	public static Escolas loadEscolasByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadEscolasByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +30,7 @@ public class EscolasDAO {
 	
 	public static Escolas getEscolasByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getEscolasByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +39,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas loadEscolasByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas loadEscolasByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadEscolasByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +50,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas getEscolasByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas getEscolasByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getEscolasByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -81,7 +81,7 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas loadEscolasByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas loadEscolasByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Escolas) session.load(Escolas.class, new Integer(ID), lockMode);
 		}
@@ -91,7 +91,7 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas getEscolasByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas getEscolasByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Escolas) session.get(Escolas.class, new Integer(ID), lockMode);
 		}
@@ -103,7 +103,7 @@ public class EscolasDAO {
 	
 	public static List queryEscolas(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryEscolas(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +112,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static List queryEscolas(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryEscolas(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryEscolas(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +125,7 @@ public class EscolasDAO {
 	
 	public static Escolas[] listEscolasByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listEscolasByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +134,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas[] listEscolasByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas[] listEscolasByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listEscolasByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static List queryEscolas(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryEscolas(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Escolas as Escolas");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -189,7 +189,7 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas[] listEscolasByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas[] listEscolasByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryEscolas(session, condition, orderBy, lockMode);
 			return (Escolas[]) list.toArray(new Escolas[list.size()]);
@@ -202,7 +202,7 @@ public class EscolasDAO {
 	
 	public static Escolas loadEscolasByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadEscolasByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +211,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static Escolas loadEscolasByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas loadEscolasByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadEscolasByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +230,7 @@ public class EscolasDAO {
 			return null;
 	}
 	
-	public static Escolas loadEscolasByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Escolas loadEscolasByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		Escolas[] escolases = listEscolasByQuery(session, condition, orderBy, lockMode);
 		if (escolases != null && escolases.length > 0)
 			return escolases[0];
@@ -240,7 +240,7 @@ public class EscolasDAO {
 	
 	public static java.util.Iterator iterateEscolasByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateEscolasByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +249,9 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateEscolasByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateEscolasByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateEscolasByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -276,7 +276,7 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateEscolasByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateEscolasByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Escolas as Escolas");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -299,7 +299,7 @@ public class EscolasDAO {
 	
 	public static boolean save(Escolas escolas) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().saveObject(escolas);
+			EscolasFutebolBetterPersistentManager.instance().saveObject(escolas);
 			return true;
 		}
 		catch (Exception e) {
@@ -310,7 +310,7 @@ public class EscolasDAO {
 	
 	public static boolean delete(Escolas escolas) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().deleteObject(escolas);
+			EscolasFutebolBetterPersistentManager.instance().deleteObject(escolas);
 			return true;
 		}
 		catch (Exception e) {
@@ -321,9 +321,17 @@ public class EscolasDAO {
 	
 	public static boolean deleteAndDissociate(Escolas escolas)throws PersistentException {
 		try {
-			Equipa[] lEquipass = escolas.equipas.toArray();
-			for(int i = 0; i < lEquipass.length; i++) {
-				lEquipass[i].setEscola(null);
+			if (escolas.getAssociacao() != null) {
+				escolas.getAssociacao().escolas.remove(escolas);
+			}
+			
+			if (escolas.getDiretorEscola() != null) {
+				escolas.getDiretorEscola().setEscolas(null);
+			}
+			
+			Equipa[] lEquipas = escolas.equipa.toArray();
+			for(int i = 0; i < lEquipas.length; i++) {
+				lEquipas[i].setEscolas(null);
 			}
 			return delete(escolas);
 		}
@@ -333,11 +341,19 @@ public class EscolasDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Escolas escolas, org.orm.PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Escolas escolas, PersistentSession session)throws PersistentException {
 		try {
-			Equipa[] lEquipass = escolas.equipas.toArray();
-			for(int i = 0; i < lEquipass.length; i++) {
-				lEquipass[i].setEscola(null);
+			if (escolas.getAssociacao() != null) {
+				escolas.getAssociacao().escolas.remove(escolas);
+			}
+			
+			if (escolas.getDiretorEscola() != null) {
+				escolas.getDiretorEscola().setEscolas(null);
+			}
+			
+			Equipa[] lEquipas = escolas.equipa.toArray();
+			for(int i = 0; i < lEquipas.length; i++) {
+				lEquipas[i].setEscolas(null);
 			}
 			try {
 				session.delete(escolas);
@@ -354,7 +370,7 @@ public class EscolasDAO {
 	
 	public static boolean refresh(Escolas escolas) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().refresh(escolas);
+			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(escolas);
 			return true;
 		}
 		catch (Exception e) {
@@ -365,7 +381,7 @@ public class EscolasDAO {
 	
 	public static boolean evict(Escolas escolas) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().evict(escolas);
+			EscolasFutebolBetterPersistentManager.instance().getSession().evict(escolas);
 			return true;
 		}
 		catch (Exception e) {
@@ -374,4 +390,15 @@ public class EscolasDAO {
 		}
 	}
 	
+	public static Escolas loadEscolasByCriteria(EscolasCriteria escolasCriteria) {
+		Escolas[] escolases = listEscolasByCriteria(escolasCriteria);
+		if(escolases == null || escolases.length == 0) {
+			return null;
+		}
+		return escolases[0];
+	}
+	
+	public static Escolas[] listEscolasByCriteria(EscolasCriteria escolasCriteria) {
+		return escolasCriteria.listEscolas();
+	}
 }

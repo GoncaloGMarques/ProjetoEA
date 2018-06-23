@@ -15,14 +15,17 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Campo")
+@Table(name="campo")
 public class Campo implements Serializable {
 	public Campo() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_CAMPO_EQUIPAS) {
-			return ORM_equipas;
+		if (key == ORMConstants.KEY_CAMPO_EQUIPA) {
+			return ORM_equipa;
+		}
+		else if (key == ORMConstants.KEY_CAMPO_JOGO) {
+			return ORM_jogo;
 		}
 		
 		return null;
@@ -36,7 +39,7 @@ public class Campo implements Serializable {
 		
 	};
 	
-	@Column(name="ID", nullable=false, length=10)	
+	@Column(name="ID", nullable=false, length=11)	
 	@Id	
 	@GeneratedValue(generator="CAMPO_ID_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="CAMPO_ID_GENERATOR", strategy="native")	
@@ -48,7 +51,12 @@ public class Campo implements Serializable {
 	@OneToMany(mappedBy="campo", targetEntity=Equipa.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
-	private java.util.Set ORM_equipas = new java.util.HashSet();
+	private java.util.Set ORM_equipa = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="campo", targetEntity=Jogo.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_jogo = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -70,16 +78,27 @@ public class Campo implements Serializable {
 		return nome;
 	}
 	
-	private void setORM_Equipas(java.util.Set value) {
-		this.ORM_equipas = value;
+	private void setORM_Equipa(java.util.Set value) {
+		this.ORM_equipa = value;
 	}
 	
-	private java.util.Set getORM_Equipas() {
-		return ORM_equipas;
+	private java.util.Set getORM_Equipa() {
+		return ORM_equipa;
 	}
 	
 	@Transient	
-	public final EquipaSetCollection equipas = new EquipaSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPO_EQUIPAS, ORMConstants.KEY_EQUIPA_CAMPO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final EquipaSetCollection equipa = new EquipaSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPO_EQUIPA, ORMConstants.KEY_EQUIPA_CAMPO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Jogo(java.util.Set value) {
+		this.ORM_jogo = value;
+	}
+	
+	private java.util.Set getORM_Jogo() {
+		return ORM_jogo;
+	}
+	
+	@Transient	
+	public final JogoSetCollection jogo = new JogoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPO_JOGO, ORMConstants.KEY_JOGO_CAMPO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

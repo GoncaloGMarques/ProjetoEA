@@ -19,7 +19,7 @@ import java.util.List;
 public class JogadorDAO {
 	public static Jogador loadJogadorByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadJogadorByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +30,7 @@ public class JogadorDAO {
 	
 	public static Jogador getJogadorByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getJogadorByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +39,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador loadJogadorByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador loadJogadorByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadJogadorByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +50,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador getJogadorByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador getJogadorByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getJogadorByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -81,7 +81,7 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador loadJogadorByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador loadJogadorByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Jogador) session.load(Jogador.class, new Integer(ID), lockMode);
 		}
@@ -91,7 +91,7 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador getJogadorByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador getJogadorByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Jogador) session.get(Jogador.class, new Integer(ID), lockMode);
 		}
@@ -103,7 +103,7 @@ public class JogadorDAO {
 	
 	public static List queryJogador(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryJogador(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +112,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static List queryJogador(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryJogador(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryJogador(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +125,7 @@ public class JogadorDAO {
 	
 	public static Jogador[] listJogadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listJogadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +134,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador[] listJogadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador[] listJogadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listJogadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static List queryJogador(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryJogador(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Jogador as Jogador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -189,7 +189,7 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador[] listJogadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador[] listJogadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryJogador(session, condition, orderBy, lockMode);
 			return (Jogador[]) list.toArray(new Jogador[list.size()]);
@@ -202,7 +202,7 @@ public class JogadorDAO {
 	
 	public static Jogador loadJogadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadJogadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +211,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static Jogador loadJogadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador loadJogadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadJogadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +230,7 @@ public class JogadorDAO {
 			return null;
 	}
 	
-	public static Jogador loadJogadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Jogador loadJogadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		Jogador[] jogadors = listJogadorByQuery(session, condition, orderBy, lockMode);
 		if (jogadors != null && jogadors.length > 0)
 			return jogadors[0];
@@ -240,7 +240,7 @@ public class JogadorDAO {
 	
 	public static java.util.Iterator iterateJogadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateJogadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +249,9 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateJogadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateJogadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateJogadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -276,7 +276,7 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateJogadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateJogadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Jogador as Jogador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -299,7 +299,7 @@ public class JogadorDAO {
 	
 	public static boolean save(Jogador jogador) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().saveObject(jogador);
+			EscolasFutebolBetterPersistentManager.instance().saveObject(jogador);
 			return true;
 		}
 		catch (Exception e) {
@@ -310,7 +310,7 @@ public class JogadorDAO {
 	
 	public static boolean delete(Jogador jogador) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().deleteObject(jogador);
+			EscolasFutebolBetterPersistentManager.instance().deleteObject(jogador);
 			return true;
 		}
 		catch (Exception e) {
@@ -322,7 +322,7 @@ public class JogadorDAO {
 	public static boolean deleteAndDissociate(Jogador jogador)throws PersistentException {
 		try {
 			if (jogador.getEquipa() != null) {
-				jogador.getEquipa().jogadores.remove(jogador);
+				jogador.getEquipa().jogador.remove(jogador);
 			}
 			
 			return delete(jogador);
@@ -333,10 +333,10 @@ public class JogadorDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Jogador jogador, org.orm.PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Jogador jogador, PersistentSession session)throws PersistentException {
 		try {
 			if (jogador.getEquipa() != null) {
-				jogador.getEquipa().jogadores.remove(jogador);
+				jogador.getEquipa().jogador.remove(jogador);
 			}
 			
 			try {
@@ -354,7 +354,7 @@ public class JogadorDAO {
 	
 	public static boolean refresh(Jogador jogador) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().refresh(jogador);
+			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(jogador);
 			return true;
 		}
 		catch (Exception e) {
@@ -365,7 +365,7 @@ public class JogadorDAO {
 	
 	public static boolean evict(Jogador jogador) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().evict(jogador);
+			EscolasFutebolBetterPersistentManager.instance().getSession().evict(jogador);
 			return true;
 		}
 		catch (Exception e) {
@@ -374,4 +374,15 @@ public class JogadorDAO {
 		}
 	}
 	
+	public static Jogador loadJogadorByCriteria(JogadorCriteria jogadorCriteria) {
+		Jogador[] jogadors = listJogadorByCriteria(jogadorCriteria);
+		if(jogadors == null || jogadors.length == 0) {
+			return null;
+		}
+		return jogadors[0];
+	}
+	
+	public static Jogador[] listJogadorByCriteria(JogadorCriteria jogadorCriteria) {
+		return jogadorCriteria.listJogador();
+	}
 }

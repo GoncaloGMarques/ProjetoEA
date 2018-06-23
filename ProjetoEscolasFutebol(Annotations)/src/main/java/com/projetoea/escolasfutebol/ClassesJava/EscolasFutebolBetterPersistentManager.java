@@ -17,8 +17,8 @@ import org.hibernate.*;
 import java.util.Properties;
 import org.hibernate.cfg.*;
 
-public class EscolasFutebolPersistentManager extends PersistentManager {
-	private static final String PROJECT_NAME = "hibernate";
+public class EscolasFutebolBetterPersistentManager extends PersistentManager {
+	private static final String PROJECT_NAME = "EscolasFutebolBetter";
 	private static PersistentManager _instance = null;
 	private static SessionType _sessionType = SessionType.THREAD_BASE;
 	private static int _timeToAlive = 60000;
@@ -26,7 +26,7 @@ public class EscolasFutebolPersistentManager extends PersistentManager {
 	private static Properties _extraProperties = null;
 	private static String _configurationFile = null;
 	
-	private EscolasFutebolPersistentManager() throws PersistentException {
+	private EscolasFutebolBetterPersistentManager() throws PersistentException {
 		super(_connectionSetting, _sessionType, _timeToAlive, new String[] {}, _extraProperties, _configurationFile);
 		setFlushMode(FlushMode.AUTO);
 	}
@@ -34,17 +34,26 @@ public class EscolasFutebolPersistentManager extends PersistentManager {
 	@Override
 	public Configuration createConfiguration() {
 		Configuration configuration = new Configuration();
+		configuration.addAnnotatedClass(Campo.class);
 		configuration.addAnnotatedClass(Escolas.class);
 		configuration.addAnnotatedClass(Equipa.class);
 		configuration.addAnnotatedClass(Jogador.class);
-		configuration.addAnnotatedClass(Torneio.class);
-		configuration.addAnnotatedClass(Jogo.class);
-		configuration.addAnnotatedClass(EventoJogo.class);
-		configuration.addAnnotatedClass(Campo.class);
 		configuration.addAnnotatedClass(Campeonato.class);
+		configuration.addAnnotatedClass(Jogo.class);
 		configuration.addAnnotatedClass(Arbitro.class);
-		configuration.addAnnotatedClass(TipoEventoJogo.class);
+		configuration.addAnnotatedClass(Tipoeventojogo.class);
 		configuration.addAnnotatedClass(Utilizador.class);
+		configuration.addAnnotatedClass(Eventojogo.class);
+		configuration.addAnnotatedClass(EventojogoPK.class);
+		configuration.addAnnotatedClass(Associacao.class);
+		configuration.addAnnotatedClass(Torneio.class);
+		configuration.addAnnotatedClass(Fase.class);
+		configuration.addAnnotatedClass(Rondatorneio.class);
+		configuration.addAnnotatedClass(Rondacampeonato.class);
+		configuration.addAnnotatedClass(Partcipantetorneio.class);
+		configuration.addAnnotatedClass(Grupo.class);
+		configuration.addAnnotatedClass(Participantecampeonato.class);
+		configuration.addAnnotatedClass(Tipoutilizador.class);
 		configuration.buildMappings();
 		return configuration;
 	}
@@ -55,7 +64,7 @@ public class EscolasFutebolPersistentManager extends PersistentManager {
 	
 	public static synchronized final PersistentManager instance() throws PersistentException {
 		if (_instance == null) {
-			_instance = new EscolasFutebolPersistentManager();
+			_instance = new EscolasFutebolBetterPersistentManager();
 		}
 		
 		return _instance;

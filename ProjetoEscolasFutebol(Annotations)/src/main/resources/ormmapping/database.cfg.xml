@@ -21,11 +21,26 @@
     <DriverFiles>C:\Program Files (x86)\MySQL\Connector J 5.1\mysql-connector-java-5.1.46.jar</DriverFiles>
     <Dialect>org.hibernate.dialect.MySQLDialect</Dialect>
     <DriverClass>com.mysql.jdbc.Driver</DriverClass>
-    <URL>jdbc:mysql://localhost:3306/TestSpring</URL>
+    <URL>jdbc:mysql://localhost/TestSpring</URL>
     <UserName>root</UserName>
-    <EncryptedPassword>4D7A31D2670243A06F76686FCF8BB9E1</EncryptedPassword>
+    <EncryptedPassword>4FAA3FC0F1E17DCC2F6932F6E8DBCF14</EncryptedPassword>
     <HostName>localhost</HostName>
-    <PortNO>3306</PortNO>
+    <PortNO></PortNO>
+    <DBName>TestSpring</DBName>
+    <ServiceName></ServiceName>
+    <ServerName></ServerName>
+    <SelectedForm>true</SelectedForm>
+  </Setting>
+  <Setting type="1048576">
+    <Driver>MySQL (Connector/J Driver)</Driver>
+    <DriverFiles>C:\Program Files (x86)\MySQL\Connector J 5.1\mysql-connector-java-5.1.46.jar</DriverFiles>
+    <Dialect>org.hibernate.dialect.MySQLDialect</Dialect>
+    <DriverClass>com.mysql.jdbc.Driver</DriverClass>
+    <URL>jdbc:mysql://localhost/TestSpring</URL>
+    <UserName>root</UserName>
+    <EncryptedPassword>4FAA3FC0F1E17DCC2F6932F6E8DBCF14</EncryptedPassword>
+    <HostName>localhost</HostName>
+    <PortNO></PortNO>
     <DBName>TestSpring</DBName>
     <ServiceName></ServiceName>
     <ServerName></ServerName>

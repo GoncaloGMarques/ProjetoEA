@@ -19,7 +19,7 @@ import java.util.List;
 public class ArbitroDAO {
 	public static Arbitro loadArbitroByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadArbitroByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +30,7 @@ public class ArbitroDAO {
 	
 	public static Arbitro getArbitroByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getArbitroByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +39,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro loadArbitroByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro loadArbitroByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadArbitroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +50,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro getArbitroByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro getArbitroByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getArbitroByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -81,7 +81,7 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro loadArbitroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro loadArbitroByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Arbitro) session.load(Arbitro.class, new Integer(ID), lockMode);
 		}
@@ -91,7 +91,7 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro getArbitroByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro getArbitroByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
 		try {
 			return (Arbitro) session.get(Arbitro.class, new Integer(ID), lockMode);
 		}
@@ -103,7 +103,7 @@ public class ArbitroDAO {
 	
 	public static List queryArbitro(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryArbitro(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +112,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static List queryArbitro(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryArbitro(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryArbitro(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +125,7 @@ public class ArbitroDAO {
 	
 	public static Arbitro[] listArbitroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listArbitroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +134,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro[] listArbitroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro[] listArbitroByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listArbitroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static List queryArbitro(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryArbitro(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Arbitro as Arbitro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -189,7 +189,7 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro[] listArbitroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro[] listArbitroByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryArbitro(session, condition, orderBy, lockMode);
 			return (Arbitro[]) list.toArray(new Arbitro[list.size()]);
@@ -202,7 +202,7 @@ public class ArbitroDAO {
 	
 	public static Arbitro loadArbitroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadArbitroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +211,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static Arbitro loadArbitroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro loadArbitroByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadArbitroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +230,7 @@ public class ArbitroDAO {
 			return null;
 	}
 	
-	public static Arbitro loadArbitroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Arbitro loadArbitroByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		Arbitro[] arbitros = listArbitroByQuery(session, condition, orderBy, lockMode);
 		if (arbitros != null && arbitros.length > 0)
 			return arbitros[0];
@@ -240,7 +240,7 @@ public class ArbitroDAO {
 	
 	public static java.util.Iterator iterateArbitroByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateArbitroByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +249,9 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateArbitroByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateArbitroByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolPersistentManager.instance().getSession();
+			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateArbitroByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -276,7 +276,7 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateArbitroByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateArbitroByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Arbitro as Arbitro");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -299,7 +299,7 @@ public class ArbitroDAO {
 	
 	public static boolean save(Arbitro arbitro) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().saveObject(arbitro);
+			EscolasFutebolBetterPersistentManager.instance().saveObject(arbitro);
 			return true;
 		}
 		catch (Exception e) {
@@ -310,7 +310,7 @@ public class ArbitroDAO {
 	
 	public static boolean delete(Arbitro arbitro) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().deleteObject(arbitro);
+			EscolasFutebolBetterPersistentManager.instance().deleteObject(arbitro);
 			return true;
 		}
 		catch (Exception e) {
@@ -321,9 +321,13 @@ public class ArbitroDAO {
 	
 	public static boolean deleteAndDissociate(Arbitro arbitro)throws PersistentException {
 		try {
-			Jogo[] lJogoss = arbitro.jogos.toArray();
-			for(int i = 0; i < lJogoss.length; i++) {
-				lJogoss[i].setArbitro(null);
+			if (arbitro.getUtilizador() != null) {
+				arbitro.getUtilizador().setArbitro(null);
+			}
+			
+			Jogo[] lJogos = arbitro.jogo.toArray();
+			for(int i = 0; i < lJogos.length; i++) {
+				lJogos[i].setArbitro(null);
 			}
 			return delete(arbitro);
 		}
@@ -333,11 +337,15 @@ public class ArbitroDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Arbitro arbitro, org.orm.PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Arbitro arbitro, PersistentSession session)throws PersistentException {
 		try {
-			Jogo[] lJogoss = arbitro.jogos.toArray();
-			for(int i = 0; i < lJogoss.length; i++) {
-				lJogoss[i].setArbitro(null);
+			if (arbitro.getUtilizador() != null) {
+				arbitro.getUtilizador().setArbitro(null);
+			}
+			
+			Jogo[] lJogos = arbitro.jogo.toArray();
+			for(int i = 0; i < lJogos.length; i++) {
+				lJogos[i].setArbitro(null);
 			}
 			try {
 				session.delete(arbitro);
@@ -354,7 +362,7 @@ public class ArbitroDAO {
 	
 	public static boolean refresh(Arbitro arbitro) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().refresh(arbitro);
+			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(arbitro);
 			return true;
 		}
 		catch (Exception e) {
@@ -365,7 +373,7 @@ public class ArbitroDAO {
 	
 	public static boolean evict(Arbitro arbitro) throws PersistentException {
 		try {
-			EscolasFutebolPersistentManager.instance().getSession().evict(arbitro);
+			EscolasFutebolBetterPersistentManager.instance().getSession().evict(arbitro);
 			return true;
 		}
 		catch (Exception e) {
@@ -374,4 +382,15 @@ public class ArbitroDAO {
 		}
 	}
 	
+	public static Arbitro loadArbitroByCriteria(ArbitroCriteria arbitroCriteria) {
+		Arbitro[] arbitros = listArbitroByCriteria(arbitroCriteria);
+		if(arbitros == null || arbitros.length == 0) {
+			return null;
+		}
+		return arbitros[0];
+	}
+	
+	public static Arbitro[] listArbitroByCriteria(ArbitroCriteria arbitroCriteria) {
+		return arbitroCriteria.listArbitro();
+	}
 }
