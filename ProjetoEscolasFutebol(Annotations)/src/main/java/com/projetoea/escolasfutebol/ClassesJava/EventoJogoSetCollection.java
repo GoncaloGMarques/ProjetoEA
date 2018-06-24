@@ -13,7 +13,7 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  */
 import org.orm.*;
 
-public class EventojogoSetCollection extends org.orm.util.ORMSet {
+class EventojogoSetCollection extends org.orm.util.ORMSet {
 	public EventojogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
 		super(owner, adapter, ownerKey, targetKey, true, collType);
 	}

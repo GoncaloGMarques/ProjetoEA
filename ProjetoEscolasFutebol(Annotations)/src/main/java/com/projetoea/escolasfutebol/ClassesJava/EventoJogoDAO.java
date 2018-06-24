@@ -16,7 +16,7 @@ import org.hibernate.Query;
 import org.hibernate.LockMode;
 import java.util.List;
 
-public class EventojogoDAO {
+class EventojogoDAO {
 	public static Eventojogo loadEventojogoByORMID(int ID, Jogo jogo, Tipoeventojogo tipoeventojogo) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();

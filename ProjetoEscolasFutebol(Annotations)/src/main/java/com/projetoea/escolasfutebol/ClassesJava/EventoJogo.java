@@ -17,7 +17,7 @@ import javax.persistence.*;
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="eventojogo")
 @IdClass(EventojogoPK.class)
-public class Eventojogo implements Serializable {
+class Eventojogo implements Serializable {
 	public Eventojogo() {
 	}
 	
