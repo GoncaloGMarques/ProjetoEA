@@ -38,6 +38,7 @@ public class VaadinUI extends UI {
         mainLayout.setSizeFull();
 
         setContent(mainLayout);
+        mainLayout.setExpandRatio(menu, 2f);
         mainLayout.setExpandRatio(viewContainer, 8f);
         menu.setExpandRatio(menuLinks, 8f);
         menu.setExpandRatio(title, 2f);
@@ -55,7 +56,7 @@ public class VaadinUI extends UI {
 
 
     private void addMenuEntry(Layout layout, String caption, String navigateTo){
-        Button view1 = new Button(caption, e -> {getNavigator().navigateTo(navigateTo); });
+        Button view1 = new Button(caption, e -> getNavigator().navigateTo(navigateTo));
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
         layout.addComponent(view1);

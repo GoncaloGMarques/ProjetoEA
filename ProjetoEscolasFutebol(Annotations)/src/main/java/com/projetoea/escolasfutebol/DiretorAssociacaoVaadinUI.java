@@ -23,23 +23,26 @@ public class DiretorAssociacaoVaadinUI extends UI {
         return instance;
     }
 
+    public Label userName;
     public static boolean logged = false;
     static VerticalLayout menuLinks;
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
         menuLinks = new VerticalLayout();
-        addMenuEntry(menuLinks, "Página Inicial", "", title);
-        addMenuEntry(menuLinks, "Logout", "login", title);
-        addMenuEntry(menuLinks, "Calendário", "calendario", title);
-        addMenuEntry(menuLinks, "Torneios", "torneios", title);
-        addMenuEntry(menuLinks, "Campeonato", "campeonato", title);
+        addMenuEntry(menuLinks, "Página Inicial", "");
+        addMenuEntry(menuLinks, "Logout", "login");
+        addMenuEntry(menuLinks, "Calendário", "calendario");
+        addMenuEntry(menuLinks, "Torneios", "torneios");
+        addMenuEntry(menuLinks, "Campeonato", "campeonato");
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
-        VerticalLayout menu = new VerticalLayout(title, menuLinks);
+        VerticalLayout menu = new VerticalLayout(title, userName, menuLinks);
         menu.setStyleName("v-horizontal-layout-menu");
         menu.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+        menu.setComponentAlignment(userName, Alignment.MIDDLE_CENTER);
+
 
         VerticalLayout viewContainer = new VerticalLayout();
 
@@ -65,8 +68,8 @@ public class DiretorAssociacaoVaadinUI extends UI {
 
 
 
-    private void addMenuEntry(Layout layout, String caption, String navigateTo, Component cmp){
-        Button view1 = new Button(caption, e -> {getNavigator().navigateTo(navigateTo); });
+    private void addMenuEntry(Layout layout, String caption, String navigateTo){
+        Button view1 = new Button(caption, e -> getNavigator().navigateTo(navigateTo));
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
         layout.addComponent(view1);
