@@ -1,5 +1,6 @@
 package com.projetoea.escolasfutebol;
 
+import com.projetoea.escolasfutebol.Beans.AppConfig;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
@@ -10,9 +11,13 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +26,13 @@ import javax.servlet.annotation.WebServlet;
 @SpringBootApplication
 public class EscolasfutebolApplication {
 
+    public static ConfigurableApplicationContext applicationContext;
+    public static AnnotationConfigApplicationContext applicationBeansContext;
+
     public static void main(String[] args) {
-        SpringApplication.run(EscolasfutebolApplication.class, args);
+
+        applicationBeansContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        applicationContext = SpringApplication.run(EscolasfutebolApplication.class, args);
     }
 
     @Service

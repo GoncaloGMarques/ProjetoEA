@@ -1,24 +1,30 @@
 package com.projetoea.escolasfutebol.Views;
 
 import ch.qos.logback.core.util.ContentTypeUtil;
+import com.projetoea.escolasfutebol.Beans.UserBean;
+import com.projetoea.escolasfutebol.Beans.UserBeanConfig;
 import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
+import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.projetoea.escolasfutebol.VaadinUI;
+import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.spring.internal.SpringBeanUtil;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.SpringServletContainerInitializer;
+
+import java.beans.beancontext.BeanContext;
 
 @SpringView
+@Theme("darktheme")
 public class LoginView  extends Composite implements View {
 
     private VerticalLayout verticalLayout;
-
-    private Button loginPresidenteBtn;
-    private Button loginArbitroBtn;
-    private Button loginUserBtn;
 
     private Label errorUsernameLabel;
     private Label daoError;
@@ -33,11 +39,11 @@ public class LoginView  extends Composite implements View {
         verticalLayout.addComponent(horizontalLayout);
         verticalLayout.addComponent(horizontalLayout1);
 
-        daoError = new Label("", ContentMode.HTML);
-        daoError.addStyleName("Red");
+        daoError = new Label("");
+        daoError.addStyleName("v-error-label");
 
-        errorUsernameLabel = new Label("", ContentMode.HTML);
-        errorUsernameLabel.addStyleName("Red");
+        errorUsernameLabel = new Label("");
+        errorUsernameLabel.addStyleName("v-error-label");
 
         TextField usernameField = new TextField("Username");
         horizontalLayout.addComponent(usernameField);
@@ -46,13 +52,13 @@ public class LoginView  extends Composite implements View {
         TextField passwordField = new TextField("Password");
         horizontalLayout1.addComponent(passwordField);
         horizontalLayout1.addComponent(daoError);
-        loginPresidenteBtn = new Button("Login Presidente", event -> {
+        Button loginPresidenteBtn = new Button("Login Presidente", event -> {
 
         });
-        loginArbitroBtn = new Button("Login Arbitro", event -> {
+        Button loginArbitroBtn = new Button("Login Arbitro", event -> {
 
         });
-        loginUserBtn = new Button("Login", event -> {
+        Button loginUserBtn = new Button("Login", event -> {
 
             daoError.setValue("");
             errorUsernameLabel.setValue("");
@@ -60,20 +66,21 @@ public class LoginView  extends Composite implements View {
             Utilizador user = null;
 
             String username = usernameField.getValue();
-            if(username == null || username.isEmpty()) {
+            if (username == null || username.isEmpty()) {
                 errorUsernameLabel.setValue(emptyUsername);
                 return;
             }
             String password = passwordField.getValue();
-            if(password == null || password.isEmpty()) password = "";
+            if (password == null || password.isEmpty()) password = "";
+            UserBean userBean = EscolasfutebolApplication.applicationBeansContext.getBean("UserBean", UserBean.class);
             try {
-                user = tryLogin(username, password);
+                user = userBean.getUtilizador(username, password);
             } catch (PersistentException e) {
-                daoError.setValue(e.getMessage());
+                e.printStackTrace();
             }
 
-            if(user != null) {
-                VaadinUI currentUI = (VaadinUI)UI.getCurrent();
+            if (user != null) {
+                VaadinUI currentUI = (VaadinUI) UI.getCurrent();
                 currentUI.userName.setValue(user.getNome());
                 verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
             }
@@ -85,13 +92,6 @@ public class LoginView  extends Composite implements View {
         setCompositionRoot(verticalLayout);
     }
 
-    private Utilizador tryLogin(String username, String password) throws PersistentException {
-        String condition = " Nome = '" + username + "'";
-        if(!password.isEmpty()) {
-            condition += " and Password = '" + password + "'";
-        }
-        return UtilizadorDAO.loadUtilizadorByQuery(condition,"Nome");
-    }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
