@@ -11,43 +11,28 @@ import com.vaadin.ui.*;
 @SpringUI(path = "EscolasFutebol")
 public class VaadinUI extends UI {
 
-    private static VaadinUI instance = null;
-    private VaadinUI() {
-        // Exists only to defeat instantiation.
-    }
+    public Label userName;
 
-    public static VaadinUI getInstance() {
-        if(instance == null) {
-            instance = new VaadinUI();
-        }
-        return instance;
-    }
-
-    public static boolean logged = false;
-    static VerticalLayout menuLinks;
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
-        menuLinks = new VerticalLayout();
-        addMenuEntry(menuLinks, "Página Inicial", "", title);
-        addMenuEntry(menuLinks, "Login", "login", title);
-        addMenuEntry(menuLinks, "Calendário", "calendario", title);
-        addMenuEntry(menuLinks, "Torneios", "torneios", title);
-        addMenuEntry(menuLinks, "Campeonato", "campeonato", title);
+        userName = new Label("Not Logged in");
+
+        VerticalLayout menuLinks = new VerticalLayout();
 
         addMenuEntry(menuLinks, "Campeonato", "EscolasFutebol/DiretorAssociacao", title);
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
-        VerticalLayout menu = new VerticalLayout(title, menuLinks);
+        VerticalLayout menu = new VerticalLayout(title, userName, menuLinks);
         menu.setStyleName("v-horizontal-layout-menu");
         menu.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
+        menu.setComponentAlignment(userName, Alignment.MIDDLE_CENTER);
 
         VerticalLayout viewContainer = new VerticalLayout();
 
         HorizontalLayout mainLayout = new HorizontalLayout(menu, viewContainer);
         mainLayout.setSizeFull();
-//        mainLayout.setExpandRatio(viewContainer, 1);
 
         setContent(mainLayout);
         mainLayout.setExpandRatio(menu, 2f);
@@ -72,10 +57,5 @@ public class VaadinUI extends UI {
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
         layout.addComponent(view1);
-    }
-
-    public static void UpdateLoginStatus()
-    {
-        menuLinks.getComponent(1).setCaption("Logout");
     }
 }
