@@ -3,67 +3,172 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * License Type: Academic
  */
 import org.orm.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+
 public class CreateEscolasFutebolBetterData {
 	public void createTestData() throws PersistentException {
 		PersistentTransaction t = EscolasFutebolBetterPersistentManager.instance().getSession().beginTransaction();
 		try {
+		    //region Inicializacao dos Campos
 			Campo campo = CampoDAO.createCampo();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : jogo, equipa
+			campo.setNome("Estádio AXA");
 			CampoDAO.save(campo);
+			//endregion
+
+            //region Inicializacao Tipo de Utilizador
+            String[] tipos = new String[]{
+                    "DiretorAssociacao",
+                    "DiretorEscola",
+                    "Arbitro"
+            };
+
+            Tipoutilizador tipoutilizadorDiretorAssociacao = TipoutilizadorDAO.createTipoutilizador();
+            tipoutilizadorDiretorAssociacao.setNome("DiretorAssociacao");
+            TipoutilizadorDAO.save(tipoutilizadorDiretorAssociacao);
+            Tipoutilizador tipoutilizadorDiretorEscola = TipoutilizadorDAO.createTipoutilizador();
+            tipoutilizadorDiretorEscola.setNome("DiretorEscola");
+            TipoutilizadorDAO.save(tipoutilizadorDiretorEscola);
+            Tipoutilizador tipoutilizadorArbitro = TipoutilizadorDAO.createTipoutilizador();
+            tipoutilizadorArbitro.setNome("Arbitro");
+            TipoutilizadorDAO.save(tipoutilizadorArbitro);
+            //endregion
+
+            //region Inicializacao Tipo de Eventos
+            Tipoeventojogo tipoeventojogoGolo = TipoeventojogoDAO.createTipoeventojogo();
+            tipoeventojogoGolo.setNome("Golo");
+            TipoeventojogoDAO.save(tipoeventojogoGolo);
+
+            String[] tiposEventos = new String[]{
+                    "Amarelo",
+                    "Vermelho",
+                    "Penalidade",
+                    "ForaDeJogo"
+            };
+            for (Object tipo : tiposEventos) {
+                Tipoeventojogo tipoeventojogo = TipoeventojogoDAO.createTipoeventojogo();
+                tipoeventojogo.setNome(tipo.toString());
+                TipoeventojogoDAO.save(tipoeventojogo);
+            }
+            //endregion
+
+            Utilizador DiretorAssociacao = UtilizadorDAO.createUtilizador();
+            DiretorAssociacao.setNome("DiretorAssociacao");
+            DiretorAssociacao.setEmail(StringGenerator());
+            DiretorAssociacao.setTipoutilizador(tipoutilizadorDiretorAssociacao);
+            DiretorAssociacao.setPassword("pass");
+			UtilizadorDAO.save(DiretorAssociacao);
+
+            Associacao associacao = AssociacaoDAO.createAssociacao();
+            associacao.setDiretorAssociacao(DiretorAssociacao);
+            AssociacaoDAO.save(associacao);
+
+            Utilizador DiretorEscola = UtilizadorDAO.createUtilizador();
+            DiretorEscola.setNome("DiretorEscola");
+            DiretorEscola.setEmail(StringGenerator());
+            DiretorEscola.setTipoutilizador(tipoutilizadorDiretorEscola);
+            DiretorEscola.setPassword("pass");
+            UtilizadorDAO.save(DiretorEscola);
+
 			Escolas escolas = EscolasDAO.createEscolas();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : equipa, diretorEscola, associacao, diretoescolaID
+			escolas.setDiretorEscola(DiretorEscola);
+			escolas.setAssociacao(associacao);
+			escolas.setNome(StringGenerator());
 			EscolasDAO.save(escolas);
-			Equipa equipa = EquipaDAO.createEquipa();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : participantecampeonato, partcipantetorneio, jogo2, jogo1, jogo, jogador, escolas, campo
-			EquipaDAO.save(equipa);
+
+			Equipa equipaA = EquipaDAO.createEquipa();
+            equipaA.setCampo(campo);
+            equipaA.setEscolas(escolas);
+            equipaA.setNome("Equipa da Vida");
+			EquipaDAO.save(equipaA);
+
+            Equipa equipaB = EquipaDAO.createEquipa();
+            equipaB.setCampo(campo);
+            equipaB.setEscolas(escolas);
+            equipaB.setNome("Equipa da Morte");
+            EquipaDAO.save(equipaB);
+
 			Jogador jogador = JogadorDAO.createJogador();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : equipa
+            jogador.setEquipa(equipaA);
 			JogadorDAO.save(jogador);
+
 			Campeonato campeonato = CampeonatoDAO.createCampeonato();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : rondacampeonato, participantecampeonato
+			campeonato.setNome("Campeonato NOS");
 			CampeonatoDAO.save(campeonato);
-			Jogo jogo = JogoDAO.createJogo();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : eventojogo, campo, vencedor, equipaFora, equipaCasa, arbitro
-			JogoDAO.save(jogo);
+
+            Utilizador Arbitro = UtilizadorDAO.createUtilizador();
+            Arbitro.setNome("Arbitro");
+            Arbitro.setEmail(StringGenerator());
+            Arbitro.setTipoutilizador(tipoutilizadorArbitro);
+            Arbitro.setPassword("pass");
+            UtilizadorDAO.save(Arbitro);
+
 			Arbitro arbitro = ArbitroDAO.createArbitro();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : jogo, utilizador
+			arbitro.setUtilizador(Arbitro);
 			ArbitroDAO.save(arbitro);
-			Tipoeventojogo tipoeventojogo = TipoeventojogoDAO.createTipoeventojogo();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : eventojogo
-			TipoeventojogoDAO.save(tipoeventojogo);
-			Utilizador utilizador = UtilizadorDAO.createUtilizador();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : associacao, escolas, arbitro, tipoutilizador
-			UtilizadorDAO.save(utilizador);
+
+			Jogo jogo = JogoDAO.createJogo();
+            jogo.setArbitro(arbitro);
+            jogo.setCampo(campo);
+            jogo.setEquipaCasa(equipaA);
+            jogo.setEquipaFora(equipaB);
+            jogo.setVencedor(equipaA);
+			JogoDAO.save(jogo);
+
 			Eventojogo eventojogo = EventojogoDAO.createEventojogo();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : minuto
+			eventojogo.setJogo(jogo);
+			eventojogo.setTipoeventojogo(tipoeventojogoGolo);
 			EventojogoDAO.save(eventojogo);
-			Associacao associacao = AssociacaoDAO.createAssociacao();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : escolas, diretorAssociacao
-			AssociacaoDAO.save(associacao);
+
 			Torneio torneio = TorneioDAO.createTorneio();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : grupo, partcipantetorneio
 			TorneioDAO.save(torneio);
-			Fase fase = FaseDAO.createFase();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : rondatorneio
-			FaseDAO.save(fase);
+
+            String[] tiposFase = new String[]{
+                    "Grupos",
+                    "16AvosFinal",
+                    "8AvosFinal",
+                    "4Final",
+                    "MeiaFinal",
+                    "Final"
+            };
+            Fase fase = FaseDAO.createFase();
+            fase.setNomefase(0);
+            FaseDAO.save(fase);
+            int count = 1;
+            for (String tipo: tiposFase)
+            {
+                Fase fase1 = FaseDAO.createFase();
+                fase1.setNomefase(count);
+                FaseDAO.save(fase1);
+                count++;
+            }
+
 			Rondatorneio rondatorneio = RondatorneioDAO.createRondatorneio();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : fase
+            rondatorneio.setFase(fase);
 			RondatorneioDAO.save(rondatorneio);
+
 			Rondacampeonato rondacampeonato = RondacampeonatoDAO.createRondacampeonato();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : campeonato
+			rondacampeonato.setCampeonato(campeonato);
 			RondacampeonatoDAO.save(rondacampeonato);
-			Partcipantetorneio partcipantetorneio = PartcipantetorneioDAO.createPartcipantetorneio();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : grupo, equipa, torneio
-			PartcipantetorneioDAO.save(partcipantetorneio);
+
 			Grupo grupo = GrupoDAO.createGrupo();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : partcipantetorneio, torneio
+            grupo.setNome("A");
+            grupo.setTorneio(torneio);
 			GrupoDAO.save(grupo);
+
+			Partcipantetorneio partcipantetorneio = PartcipantetorneioDAO.createPartcipantetorneio();
+            partcipantetorneio.setEquipa(equipaA);
+            partcipantetorneio.setGrupo(grupo);
+            partcipantetorneio.setTorneio(torneio);
+			PartcipantetorneioDAO.save(partcipantetorneio);
+
 			Participantecampeonato participantecampeonato = ParticipantecampeonatoDAO.createParticipantecampeonato();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : equipa, campeonato
+            participantecampeonato.setCampeonato(campeonato);
+            participantecampeonato.setEquipa(equipaA);
 			ParticipantecampeonatoDAO.save(participantecampeonato);
-			Tipoutilizador tipoutilizador = TipoutilizadorDAO.createTipoutilizador();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : utilizador
-			TipoutilizadorDAO.save(tipoutilizador);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -86,4 +191,20 @@ public class CreateEscolasFutebolBetterData {
 			e.printStackTrace();
 		}
 	}
+
+    public String StringGenerator() {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String generatedString = buffer.toString();
+
+        return generatedString;
+    }
 }

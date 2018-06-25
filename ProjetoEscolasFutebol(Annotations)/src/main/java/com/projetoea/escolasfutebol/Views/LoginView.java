@@ -73,6 +73,7 @@ public class LoginView  extends Composite implements View {
         if(!password.isEmpty()) {
             condition += " and Password = '" + password + "'";
         }
+        getSession().setAttribute("myValue", 1);
         return UtilizadorDAO.loadUtilizadorByQuery(condition,"Nome");
     }
 

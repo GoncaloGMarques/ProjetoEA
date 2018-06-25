@@ -8,17 +8,17 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
 @Theme("darktheme")
-@SpringUI(path = "EscolasFutebol")
-public class VaadinUI extends UI {
+@SpringUI(path = "EscolasFutebol/DiretorAssociacao")
+public class DiretorAssociacaoVaadinUI extends UI {
 
-    private static VaadinUI instance = null;
-    private VaadinUI() {
+    private static DiretorAssociacaoVaadinUI instance = null;
+    private DiretorAssociacaoVaadinUI() {
         // Exists only to defeat instantiation.
     }
 
-    public static VaadinUI getInstance() {
+    public static DiretorAssociacaoVaadinUI getInstance() {
         if(instance == null) {
-            instance = new VaadinUI();
+            instance = new DiretorAssociacaoVaadinUI();
         }
         return instance;
     }
@@ -30,12 +30,10 @@ public class VaadinUI extends UI {
         Label title = new Label("Menu");
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "", title);
-        addMenuEntry(menuLinks, "Login", "login", title);
+        addMenuEntry(menuLinks, "Logout", "login", title);
         addMenuEntry(menuLinks, "Calendário", "calendario", title);
         addMenuEntry(menuLinks, "Torneios", "torneios", title);
         addMenuEntry(menuLinks, "Campeonato", "campeonato", title);
-
-        addMenuEntry(menuLinks, "Campeonato", "EscolasFutebol/DiretorAssociacao", title);
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
