@@ -5,16 +5,18 @@ import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.data.HasValue;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinService;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Composite;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.InlineDateField;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.*;
 
 import java.time.LocalDate;
 
 @SpringView
 public class PaginaInicial extends Composite implements View {
+
+
+    private static VerticalLayout statusHolder = new VerticalLayout();
+    private static TextField textField = new TextField();
 
     public PaginaInicial() {
         GridLayout grid = new GridLayout(4,4);

@@ -47,6 +47,9 @@ public class DiretorAssociacaoVaadinUI extends UI {
         addMenuEntry(menuLinks, "Calendário", "calendario");
         addMenuEntry(menuLinks, "Torneios", "torneios");
         addMenuEntry(menuLinks, "Campeonato", "campeonato");
+        addMenuEntry(menuLinks, "Gerir Escolas", "gerirescolas");
+        addMenuEntry(menuLinks, "Gerir Torneios", "gerirtorneios");
+        addMenuEntry(menuLinks, "Gerir Campeonatos", "gerircampeonatos");
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
@@ -76,6 +79,9 @@ public class DiretorAssociacaoVaadinUI extends UI {
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);
+        navigator.addView("gerirescolas", GerirEscolasView.class);
+        navigator.addView("gerirtorneios", GerirTorneiosView.class);
+        navigator.addView("gerircampeonatos", GerirCampeonatosView.class);
     }
 
 
