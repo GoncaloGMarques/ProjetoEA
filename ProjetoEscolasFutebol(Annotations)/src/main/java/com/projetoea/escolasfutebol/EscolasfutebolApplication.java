@@ -1,6 +1,10 @@
 package com.projetoea.escolasfutebol;
 
 import com.projetoea.escolasfutebol.Beans.AppConfig;
+import com.projetoea.escolasfutebol.ClassesJava.Tipoeventojogo;
+import com.projetoea.escolasfutebol.ClassesJava.TipoeventojogoDAO;
+import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
@@ -10,6 +14,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.hibernate.cfg.Configuration;
+import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -30,7 +35,6 @@ public class EscolasfutebolApplication {
     public static AnnotationConfigApplicationContext applicationBeansContext;
 
     public static void main(String[] args) {
-
         applicationBeansContext = new AnnotationConfigApplicationContext(AppConfig.class);
         applicationContext = SpringApplication.run(EscolasfutebolApplication.class, args);
     }

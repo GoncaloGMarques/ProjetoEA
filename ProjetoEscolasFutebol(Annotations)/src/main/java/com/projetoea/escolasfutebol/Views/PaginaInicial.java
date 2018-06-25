@@ -1,8 +1,10 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.ClassesJava.JogoDAO;
+import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.data.HasValue;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Composite;
 import com.vaadin.ui.GridLayout;
@@ -36,5 +38,10 @@ public class PaginaInicial extends Composite implements View {
         grid.setColumnExpandRatio(1,1);
         grid.setSizeFull();
         setCompositionRoot(grid);
+    }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+
     }
 }

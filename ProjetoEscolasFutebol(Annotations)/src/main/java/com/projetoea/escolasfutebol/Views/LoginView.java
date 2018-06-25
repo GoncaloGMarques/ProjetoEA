@@ -92,7 +92,6 @@ public class LoginView  extends Composite implements View {
         setCompositionRoot(verticalLayout);
     }
 
-
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 

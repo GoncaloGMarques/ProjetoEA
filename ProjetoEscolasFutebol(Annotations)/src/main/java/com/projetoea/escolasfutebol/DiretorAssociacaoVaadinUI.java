@@ -8,36 +8,47 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
 @Theme("darktheme")
-@SpringUI(path = "EscolasFutebol")
-public class VaadinUI extends UI {
+@SpringUI(path = "EscolasFutebol/DiretorAssociacao")
+public class DiretorAssociacaoVaadinUI extends UI {
 
-    public Label userName;
+    private static DiretorAssociacaoVaadinUI instance = null;
+    private DiretorAssociacaoVaadinUI() {
+        // Exists only to defeat instantiation.
+    }
 
+    public static DiretorAssociacaoVaadinUI getInstance() {
+        if(instance == null) {
+            instance = new DiretorAssociacaoVaadinUI();
+        }
+        return instance;
+    }
+
+    public static boolean logged = false;
+    static VerticalLayout menuLinks;
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
-        userName = new Label("Not Logged in");
-
-        VerticalLayout menuLinks = new VerticalLayout();
-        addMenuEntry(menuLinks, "Página Inicial", "");
-        addMenuEntry(menuLinks, "Login", "login");
-        addMenuEntry(menuLinks, "Calendário", "calendario");
-        addMenuEntry(menuLinks, "Torneios", "torneios");
-        addMenuEntry(menuLinks, "Campeonato", "campeonato");
+        menuLinks = new VerticalLayout();
+        addMenuEntry(menuLinks, "Página Inicial", "", title);
+        addMenuEntry(menuLinks, "Logout", "login", title);
+        addMenuEntry(menuLinks, "Calendário", "calendario", title);
+        addMenuEntry(menuLinks, "Torneios", "torneios", title);
+        addMenuEntry(menuLinks, "Campeonato", "campeonato", title);
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
-        VerticalLayout menu = new VerticalLayout(title, userName, menuLinks);
+        VerticalLayout menu = new VerticalLayout(title, menuLinks);
         menu.setStyleName("v-horizontal-layout-menu");
         menu.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
-        menu.setComponentAlignment(userName, Alignment.MIDDLE_CENTER);
 
         VerticalLayout viewContainer = new VerticalLayout();
 
         HorizontalLayout mainLayout = new HorizontalLayout(menu, viewContainer);
         mainLayout.setSizeFull();
+//        mainLayout.setExpandRatio(viewContainer, 1);
 
         setContent(mainLayout);
+        mainLayout.setExpandRatio(menu, 2f);
         mainLayout.setExpandRatio(viewContainer, 8f);
         menu.setExpandRatio(menuLinks, 8f);
         menu.setExpandRatio(title, 2f);
@@ -54,10 +65,15 @@ public class VaadinUI extends UI {
 
 
 
-    private void addMenuEntry(Layout layout, String caption, String navigateTo){
+    private void addMenuEntry(Layout layout, String caption, String navigateTo, Component cmp){
         Button view1 = new Button(caption, e -> {getNavigator().navigateTo(navigateTo); });
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
         layout.addComponent(view1);
+    }
+
+    public static void UpdateLoginStatus()
+    {
+        menuLinks.getComponent(1).setCaption("Logout");
     }
 }
