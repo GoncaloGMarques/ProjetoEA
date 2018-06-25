@@ -1,5 +1,8 @@
 package com.projetoea.escolasfutebol;
 
+import com.projetoea.escolasfutebol.Beans.UserBean;
+import com.projetoea.escolasfutebol.Beans.UserBeanConfig;
+import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
@@ -12,7 +15,7 @@ import com.vaadin.ui.*;
 public class DiretorAssociacaoVaadinUI extends UI {
 
     private static DiretorAssociacaoVaadinUI instance = null;
-    private DiretorAssociacaoVaadinUI() {
+    public DiretorAssociacaoVaadinUI() {
         // Exists only to defeat instantiation.
     }
 
@@ -24,14 +27,23 @@ public class DiretorAssociacaoVaadinUI extends UI {
     }
 
     public Label userName;
+    UserBean userBean;
+
+
     public static boolean logged = false;
     static VerticalLayout menuLinks;
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
+        userBean = EscolasfutebolApplication.applicationBeansContext.getBean(UserBean.class);
+        Utilizador user = userBean.getUtilizador();
+        userName = new Label();
+        if(user != null) userName.setValue("Presidente " + user.getNome());
+        else userName.setValue("YOU SHOULD NOT BE HERE");
+
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
-        addMenuEntry(menuLinks, "Logout", "login");
+        addMenuEntry(menuLinks, "Logout", "");
         addMenuEntry(menuLinks, "Calendário", "calendario");
         addMenuEntry(menuLinks, "Torneios", "torneios");
         addMenuEntry(menuLinks, "Campeonato", "campeonato");

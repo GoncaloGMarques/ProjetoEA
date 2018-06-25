@@ -1,35 +1,37 @@
 package com.projetoea.escolasfutebol.Views;
 
-import ch.qos.logback.core.util.ContentTypeUtil;
+import com.mchange.v2.collection.MapEntry;
 import com.projetoea.escolasfutebol.Beans.UserBean;
-import com.projetoea.escolasfutebol.Beans.UserBeanConfig;
 import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
-import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
+import com.projetoea.escolasfutebol.DiretorAssociacaoVaadinUI;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.spring.internal.SpringBeanUtil;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.SpringServletContainerInitializer;
 
-import java.beans.beancontext.BeanContext;
+import java.util.AbstractMap;
+import java.util.Map;
 
 @SpringView
 @Theme("darktheme")
 public class LoginView  extends Composite implements View {
 
     private VerticalLayout verticalLayout;
-
     private Label errorUsernameLabel;
     private Label daoError;
-
     private String emptyUsername = "Username cannot be empty!";
+
+    private TextField usernameField;
+    private TextField passwordField;
+
+    private Utilizador user = null;
+
+    private String username;
+    private String password;
 
     public LoginView(){
         verticalLayout = new VerticalLayout();
@@ -45,44 +47,30 @@ public class LoginView  extends Composite implements View {
         errorUsernameLabel = new Label("");
         errorUsernameLabel.addStyleName("v-error-label");
 
-        TextField usernameField = new TextField("Username");
+        usernameField = new TextField("Username");
         horizontalLayout.addComponent(usernameField);
         horizontalLayout.addComponent(errorUsernameLabel);
 
-        TextField passwordField = new TextField("Password");
+        passwordField = new TextField("Password");
         horizontalLayout1.addComponent(passwordField);
         horizontalLayout1.addComponent(daoError);
         Button loginPresidenteBtn = new Button("Login Presidente", event -> {
-
+            if(login()) {
+                updateUI("EscolasFutebol/DiretorAssociacao");
+            }else {
+                daoError.setValue("Could Not Login");
+            }
         });
         Button loginArbitroBtn = new Button("Login Arbitro", event -> {
-
+            //if(login()) {
+            daoError.setValue("Could Not Login as 'Arbitro'  (NOT IMPLEMENTED YET) ");
+            //}
         });
         Button loginUserBtn = new Button("Login", event -> {
-
-            daoError.setValue("");
-            errorUsernameLabel.setValue("");
-
-            Utilizador user = null;
-
-            String username = usernameField.getValue();
-            if (username == null || username.isEmpty()) {
-                errorUsernameLabel.setValue(emptyUsername);
-                return;
-            }
-            String password = passwordField.getValue();
-            if (password == null || password.isEmpty()) password = "";
-            UserBean userBean = EscolasfutebolApplication.applicationBeansContext.getBean("UserBean", UserBean.class);
-            try {
-                user = userBean.getUtilizador(username, password);
-            } catch (PersistentException e) {
-                e.printStackTrace();
-            }
-
-            if (user != null) {
-                VaadinUI currentUI = (VaadinUI) UI.getCurrent();
-                currentUI.userName.setValue(user.getNome());
-                verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
+            if(login()) {
+                updateUI("");
+            }else {
+                daoError.setValue("Could Not Login");
             }
         });
         verticalLayout.addComponent(loginUserBtn);
@@ -92,8 +80,55 @@ public class LoginView  extends Composite implements View {
         setCompositionRoot(verticalLayout);
     }
 
+    //"EscolasFutebol/DiretorAssociacao"
+    private void updateUI(String link) {
+        VaadinUI currentUI = (VaadinUI) UI.getCurrent();
+        currentUI.userName.setValue(user.getNome());
+
+        if(!link.isEmpty()) {
+            //UI.setCurrent(DiretorAssociacaoVaadinUI.getInstance());
+            UI.getCurrent().getPage().setLocation(link);
+        }
+        //currentUI.getNavigator().navigateTo(link);
+
+        verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
+    }
+
+    private boolean login() {
+        AbstractMap.SimpleEntry<String, String> loginPair = verifyInput();
+        user = tryGetUser(loginPair.getKey(), loginPair.getValue());
+        return user != null;
+    }
+
+    private AbstractMap.SimpleEntry<String, String> verifyInput() {
+        daoError.setValue("");
+        errorUsernameLabel.setValue("");
+
+        username = usernameField.getValue();
+        if (username == null || username.isEmpty()) {
+            errorUsernameLabel.setValue(emptyUsername);
+            return new AbstractMap.SimpleEntry<>("", "");
+        }
+        password = passwordField.getValue();
+        return new AbstractMap.SimpleEntry<>(username, password);
+    }
+
+    private Utilizador tryGetUser(String username, String password) {
+        UserBean userBean = EscolasfutebolApplication.applicationBeansContext.getBean("UserBean", UserBean.class);
+        try {
+            user = userBean.getUtilizador(username, password);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+        daoError = new Label("");
+        errorUsernameLabel = new Label("");
 
+        usernameField.setValue("");
+        passwordField.setValue("");
     }
 }

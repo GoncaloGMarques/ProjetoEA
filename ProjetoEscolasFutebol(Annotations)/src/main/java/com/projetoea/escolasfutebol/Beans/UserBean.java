@@ -6,11 +6,19 @@ import org.orm.PersistentException;
 
 public class UserBean {
 
-    Utilizador utilizador;
+    public Utilizador utilizador;
+    public Utilizador getUtilizador() {
+        if (utilizador != null) {
+            return utilizador;
+        } else {
+            return null;
+        }
+    }
 
     public void setUtilizador(Utilizador user) { this.utilizador = user; }
     public Utilizador getUtilizador(String name, String password) throws PersistentException {
         Utilizador user = tryLogin(name,password);
+        setUtilizador(user);
         return user;
     }
     private Utilizador tryLogin(String username, String password) throws PersistentException {
