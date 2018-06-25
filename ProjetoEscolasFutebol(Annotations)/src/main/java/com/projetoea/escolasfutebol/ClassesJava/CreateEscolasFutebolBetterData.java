@@ -10,14 +10,14 @@ import java.util.Map;
 import java.util.Random;
 
 public class CreateEscolasFutebolBetterData {
-	public void createTestData() throws PersistentException {
-		PersistentTransaction t = EscolasFutebolBetterPersistentManager.instance().getSession().beginTransaction();
-		try {
-		    //region Inicializacao dos Campos
-			Campo campo = CampoDAO.createCampo();
-			campo.setNome("Estádio AXA");
-			CampoDAO.save(campo);
-			//endregion
+    public void createTestData() throws PersistentException {
+        PersistentTransaction t = EscolasFutebolBetterPersistentManager.instance().getSession().beginTransaction();
+        try {
+            //region Inicializacao dos Campos
+            Campo campo = CampoDAO.createCampo();
+            campo.setNome("Estádio AXA");
+            CampoDAO.save(campo);
+            //endregion
 
             //region Inicializacao Tipo de Utilizador
             String[] tipos = new String[]{
@@ -60,7 +60,7 @@ public class CreateEscolasFutebolBetterData {
             DiretorAssociacao.setEmail(StringGenerator());
             DiretorAssociacao.setTipoutilizador(tipoutilizadorDiretorAssociacao);
             DiretorAssociacao.setPassword("pass");
-			UtilizadorDAO.save(DiretorAssociacao);
+            UtilizadorDAO.save(DiretorAssociacao);
 
             Associacao associacao = AssociacaoDAO.createAssociacao();
             associacao.setDiretorAssociacao(DiretorAssociacao);
@@ -73,17 +73,17 @@ public class CreateEscolasFutebolBetterData {
             DiretorEscola.setPassword("pass");
             UtilizadorDAO.save(DiretorEscola);
 
-			Escolas escolas = EscolasDAO.createEscolas();
-			escolas.setDiretorEscola(DiretorEscola);
-			escolas.setAssociacao(associacao);
-			escolas.setNome(StringGenerator());
-			EscolasDAO.save(escolas);
+            Escolas escolas = EscolasDAO.createEscolas();
+            escolas.setDiretorEscola(DiretorEscola);
+            escolas.setAssociacao(associacao);
+            escolas.setNome(StringGenerator());
+            EscolasDAO.save(escolas);
 
-			Equipa equipaA = EquipaDAO.createEquipa();
+            Equipa equipaA = EquipaDAO.createEquipa();
             equipaA.setCampo(campo);
             equipaA.setEscolas(escolas);
             equipaA.setNome("Equipa da Vida");
-			EquipaDAO.save(equipaA);
+            EquipaDAO.save(equipaA);
 
             Equipa equipaB = EquipaDAO.createEquipa();
             equipaB.setCampo(campo);
@@ -91,13 +91,13 @@ public class CreateEscolasFutebolBetterData {
             equipaB.setNome("Equipa da Morte");
             EquipaDAO.save(equipaB);
 
-			Jogador jogador = JogadorDAO.createJogador();
+            Jogador jogador = JogadorDAO.createJogador();
             jogador.setEquipa(equipaA);
-			JogadorDAO.save(jogador);
+            JogadorDAO.save(jogador);
 
-			Campeonato campeonato = CampeonatoDAO.createCampeonato();
-			campeonato.setNome("Campeonato NOS");
-			CampeonatoDAO.save(campeonato);
+            Campeonato campeonato = CampeonatoDAO.createCampeonato();
+            campeonato.setNome("Campeonato NOS");
+            CampeonatoDAO.save(campeonato);
 
             Utilizador Arbitro = UtilizadorDAO.createUtilizador();
             Arbitro.setNome("Arbitro");
@@ -106,25 +106,25 @@ public class CreateEscolasFutebolBetterData {
             Arbitro.setPassword("pass");
             UtilizadorDAO.save(Arbitro);
 
-			Arbitro arbitro = ArbitroDAO.createArbitro();
-			arbitro.setUtilizador(Arbitro);
-			ArbitroDAO.save(arbitro);
+            Arbitro arbitro = ArbitroDAO.createArbitro();
+            arbitro.setUtilizador(Arbitro);
+            ArbitroDAO.save(arbitro);
 
-			Jogo jogo = JogoDAO.createJogo();
+            Jogo jogo = JogoDAO.createJogo();
             jogo.setArbitro(arbitro);
             jogo.setCampo(campo);
             jogo.setEquipaCasa(equipaA);
             jogo.setEquipaFora(equipaB);
             jogo.setVencedor(equipaA);
-			JogoDAO.save(jogo);
+            JogoDAO.save(jogo);
 
-			Eventojogo eventojogo = EventojogoDAO.createEventojogo();
-			eventojogo.setJogo(jogo);
-			eventojogo.setTipoeventojogo(tipoeventojogoGolo);
-			EventojogoDAO.save(eventojogo);
+            Eventojogo eventojogo = EventojogoDAO.createEventojogo();
+            eventojogo.setJogo(jogo);
+            eventojogo.setTipoeventojogo(tipoeventojogoGolo);
+            EventojogoDAO.save(eventojogo);
 
-			Torneio torneio = TorneioDAO.createTorneio();
-			TorneioDAO.save(torneio);
+            Torneio torneio = TorneioDAO.createTorneio();
+            TorneioDAO.save(torneio);
 
             String[] tiposFase = new String[]{
                     "Grupos",
@@ -146,51 +146,51 @@ public class CreateEscolasFutebolBetterData {
                 count++;
             }
 
-			Rondatorneio rondatorneio = RondatorneioDAO.createRondatorneio();
+            Rondatorneio rondatorneio = RondatorneioDAO.createRondatorneio();
             rondatorneio.setFase(fase);
-			RondatorneioDAO.save(rondatorneio);
+            RondatorneioDAO.save(rondatorneio);
 
-			Rondacampeonato rondacampeonato = RondacampeonatoDAO.createRondacampeonato();
-			rondacampeonato.setCampeonato(campeonato);
-			RondacampeonatoDAO.save(rondacampeonato);
+            Rondacampeonato rondacampeonato = RondacampeonatoDAO.createRondacampeonato();
+            rondacampeonato.setCampeonato(campeonato);
+            RondacampeonatoDAO.save(rondacampeonato);
 
-			Grupo grupo = GrupoDAO.createGrupo();
+            Grupo grupo = GrupoDAO.createGrupo();
             grupo.setNome("A");
             grupo.setTorneio(torneio);
-			GrupoDAO.save(grupo);
+            GrupoDAO.save(grupo);
 
-			Partcipantetorneio partcipantetorneio = PartcipantetorneioDAO.createPartcipantetorneio();
+            Partcipantetorneio partcipantetorneio = PartcipantetorneioDAO.createPartcipantetorneio();
             partcipantetorneio.setEquipa(equipaA);
             partcipantetorneio.setGrupo(grupo);
             partcipantetorneio.setTorneio(torneio);
-			PartcipantetorneioDAO.save(partcipantetorneio);
+            PartcipantetorneioDAO.save(partcipantetorneio);
 
-			Participantecampeonato participantecampeonato = ParticipantecampeonatoDAO.createParticipantecampeonato();
+            Participantecampeonato participantecampeonato = ParticipantecampeonatoDAO.createParticipantecampeonato();
             participantecampeonato.setCampeonato(campeonato);
             participantecampeonato.setEquipa(equipaA);
-			ParticipantecampeonatoDAO.save(participantecampeonato);
-			t.commit();
-		}
-		catch (Exception e) {
-			t.rollback();
-		}
-		
-	}
-	
-	public static void main(String[] args) {
-		try {
-			CreateEscolasFutebolBetterData createEscolasFutebolBetterData = new CreateEscolasFutebolBetterData();
-			try {
-				createEscolasFutebolBetterData.createTestData();
-			}
-			finally {
-				EscolasFutebolBetterPersistentManager.instance().disposePersistentManager();
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+            ParticipantecampeonatoDAO.save(participantecampeonato);
+            t.commit();
+        }
+        catch (Exception e) {
+            t.rollback();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            CreateEscolasFutebolBetterData createEscolasFutebolBetterData = new CreateEscolasFutebolBetterData();
+            try {
+                createEscolasFutebolBetterData.createTestData();
+            }
+            finally {
+                EscolasFutebolBetterPersistentManager.instance().disposePersistentManager();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public String StringGenerator() {
         int leftLimit = 97; // letter 'a'

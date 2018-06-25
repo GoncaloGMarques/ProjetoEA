@@ -19,8 +19,11 @@ public class VaadinUI extends UI {
         userName = new Label("Not Logged in");
 
         VerticalLayout menuLinks = new VerticalLayout();
-
-        addMenuEntry(menuLinks, "Campeonato", "EscolasFutebol/DiretorAssociacao", title);
+        addMenuEntry(menuLinks, "Página Inicial", "");
+        addMenuEntry(menuLinks, "Login", "login");
+        addMenuEntry(menuLinks, "Calendário", "calendario");
+        addMenuEntry(menuLinks, "Torneios", "torneios");
+        addMenuEntry(menuLinks, "Campeonato", "campeonato");
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
 
@@ -52,7 +55,7 @@ public class VaadinUI extends UI {
 
 
 
-    private void addMenuEntry(Layout layout, String caption, String navigateTo, Component cmp){
+    private void addMenuEntry(Layout layout, String caption, String navigateTo){
         Button view1 = new Button(caption, e -> {getNavigator().navigateTo(navigateTo); });
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
