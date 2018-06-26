@@ -6,6 +6,7 @@ import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
@@ -33,16 +34,18 @@ public class ArbitroVaadinUI extends UI {
     static VerticalLayout menuLinks;
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+
+        Utilizador utilizador = getSession().getAttribute(Utilizador.class);
+
         Label title = new Label("Menu");
-        userBean = EscolasfutebolApplication.applicationBeansContext.getBean(UserBean.class);
-        Utilizador user = userBean.getUtilizador();
-        userName = new Label();
-        if(user != null) userName.setValue("Presidente " + user.getNome());
-        else userName.setValue("YOU SHOULD NOT BE HERE");
+        userName = new Label("ERROR");
+
+        if(utilizador != null) userName.setValue("Arbitro " + utilizador.getNome());
+        else return;
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
-        addMenuEntry(menuLinks, "Logout", "");
+        addMenuEntry(menuLinks, "Logout", "logout");
         addMenuEntry(menuLinks, "Calendário", "calendario");
         addMenuEntry(menuLinks, "Torneios", "torneios");
         addMenuEntry(menuLinks, "Campeonato", "campeonato");
@@ -73,7 +76,7 @@ public class ArbitroVaadinUI extends UI {
 
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicial.class);
-        navigator.addView("login", LoginView.class);
+        navigator.addView("logout", LogoutView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);

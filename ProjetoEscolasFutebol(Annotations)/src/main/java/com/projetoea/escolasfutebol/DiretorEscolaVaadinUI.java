@@ -34,10 +34,9 @@ public class DiretorEscolaVaadinUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
-        userBean = EscolasfutebolApplication.applicationBeansContext.getBean(UserBean.class);
-        Utilizador user = userBean.getUtilizador();
+        Utilizador user = getSession().getAttribute(Utilizador.class);
         userName = new Label();
-        if(user != null) userName.setValue("Presidente " + user.getNome());
+        if(user != null) userName.setValue("Diretor " + user.getNome());
         else userName.setValue("YOU SHOULD NOT BE HERE");
 
         menuLinks = new VerticalLayout();

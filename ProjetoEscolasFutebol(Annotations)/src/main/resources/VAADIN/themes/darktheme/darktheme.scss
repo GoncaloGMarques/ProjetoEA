@@ -61,9 +61,14 @@
 
   .v-error-label {
     color: rgb(255, 0, 0);
+    padding-top: 7px;
+    font-weight: bold;
+  }
+
+  .v-error-label-Input {
+    color: rgb(255, 0, 0);
     padding-top: 27px;
-    text-decoration: underline;
-    text-underline: rgb(255, 0, 0);
+    font-weight: bold;
   }
 
   .v-button-MenuLinks-Selected
