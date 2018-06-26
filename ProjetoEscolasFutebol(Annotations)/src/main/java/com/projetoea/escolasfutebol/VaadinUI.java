@@ -8,7 +8,6 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
 import java.util.Iterator;
-import java.util.Set;
 
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol")
@@ -51,7 +50,7 @@ public class VaadinUI extends UI {
         viewContainer.setHeight("100%");
 
         Navigator navigator = new Navigator(this, viewContainer);
-        navigator.addView("", PaginaInicial.class);
+        navigator.addView("", PaginaInicialView.class);
         navigator.addView("login", LoginView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
