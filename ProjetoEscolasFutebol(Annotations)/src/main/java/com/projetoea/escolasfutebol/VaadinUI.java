@@ -1,5 +1,6 @@
 package com.projetoea.escolasfutebol;
 
+import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
@@ -8,6 +9,8 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
 import java.util.Iterator;
+
+import static java.lang.System.out;
 
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol")
@@ -21,6 +24,8 @@ public class VaadinUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
         userName = new Label("Not Logged in");
+
+        out.println("Guest LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
 
         VerticalLayout menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");

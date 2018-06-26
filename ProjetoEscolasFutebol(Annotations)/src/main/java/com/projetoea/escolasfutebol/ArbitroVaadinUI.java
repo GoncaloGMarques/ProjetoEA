@@ -10,6 +10,8 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
+import static java.lang.System.out;
+
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol/Arbitro")
 public class ArbitroVaadinUI extends UI {
@@ -36,6 +38,7 @@ public class ArbitroVaadinUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
 
         Utilizador utilizador = getSession().getAttribute(Utilizador.class);
+        out.println("Arbitro LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
 
         Label title = new Label("Menu");
         userName = new Label("ERROR");
@@ -44,7 +47,7 @@ public class ArbitroVaadinUI extends UI {
         else return;
 
         menuLinks = new VerticalLayout();
-        addMenuEntry(menuLinks, "Página Inicial", "");
+        addMenuEntry(menuLinks, "Paging Inicial", "");
         addMenuEntry(menuLinks, "Logout", "logout");
         addMenuEntry(menuLinks, "Calendário", "calendario");
         addMenuEntry(menuLinks, "Torneios", "torneios");
@@ -75,7 +78,7 @@ public class ArbitroVaadinUI extends UI {
         viewContainer.setHeight("100%");
 
         Navigator navigator = new Navigator(this, viewContainer);
-        navigator.addView("", PaginaInicial.class);
+        navigator.addView("", PaginaInicialView.class);
         navigator.addView("logout", LogoutView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);

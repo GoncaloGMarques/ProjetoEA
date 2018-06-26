@@ -41,7 +41,7 @@ public class DiretorEscolaVaadinUI extends UI {
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
-        addMenuEntry(menuLinks, "Logout", "");
+        addMenuEntry(menuLinks, "Logout", "logout");
         addMenuEntry(menuLinks, "Calendário", "calendario");
         addMenuEntry(menuLinks, "Torneios", "torneios");
         addMenuEntry(menuLinks, "Campeonato", "campeonato");
@@ -72,7 +72,7 @@ public class DiretorEscolaVaadinUI extends UI {
 
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicialView.class);
-        navigator.addView("login", LoginView.class);
+        navigator.addView("Logout", LogoutView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);

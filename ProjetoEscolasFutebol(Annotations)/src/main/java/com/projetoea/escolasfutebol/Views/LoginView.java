@@ -7,12 +7,16 @@ import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
 
 import javax.rmi.CORBA.Util;
+import java.io.Console;
 import java.util.AbstractMap;
+
+import static java.lang.System.out;
 
 @SpringView
 @Theme("darktheme")
@@ -30,6 +34,8 @@ public class LoginView  extends Composite implements View {
 
     private String username;
     private String password;
+
+    private Button loginUserBtn;
 
     public LoginView(){
         verticalLayout = new VerticalLayout();
@@ -54,15 +60,15 @@ public class LoginView  extends Composite implements View {
         passwordField = new TextField("Password");
         horizontalLayout1.addComponent(passwordField);
 
-        Button loginUserBtn = new Button("Login", event -> {
+        loginUserBtn = new Button("Login", event -> {
             if(login()) {
                 switch (user.getTipoutilizador().getID()){
-                    case 1:{updateUI("EscolasFutebol/DiretorAssociacao");}
-                    case 2:{updateUI("EscolasFutebol/DiretorEscola");}
-                    case 3:{updateUI("EscolasFutebol/Arbitro");}
+                    case 1:{updateUI("EscolasFutebol/DiretorAssociacao");} break;
+                    case 2:{updateUI("EscolasFutebol/DiretorEscola");} break;
+                    case 3:{updateUI("EscolasFutebol/Arbitro");} break;
                     default:{
                         daoError.setValue("Error Parsing 'Tipo Utilizador'");
-                    }
+                    } break;
                 }
             }else {
                 daoError.setValue("Could Not Login");
@@ -75,21 +81,28 @@ public class LoginView  extends Composite implements View {
     }
 
     private void updateUI(String link) {
-        VaadinUI currentUI = (VaadinUI) UI.getCurrent();
-        currentUI.userName.setValue(user.getNome());
-
         if(!link.isEmpty()) {
-            UI.getCurrent().getPage().setLocation(link);
-            UI.getCurrent().getSession().setAttribute(Utilizador.class, user);
+            getUI().getPage().setLocation(link);
+
+            /* Set a new Session Attribute */
+            getSession().setAttribute(Utilizador.class, user);
+            out.println("LOGIN LOG: " + getSession().getAttribute(Utilizador.class)
+                    + "   STATUS: " + getSession().getState()
+                    + "   LINK: " + getUI().getPage().getLocation().toString()
+                    + "   NEXT: " + link);
         }
 
         verticalLayout.addComponent(new Label("Logged in as " + user.getNome()));
     }
 
     private boolean login() {
+        loginUserBtn.setEnabled(false);
+
         AbstractMap.SimpleEntry<String, String> loginPair = verifyInput();
         if(loginPair.getKey().isEmpty()) return false;
         user = tryGetUser(loginPair.getKey(), loginPair.getValue());
+
+        loginUserBtn.setEnabled(true);
         return user != null;
     }
 
