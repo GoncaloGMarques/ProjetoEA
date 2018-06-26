@@ -1,7 +1,6 @@
 package com.projetoea.escolasfutebol;
 
 import com.projetoea.escolasfutebol.Beans.UserBean;
-import com.projetoea.escolasfutebol.Beans.UserBeanConfig;
 import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
@@ -75,7 +74,7 @@ public class DiretorAssociacaoVaadinUI extends UI {
         viewContainer.setHeight("100%");
 
         Navigator navigator = new Navigator(this, viewContainer);
-        navigator.addView("", PaginaInicial.class);
+        navigator.addView("", PaginaInicialView.class);
         navigator.addView("login", LoginView.class);
         navigator.addView("calendario", Calendario.class);
         navigator.addView("torneios", Torneios.class);
