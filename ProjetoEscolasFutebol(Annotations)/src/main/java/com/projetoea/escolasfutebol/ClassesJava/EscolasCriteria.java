@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.ClassesJava;
+
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -19,7 +21,6 @@ import org.orm.criteria.*;
 public class EscolasCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
-	public final IntegerExpression diretoescolaID;
 	public final IntegerExpression associacaoId;
 	public final AssociationExpression associacao;
 	public final IntegerExpression diretorEscolaId;
@@ -30,7 +31,6 @@ public class EscolasCriteria extends AbstractORMCriteria {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		nome = new StringExpression("nome", this);
-		diretoescolaID = new IntegerExpression("diretoescolaID", this);
 		associacaoId = new IntegerExpression("associacao.ID", this);
 		associacao = new AssociationExpression("associacao", this);
 		diretorEscolaId = new IntegerExpression("diretorEscola.ID", this);
@@ -43,7 +43,7 @@ public class EscolasCriteria extends AbstractORMCriteria {
 	}
 	
 	public EscolasCriteria() throws PersistentException {
-		this(EscolasFutebolBetterPersistentManager.instance().getSession());
+		this(com.projetoea.escolasfutebol.ClassesJava.EscolasFutebolBetterPersistentManager.instance().getSession());
 	}
 	
 	public AssociacaoCriteria createAssociacaoCriteria() {
@@ -54,8 +54,8 @@ public class EscolasCriteria extends AbstractORMCriteria {
 		return new UtilizadorCriteria(createCriteria("diretorEscola"));
 	}
 	
-	public EquipaCriteria createEquipaCriteria() {
-		return new EquipaCriteria(createCriteria("ORM_equipa"));
+	public com.projetoea.escolasfutebol.ClassesJava.EquipaCriteria createEquipaCriteria() {
+		return new com.projetoea.escolasfutebol.ClassesJava.EquipaCriteria(createCriteria("ORM_equipa"));
 	}
 	
 	public Escolas uniqueEscolas() {

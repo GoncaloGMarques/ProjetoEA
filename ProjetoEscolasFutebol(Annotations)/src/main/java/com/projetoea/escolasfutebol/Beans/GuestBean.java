@@ -1,9 +1,6 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.ClassesJava.Jogo;
-import com.projetoea.escolasfutebol.ClassesJava.JogoDAO;
-import com.projetoea.escolasfutebol.ClassesJava.Torneio;
-import com.projetoea.escolasfutebol.ClassesJava.TorneioDAO;
+import com.projetoea.escolasfutebol.ClassesJava.*;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Component;
 
@@ -39,5 +36,11 @@ public class GuestBean {
     {
         Torneio[] torneios = TorneioDAO.listTorneioByQuery("datafim < CURRENT_TIMESTAMP()" , "datafim");
         return torneios;
+    }
+
+    public Participantecampeonato[] GetParticipantesCampeonato() throws PersistentException
+    {
+        Participantecampeonato[] participantes = ParticipantecampeonatoDAO.listParticipantecampeonatoByQuery(null,null);
+        return participantes;
     }
 }

@@ -81,7 +81,7 @@ public class ArbitroVaadinUI extends UI {
         navigator.addView("logout", LogoutView.class);
         navigator.addView("calendario", CalendarioView.class);
         navigator.addView("torneios", TorneiosView.class);
-        navigator.addView("campeonato", Campeonato.class);
+        navigator.addView("campeonato", CampeonatoView.class);
         navigator.addView("gerirjogos", GerirJogosView.class);
     }
 

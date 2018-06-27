@@ -59,7 +59,7 @@ public class VaadinUI extends UI {
         navigator.addView("login", LoginView.class);
         navigator.addView("calendario", CalendarioView.class);
         navigator.addView("torneios", TorneiosView.class);
-        navigator.addView("campeonato", Campeonato.class);
+        navigator.addView("campeonato", CampeonatoView.class);
     }
 
 
