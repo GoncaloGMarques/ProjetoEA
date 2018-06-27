@@ -6,7 +6,6 @@ import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.vaadin.data.HasValue;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
@@ -29,7 +28,7 @@ public class CalendarioView extends Composite implements View {
             public void valueChange(HasValue.ValueChangeEvent<LocalDate> valueChangeEvent) {
                 GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
                 try {
-                    Jogo[] test = guestBean.GetJogoData(date.getValue());
+                    Jogo[] test = guestBean.GetJogoByData(date.getValue());
                     ConstructJogosTable(test);
                 } catch (PersistentException e) {
                     e.printStackTrace();
@@ -39,13 +38,34 @@ public class CalendarioView extends Composite implements View {
         date.setSizeFull();
         ht.addComponent(date);
         ht.setExpandRatio(date,1f);
+        VerticalLayout vtListaJogos = new VerticalLayout();
+        vtListaJogos.setSizeFull();
+        Panel descriptionEmJogo = new Panel();
+        HorizontalLayout DetalhesTabela = new HorizontalLayout();
+        Label hora = new Label("Hora");
+        DetalhesTabela.addComponent(hora);
+        DetalhesTabela.setComponentAlignment(hora, Alignment.MIDDLE_CENTER);
+        Label equipaA = new Label("Equipa A");
+        DetalhesTabela.addComponent(equipaA);
+        DetalhesTabela.setComponentAlignment(equipaA, Alignment.MIDDLE_CENTER);
+        Label empty = new Label("");
+        DetalhesTabela.addComponent(empty);
+        DetalhesTabela.setComponentAlignment(empty, Alignment.MIDDLE_CENTER);
+        Label equipaB = new Label("Equipa B");
+        DetalhesTabela.addComponent(equipaB);
+        DetalhesTabela.setComponentAlignment(equipaB, Alignment.MIDDLE_CENTER);
+        descriptionEmJogo.setContent(DetalhesTabela);
+        DetalhesTabela.setSizeFull();
+        vtListaJogos.addComponent(descriptionEmJogo);
         panelListaJogos = new Panel();
         Label label = new Label("wj");
         panelListaJogos.setContent(label);
         panelListaJogos.setSizeFull();
-        ht.addComponent(panelListaJogos);
+        vtListaJogos.addComponent(panelListaJogos);
+        vtListaJogos.setExpandRatio(panelListaJogos, 0.9f);
+        ht.addComponent(vtListaJogos);
         ht.setExpandRatio(date, 1f);
-        ht.setExpandRatio(panelListaJogos, 2f);
+        ht.setExpandRatio(vtListaJogos, 2f);
         setCompositionRoot(ht);
     }
 
@@ -54,7 +74,7 @@ public class CalendarioView extends Composite implements View {
         date.setValue(LocalDate.now());
         GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            Jogo[] test = guestBean.GetJogoData(date.getValue());
+            Jogo[] test = guestBean.GetJogoByData(date.getValue());
             ConstructJogosTable(test);
         } catch (PersistentException e) {
             e.printStackTrace();
@@ -66,7 +86,7 @@ public class CalendarioView extends Composite implements View {
         VerticalLayout listaJogoTabela = new VerticalLayout();
         for (Jogo jogo: listaJogos) {
             HorizontalLayout linhaTabela = new HorizontalLayout();
-            AddLinha(LocalDate.from(jogo.getData().toLocalDateTime()).toString(), Alignment.MIDDLE_CENTER, linhaTabela);
+            AddLinha(LocalTime.from(jogo.getData().toLocalDateTime()).toString(), Alignment.MIDDLE_CENTER, linhaTabela);
             AddLinha(jogo.getEquipaCasa().toString(), Alignment.MIDDLE_CENTER, linhaTabela);
             AddLinha("-", Alignment.MIDDLE_CENTER, linhaTabela);
             AddLinha(jogo.getEquipaFora().toString(), Alignment.MIDDLE_CENTER, linhaTabela);

@@ -74,7 +74,7 @@ public class DiretorEscolaVaadinUI extends UI {
         navigator.addView("", PaginaInicialView.class);
         navigator.addView("Logout", LogoutView.class);
         navigator.addView("calendario", CalendarioView.class);
-        navigator.addView("torneios", Torneios.class);
+        navigator.addView("torneios", TorneiosView.class);
         navigator.addView("campeonato", Campeonato.class);
         navigator.addView("gerirequipas", GerirEquipasView.class);
     }

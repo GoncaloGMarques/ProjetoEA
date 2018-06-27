@@ -11,8 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="torneio")
@@ -48,11 +48,14 @@ public class Torneio implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="TORNEIO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@Column(name="datainicio", nullable=true, length=10)	
-	private Integer datainicio;
+	@Column(name="datainicio", nullable=true)	
+	private java.sql.Timestamp datainicio;
 	
-	@Column(name="datafim", nullable=true, length=10)	
-	private Integer datafim;
+	@Column(name="datafim", nullable=true)	
+	private java.sql.Timestamp datafim;
+	
+	@Column(name="nome", nullable=true, length=255)	
+	private String nome;
 	
 	@OneToMany(mappedBy="torneio", targetEntity=Rondatorneio.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -81,28 +84,28 @@ public class Torneio implements Serializable {
 		return getID();
 	}
 	
-	public void setDatainicio(int value) {
-		setDatainicio(new Integer(value));
-	}
-	
-	public void setDatainicio(Integer value) {
+	public void setDatainicio(java.sql.Timestamp value) {
 		this.datainicio = value;
 	}
 	
-	public Integer getDatainicio() {
+	public java.sql.Timestamp getDatainicio() {
 		return datainicio;
 	}
 	
-	public void setDatafim(int value) {
-		setDatafim(new Integer(value));
-	}
-	
-	public void setDatafim(Integer value) {
+	public void setDatafim(java.sql.Timestamp value) {
 		this.datafim = value;
 	}
 	
-	public Integer getDatafim() {
+	public java.sql.Timestamp getDatafim() {
 		return datafim;
+	}
+	
+	public void setNome(String value) {
+		this.nome = value;
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 	
 	private void setORM_Rondatorneio(java.util.Set value) {
