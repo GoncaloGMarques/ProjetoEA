@@ -18,8 +18,9 @@ import org.orm.criteria.*;
 
 public class TorneioCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final IntegerExpression datainicio;
-	public final IntegerExpression datafim;
+	public final TimestampExpression datainicio;
+	public final TimestampExpression datafim;
+	public final StringExpression nome;
 	public final CollectionExpression rondatorneio;
 	public final CollectionExpression partcipantetorneio;
 	public final CollectionExpression grupo;
@@ -27,8 +28,9 @@ public class TorneioCriteria extends AbstractORMCriteria {
 	public TorneioCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		datainicio = new IntegerExpression("datainicio", this);
-		datafim = new IntegerExpression("datafim", this);
+		datainicio = new TimestampExpression("datainicio", this);
+		datafim = new TimestampExpression("datafim", this);
+		nome = new StringExpression("nome", this);
 		rondatorneio = new CollectionExpression("ORM_rondatorneio", this);
 		partcipantetorneio = new CollectionExpression("ORM_partcipantetorneio", this);
 		grupo = new CollectionExpression("ORM_grupo", this);

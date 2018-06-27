@@ -11,9 +11,10 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
 import java.util.List;
 
 public class TorneioDAO {
@@ -39,7 +40,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio loadTorneioByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Torneio loadTorneioByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTorneioByORMID(session, ID, lockMode);
@@ -50,7 +51,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio getTorneioByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Torneio getTorneioByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getTorneioByORMID(session, ID, lockMode);
@@ -81,7 +82,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio loadTorneioByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Torneio loadTorneioByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Torneio) session.load(Torneio.class, new Integer(ID), lockMode);
 		}
@@ -91,7 +92,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio getTorneioByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Torneio getTorneioByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			return (Torneio) session.get(Torneio.class, new Integer(ID), lockMode);
 		}
@@ -112,7 +113,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static List queryTorneio(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryTorneio(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryTorneio(session, condition, orderBy, lockMode);
@@ -134,7 +135,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio[] listTorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Torneio[] listTorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listTorneioByQuery(session, condition, orderBy, lockMode);
@@ -161,7 +162,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static List queryTorneio(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryTorneio(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Torneio as Torneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -189,7 +190,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio[] listTorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Torneio[] listTorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryTorneio(session, condition, orderBy, lockMode);
 			return (Torneio[]) list.toArray(new Torneio[list.size()]);
@@ -211,7 +212,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static Torneio loadTorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Torneio loadTorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTorneioByQuery(session, condition, orderBy, lockMode);
@@ -230,7 +231,7 @@ public class TorneioDAO {
 			return null;
 	}
 	
-	public static Torneio loadTorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Torneio loadTorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Torneio[] torneios = listTorneioByQuery(session, condition, orderBy, lockMode);
 		if (torneios != null && torneios.length > 0)
 			return torneios[0];
@@ -249,7 +250,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateTorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateTorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateTorneioByQuery(session, condition, orderBy, lockMode);
@@ -276,7 +277,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateTorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateTorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From Torneio as Torneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -341,7 +342,7 @@ public class TorneioDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Torneio torneio, PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(Torneio torneio, org.orm.PersistentSession session)throws PersistentException {
 		try {
 			Rondatorneio[] lRondatorneios = torneio.rondatorneio.toArray();
 			for(int i = 0; i < lRondatorneios.length; i++) {

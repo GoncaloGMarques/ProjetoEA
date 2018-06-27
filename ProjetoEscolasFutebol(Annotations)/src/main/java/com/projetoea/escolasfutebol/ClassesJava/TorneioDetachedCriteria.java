@@ -11,15 +11,18 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
+import java.util.List;
+
 public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final IntegerExpression datainicio;
-	public final IntegerExpression datafim;
+	public final TimestampExpression datainicio;
+	public final TimestampExpression datafim;
+	public final StringExpression nome;
 	public final CollectionExpression rondatorneio;
 	public final CollectionExpression partcipantetorneio;
 	public final CollectionExpression grupo;
@@ -27,8 +30,9 @@ public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public TorneioDetachedCriteria() {
 		super(Torneio.class, TorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		datainicio = new IntegerExpression("datainicio", this.getDetachedCriteria());
-		datafim = new IntegerExpression("datafim", this.getDetachedCriteria());
+		datainicio = new TimestampExpression("datainicio", this.getDetachedCriteria());
+		datafim = new TimestampExpression("datafim", this.getDetachedCriteria());
+		nome = new StringExpression("nome", this.getDetachedCriteria());
 		rondatorneio = new CollectionExpression("ORM_rondatorneio", this.getDetachedCriteria());
 		partcipantetorneio = new CollectionExpression("ORM_partcipantetorneio", this.getDetachedCriteria());
 		grupo = new CollectionExpression("ORM_grupo", this.getDetachedCriteria());
@@ -37,8 +41,9 @@ public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public TorneioDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, TorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		datainicio = new IntegerExpression("datainicio", this.getDetachedCriteria());
-		datafim = new IntegerExpression("datafim", this.getDetachedCriteria());
+		datainicio = new TimestampExpression("datainicio", this.getDetachedCriteria());
+		datafim = new TimestampExpression("datafim", this.getDetachedCriteria());
+		nome = new StringExpression("nome", this.getDetachedCriteria());
 		rondatorneio = new CollectionExpression("ORM_rondatorneio", this.getDetachedCriteria());
 		partcipantetorneio = new CollectionExpression("ORM_partcipantetorneio", this.getDetachedCriteria());
 		grupo = new CollectionExpression("ORM_grupo", this.getDetachedCriteria());

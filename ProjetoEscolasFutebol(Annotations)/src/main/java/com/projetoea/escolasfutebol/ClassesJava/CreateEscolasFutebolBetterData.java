@@ -2,11 +2,9 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import org.orm.*;
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 
 public class CreateEscolasFutebolBetterData {

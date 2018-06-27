@@ -11,8 +11,9 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import java.io.Serializable;
+
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="escolas")
@@ -52,27 +53,24 @@ public class Escolas implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="ESCOLAS_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ESCOLAS_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="ESCOLAS_ID_GENERATOR")
+	@org.hibernate.annotations.GenericGenerator(name="ESCOLAS_ID_GENERATOR", strategy="native")
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
 	private String nome;
 	
-	@Column(name="diretoescolaID", nullable=false, length=10)	
-	private int diretoescolaID;
-	
-	@ManyToOne(targetEntity=Associacao.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=Associacao.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="associacaoID", referencedColumnName="ID", nullable=false) })	
 	private Associacao associacao;
 	
-	@OneToOne(optional=false, targetEntity=Utilizador.class, fetch=FetchType.LAZY)	
+	@OneToOne(optional=false, targetEntity=Utilizador.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="diretorEscolaID", referencedColumnName="ID", nullable=false) })	
 	private Utilizador diretorEscola;
 	
-	@OneToMany(mappedBy="escolas", targetEntity=Equipa.class)	
+	@OneToMany(mappedBy="escolas", targetEntity=Equipa.class)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_equipa = new java.util.HashSet();
@@ -95,14 +93,6 @@ public class Escolas implements Serializable {
 	
 	public String getNome() {
 		return nome;
-	}
-	
-	public void setDiretoescolaID(int value) {
-		this.diretoescolaID = value;
-	}
-	
-	public int getDiretoescolaID() {
-		return diretoescolaID;
 	}
 	
 	public void setAssociacao(Associacao value) {
