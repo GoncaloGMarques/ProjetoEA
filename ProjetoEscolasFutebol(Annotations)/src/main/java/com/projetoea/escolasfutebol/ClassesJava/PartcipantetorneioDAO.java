@@ -312,8 +312,7 @@ public class PartcipantetorneioDAO {
 		try {
 			EscolasFutebolBetterPersistentManager.instance().deleteObject(partcipantetorneio);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (PersistentException e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}

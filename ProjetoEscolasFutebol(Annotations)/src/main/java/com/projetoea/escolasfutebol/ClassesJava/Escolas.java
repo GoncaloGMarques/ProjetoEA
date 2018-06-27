@@ -76,7 +76,7 @@ public class Escolas implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_equipa = new java.util.HashSet();
-	
+
 	private void setID(int value) {
 		this.ID = value;
 	}

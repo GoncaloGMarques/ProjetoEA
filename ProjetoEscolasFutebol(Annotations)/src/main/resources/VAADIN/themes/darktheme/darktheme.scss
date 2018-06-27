@@ -71,10 +71,24 @@
     font-weight: bold;
   }
 
+  .v-header-label{
+    font-weight: bold;
+    font-size: large;
+  }
+
   .v-button-MenuLinks-Selected
   {
     background: rgb(21, 90, 0);
     box-shadow: none;
     border: none;
+  }
+
+  .v-button {
+    height: auto;
+  }
+
+  .v-grid-item-removed {
+    text-decoration: line-through;
+    background-color: rgba(255, 0, 0, 0.75);
   }
 }

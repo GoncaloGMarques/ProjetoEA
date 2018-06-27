@@ -25,7 +25,12 @@ public class VaadinUI extends UI {
         Label title = new Label("Menu");
         userName = new Label("Not Logged in");
 
+
         out.println("Guest LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
+        for (UI ui:getSession().getUIs()) {
+            out.println("\tSession UI location: " + ui.getUI().getPage().getLocation().toString());
+        }
+
 
         VerticalLayout menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");

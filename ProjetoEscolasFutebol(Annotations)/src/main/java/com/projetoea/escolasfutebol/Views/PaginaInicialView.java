@@ -26,8 +26,6 @@ import java.util.List;
 @SpringView
 public class PaginaInicialView extends Composite implements View {
 
-    @Autowired
-    private GuestBean bean;
     VerticalLayout vt;
     Panel JogosHojePanel;
 

@@ -5,6 +5,7 @@ import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.annotations.Theme;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
@@ -54,10 +55,12 @@ public class LoginView  extends Composite implements View {
         errorUsernameLabel.addStyleName("v-error-label-Input");
 
         usernameField = new TextField("Username");
+        usernameField.setIcon(VaadinIcons.USER_CHECK);
         horizontalLayout.addComponent(usernameField);
         horizontalLayout.addComponent(errorUsernameLabel);
 
-        passwordField = new TextField("Password");
+        passwordField = new PasswordField("Password");
+        passwordField.setIcon(VaadinIcons.LOCK);
         horizontalLayout1.addComponent(passwordField);
 
         loginUserBtn = new Button("Login", event -> {
@@ -74,6 +77,7 @@ public class LoginView  extends Composite implements View {
                 daoError.setValue("Could Not Login");
             }
         });
+        loginUserBtn.setIcon(VaadinIcons.USER);
 
         horizontalLayout2.addComponent(loginUserBtn);
         horizontalLayout2.addComponent(daoError);

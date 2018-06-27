@@ -26,8 +26,6 @@ public class DiretorAssociacaoVaadinUI extends UI {
     }
 
     public Label userName;
-    UserBean userBean;
-
 
     public static boolean logged = false;
     static VerticalLayout menuLinks;
@@ -39,7 +37,7 @@ public class DiretorAssociacaoVaadinUI extends UI {
         Utilizador user = getSession().getAttribute(Utilizador.class);
 
         if(user != null) userName.setValue("Presidente " + user.getNome());
-        else userName.setValue("YOU SHOULD NOT BE HERE");
+        else return; //Do not render anything
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
