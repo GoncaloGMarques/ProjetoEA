@@ -76,7 +76,7 @@ public class DiretorAssociacaoVaadinUI extends UI {
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicialView.class);
         navigator.addView("logout", LogoutView.class);
-        navigator.addView("calendario", Calendario.class);
+        navigator.addView("calendario", CalendarioView.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);
         navigator.addView("gerirescolas", GerirEscolasView.class);

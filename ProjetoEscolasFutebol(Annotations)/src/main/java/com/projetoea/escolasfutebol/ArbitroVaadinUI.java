@@ -6,7 +6,6 @@ import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
@@ -80,7 +79,7 @@ public class ArbitroVaadinUI extends UI {
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicialView.class);
         navigator.addView("logout", LogoutView.class);
-        navigator.addView("calendario", Calendario.class);
+        navigator.addView("calendario", CalendarioView.class);
         navigator.addView("torneios", Torneios.class);
         navigator.addView("campeonato", Campeonato.class);
         navigator.addView("gerirjogos", GerirJogosView.class);

@@ -19,4 +19,12 @@ public class GuestBean {
         Jogo[] jogos = JogoDAO.listJogoByQuery("Data > '"+today.toString()+"' AND Data < '"+aWeek+"'" , "Data");
         return jogos;
     }
+
+    public Jogo[] GetJogoData(LocalDate data) throws PersistentException
+    {
+        LocalDateTime startOfDay = data.atStartOfDay();
+        LocalDateTime emdOdDay = data.atStartOfDay().plus(1, ChronoUnit.DAYS);
+        Jogo[] jogos = JogoDAO.listJogoByQuery("Data > '"+startOfDay.toString()+"' AND Data < '"+emdOdDay+"'" , "Data");
+        return jogos;
+    }
 }
