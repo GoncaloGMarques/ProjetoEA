@@ -40,11 +40,11 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         Window window = new Window("Criar Escola");
         window.setWidth(500.0f, Unit.PIXELS);
         window.center();
+        window.setModal(true);
 
         VerticalLayout content = new VerticalLayout();
 
         content.setMargin(true);
-
 
         Label diretorHeader = new Label("Diretor");
         diretorHeader.setIcon(VaadinIcons.USER);
@@ -66,6 +66,8 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
             } catch (PersistentException e) {
                 e.printStackTrace();
             }
+            //Do i really need to close the window?
+            window.close();
             getUI().getPage().reload();
         });
 
@@ -91,6 +93,8 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         } catch (PersistentException e) {
             e.printStackTrace();
         }
+        remove.setEnabled(false);
+        currentlyEditing = null;
     };
 
     private StyleGenerator<Escolas> gridStyleGenerator = new StyleGenerator<Escolas>() {
