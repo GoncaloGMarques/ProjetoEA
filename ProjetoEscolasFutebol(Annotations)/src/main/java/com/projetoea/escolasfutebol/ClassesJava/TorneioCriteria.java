@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -41,19 +43,19 @@ public class TorneioCriteria extends AbstractORMCriteria {
 	}
 	
 	public TorneioCriteria() throws PersistentException {
-		this(EscolasFutebolBetterPersistentManager.instance().getSession());
+		this(com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession());
 	}
 	
-	public RondatorneioCriteria createRondatorneioCriteria() {
-		return new RondatorneioCriteria(createCriteria("ORM_rondatorneio"));
+	public com.projetoea.escolasfutebol.classesjava.RondatorneioCriteria createRondatorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.RondatorneioCriteria(createCriteria("ORM_rondatorneio"));
 	}
 	
-	public PartcipantetorneioCriteria createPartcipantetorneioCriteria() {
-		return new PartcipantetorneioCriteria(createCriteria("ORM_partcipantetorneio"));
+	public com.projetoea.escolasfutebol.classesjava.PartcipantetorneioCriteria createPartcipantetorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.PartcipantetorneioCriteria(createCriteria("ORM_partcipantetorneio"));
 	}
 	
-	public GrupoCriteria createGrupoCriteria() {
-		return new GrupoCriteria(createCriteria("ORM_grupo"));
+	public com.projetoea.escolasfutebol.classesjava.GrupoCriteria createGrupoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.GrupoCriteria(createCriteria("ORM_grupo"));
 	}
 	
 	public Torneio uniqueTorneio() {

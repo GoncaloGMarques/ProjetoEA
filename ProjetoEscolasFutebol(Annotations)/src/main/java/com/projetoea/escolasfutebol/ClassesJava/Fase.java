@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,7 +23,7 @@ public class Fase implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_FASE_RONDATORNEIO) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_FASE_RONDATORNEIO) {
 			return ORM_rondatorneio;
 		}
 		
@@ -38,14 +40,14 @@ public class Fase implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="FASE_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="FASE_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_FASE_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_FASE_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="nomefase", nullable=true, length=10)	
 	private Integer nomefase;
 	
-	@OneToMany(mappedBy="fase", targetEntity=Rondatorneio.class)	
+	@OneToMany(mappedBy="fase", targetEntity=com.projetoea.escolasfutebol.classesjava.Rondatorneio.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_rondatorneio = new java.util.HashSet();
@@ -83,7 +85,7 @@ public class Fase implements Serializable {
 	}
 	
 	@Transient	
-	public final RondatorneioSetCollection rondatorneio = new RondatorneioSetCollection(this, _ormAdapter, ORMConstants.KEY_FASE_RONDATORNEIO, ORMConstants.KEY_RONDATORNEIO_FASE, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.RondatorneioSetCollection rondatorneio = new com.projetoea.escolasfutebol.classesjava.RondatorneioSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_FASE_RONDATORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_FASE, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

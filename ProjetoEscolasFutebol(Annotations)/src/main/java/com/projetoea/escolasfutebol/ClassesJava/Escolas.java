@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,9 +11,10 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="escolas")
@@ -22,7 +23,7 @@ public class Escolas implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_ESCOLAS_EQUIPA) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_EQUIPA) {
 			return ORM_equipa;
 		}
 		
@@ -30,12 +31,12 @@ public class Escolas implements Serializable {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_ESCOLAS_ASSOCIACAO) {
-			this.associacao = (Associacao) owner;
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_ASSOCIACAO) {
+			this.associacao = (com.projetoea.escolasfutebol.classesjava.Associacao) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_ESCOLAS_DIRETORESCOLA) {
-			this.diretorEscola = (Utilizador) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_DIRETORESCOLA) {
+			this.diretorEscola = (com.projetoea.escolasfutebol.classesjava.Utilizador) owner;
 		}
 	}
 	
@@ -53,24 +54,24 @@ public class Escolas implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="ESCOLAS_ID_GENERATOR")
-	@org.hibernate.annotations.GenericGenerator(name="ESCOLAS_ID_GENERATOR", strategy="native")
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_ESCOLAS_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_ESCOLAS_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
 	private String nome;
 	
-	@ManyToOne(targetEntity=Associacao.class, fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Associacao.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="associacaoID", referencedColumnName="ID", nullable=false) })	
-	private Associacao associacao;
+	private com.projetoea.escolasfutebol.classesjava.Associacao associacao;
 	
-	@OneToOne(optional=false, targetEntity=Utilizador.class, fetch=FetchType.LAZY)
+	@OneToOne(optional=false, targetEntity=com.projetoea.escolasfutebol.classesjava.Utilizador.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="diretorEscolaID", referencedColumnName="ID", nullable=false) })	
-	private Utilizador diretorEscola;
+	private com.projetoea.escolasfutebol.classesjava.Utilizador diretorEscola;
 	
-	@OneToMany(mappedBy="escolas", targetEntity=Equipa.class)
+	@OneToMany(mappedBy="escolas", targetEntity=com.projetoea.escolasfutebol.classesjava.Equipa.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_equipa = new java.util.HashSet();
@@ -95,7 +96,7 @@ public class Escolas implements Serializable {
 		return nome;
 	}
 	
-	public void setAssociacao(Associacao value) {
+	public void setAssociacao(com.projetoea.escolasfutebol.classesjava.Associacao value) {
 		if (associacao != null) {
 			associacao.escolas.remove(this);
 		}
@@ -104,24 +105,24 @@ public class Escolas implements Serializable {
 		}
 	}
 	
-	public Associacao getAssociacao() {
+	public com.projetoea.escolasfutebol.classesjava.Associacao getAssociacao() {
 		return associacao;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Associacao(Associacao value) {
+	public void setORM_Associacao(com.projetoea.escolasfutebol.classesjava.Associacao value) {
 		this.associacao = value;
 	}
 	
-	private Associacao getORM_Associacao() {
+	private com.projetoea.escolasfutebol.classesjava.Associacao getORM_Associacao() {
 		return associacao;
 	}
 	
-	public void setDiretorEscola(Utilizador value) {
+	public void setDiretorEscola(com.projetoea.escolasfutebol.classesjava.Utilizador value) {
 		if (this.diretorEscola != value) {
-			Utilizador ldiretorEscola = this.diretorEscola;
+			com.projetoea.escolasfutebol.classesjava.Utilizador ldiretorEscola = this.diretorEscola;
 			this.diretorEscola = value;
 			if (value != null) {
 				diretorEscola.setEscolas(this);
@@ -132,7 +133,7 @@ public class Escolas implements Serializable {
 		}
 	}
 	
-	public Utilizador getDiretorEscola() {
+	public com.projetoea.escolasfutebol.classesjava.Utilizador getDiretorEscola() {
 		return diretorEscola;
 	}
 	
@@ -145,7 +146,7 @@ public class Escolas implements Serializable {
 	}
 	
 	@Transient	
-	public final EquipaSetCollection equipa = new EquipaSetCollection(this, _ormAdapter, ORMConstants.KEY_ESCOLAS_EQUIPA, ORMConstants.KEY_EQUIPA_ESCOLAS, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.EquipaSetCollection equipa = new com.projetoea.escolasfutebol.classesjava.EquipaSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_EQUIPA, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_EQUIPA_ESCOLAS, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

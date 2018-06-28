@@ -1,7 +1,7 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.GuestBean;
-import com.projetoea.escolasfutebol.ClassesJava.Torneio;
+import com.projetoea.escolasfutebol.classesjava.Torneio;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

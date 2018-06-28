@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 import org.hibernate.Query;
 import org.hibernate.LockMode;
@@ -19,7 +21,7 @@ import java.util.List;
 public class CampoDAO {
 	public static Campo loadCampoByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadCampoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +32,7 @@ public class CampoDAO {
 	
 	public static Campo getCampoByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getCampoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +41,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo loadCampoByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Campo loadCampoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadCampoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +52,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo getCampoByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Campo getCampoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getCampoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -63,7 +65,7 @@ public class CampoDAO {
 	
 	public static Campo loadCampoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Campo) session.load(Campo.class, new Integer(ID));
+			return (Campo) session.load(com.projetoea.escolasfutebol.classesjava.Campo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class CampoDAO {
 	
 	public static Campo getCampoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Campo) session.get(Campo.class, new Integer(ID));
+			return (Campo) session.get(com.projetoea.escolasfutebol.classesjava.Campo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -81,9 +83,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo loadCampoByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Campo loadCampoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Campo) session.load(Campo.class, new Integer(ID), lockMode);
+			return (Campo) session.load(com.projetoea.escolasfutebol.classesjava.Campo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -91,9 +93,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo getCampoByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Campo getCampoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Campo) session.get(Campo.class, new Integer(ID), lockMode);
+			return (Campo) session.get(com.projetoea.escolasfutebol.classesjava.Campo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +105,7 @@ public class CampoDAO {
 	
 	public static List queryCampo(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryCampo(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +114,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static List queryCampo(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryCampo(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryCampo(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +127,7 @@ public class CampoDAO {
 	
 	public static Campo[] listCampoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listCampoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +136,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo[] listCampoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Campo[] listCampoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listCampoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -146,7 +148,7 @@ public class CampoDAO {
 	}
 	
 	public static List queryCampo(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Campo as Campo");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Campo as Campo");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -161,8 +163,8 @@ public class CampoDAO {
 		}
 	}
 	
-	public static List queryCampo(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Campo as Campo");
+	public static List queryCampo(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Campo as Campo");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -189,7 +191,7 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo[] listCampoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Campo[] listCampoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryCampo(session, condition, orderBy, lockMode);
 			return (Campo[]) list.toArray(new Campo[list.size()]);
@@ -202,7 +204,7 @@ public class CampoDAO {
 	
 	public static Campo loadCampoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadCampoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +213,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static Campo loadCampoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Campo loadCampoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadCampoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +232,7 @@ public class CampoDAO {
 			return null;
 	}
 	
-	public static Campo loadCampoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Campo loadCampoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Campo[] campos = listCampoByQuery(session, condition, orderBy, lockMode);
 		if (campos != null && campos.length > 0)
 			return campos[0];
@@ -240,7 +242,7 @@ public class CampoDAO {
 	
 	public static java.util.Iterator iterateCampoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateCampoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +251,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateCampoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateCampoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateCampoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -261,7 +263,7 @@ public class CampoDAO {
 	}
 	
 	public static java.util.Iterator iterateCampoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Campo as Campo");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Campo as Campo");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -276,8 +278,8 @@ public class CampoDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateCampoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Campo as Campo");
+	public static java.util.Iterator iterateCampoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Campo as Campo");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -294,12 +296,12 @@ public class CampoDAO {
 	}
 	
 	public static Campo createCampo() {
-		return new Campo();
+		return new com.projetoea.escolasfutebol.classesjava.Campo();
 	}
 	
-	public static boolean save(Campo campo) throws PersistentException {
+	public static boolean save(com.projetoea.escolasfutebol.classesjava.Campo campo) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().saveObject(campo);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().saveObject(campo);
 			return true;
 		}
 		catch (Exception e) {
@@ -308,9 +310,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static boolean delete(Campo campo) throws PersistentException {
+	public static boolean delete(com.projetoea.escolasfutebol.classesjava.Campo campo) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().deleteObject(campo);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().deleteObject(campo);
 			return true;
 		}
 		catch (Exception e) {
@@ -319,13 +321,13 @@ public class CampoDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Campo campo)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Campo campo)throws PersistentException {
 		try {
-			Equipa[] lEquipas = campo.equipa.toArray();
+			com.projetoea.escolasfutebol.classesjava.Equipa[] lEquipas = campo.equipa.toArray();
 			for(int i = 0; i < lEquipas.length; i++) {
 				lEquipas[i].setCampo(null);
 			}
-			Jogo[] lJogos = campo.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = campo.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setCampo(null);
 			}
@@ -337,13 +339,13 @@ public class CampoDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Campo campo, PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Campo campo, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			Equipa[] lEquipas = campo.equipa.toArray();
+			com.projetoea.escolasfutebol.classesjava.Equipa[] lEquipas = campo.equipa.toArray();
 			for(int i = 0; i < lEquipas.length; i++) {
 				lEquipas[i].setCampo(null);
 			}
-			Jogo[] lJogos = campo.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = campo.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setCampo(null);
 			}
@@ -360,9 +362,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static boolean refresh(Campo campo) throws PersistentException {
+	public static boolean refresh(com.projetoea.escolasfutebol.classesjava.Campo campo) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(campo);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().refresh(campo);
 			return true;
 		}
 		catch (Exception e) {
@@ -371,9 +373,9 @@ public class CampoDAO {
 		}
 	}
 	
-	public static boolean evict(Campo campo) throws PersistentException {
+	public static boolean evict(com.projetoea.escolasfutebol.classesjava.Campo campo) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().evict(campo);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().evict(campo);
 			return true;
 		}
 		catch (Exception e) {

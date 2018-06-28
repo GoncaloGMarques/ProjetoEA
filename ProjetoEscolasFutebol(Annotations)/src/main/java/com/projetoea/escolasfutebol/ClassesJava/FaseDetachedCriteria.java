@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -22,21 +24,21 @@ public class FaseDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression rondatorneio;
 	
 	public FaseDetachedCriteria() {
-		super(Fase.class, FaseCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Fase.class, com.projetoea.escolasfutebol.classesjava.FaseCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nomefase = new IntegerExpression("nomefase", this.getDetachedCriteria());
 		rondatorneio = new CollectionExpression("ORM_rondatorneio", this.getDetachedCriteria());
 	}
 	
 	public FaseDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, FaseCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.FaseCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nomefase = new IntegerExpression("nomefase", this.getDetachedCriteria());
 		rondatorneio = new CollectionExpression("ORM_rondatorneio", this.getDetachedCriteria());
 	}
 	
-	public RondatorneioDetachedCriteria createRondatorneioCriteria() {
-		return new RondatorneioDetachedCriteria(createCriteria("ORM_rondatorneio"));
+	public com.projetoea.escolasfutebol.classesjava.RondatorneioDetachedCriteria createRondatorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.RondatorneioDetachedCriteria(createCriteria("ORM_rondatorneio"));
 	}
 	
 	public Fase uniqueFase(PersistentSession session) {

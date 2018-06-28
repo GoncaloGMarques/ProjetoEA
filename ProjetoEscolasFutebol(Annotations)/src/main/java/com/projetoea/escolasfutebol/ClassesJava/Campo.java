@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,10 +23,10 @@ public class Campo implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_CAMPO_EQUIPA) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPO_EQUIPA) {
 			return ORM_equipa;
 		}
-		else if (key == ORMConstants.KEY_CAMPO_JOGO) {
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPO_JOGO) {
 			return ORM_jogo;
 		}
 		
@@ -41,19 +43,19 @@ public class Campo implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=11)	
 	@Id	
-	@GeneratedValue(generator="CAMPO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="CAMPO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_CAMPO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_CAMPO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
 	private String nome;
 	
-	@OneToMany(mappedBy="campo", targetEntity=Equipa.class)	
+	@OneToMany(mappedBy="campo", targetEntity=com.projetoea.escolasfutebol.classesjava.Equipa.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_equipa = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="campo", targetEntity=Jogo.class)	
+	@OneToMany(mappedBy="campo", targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_jogo = new java.util.HashSet();
@@ -87,7 +89,7 @@ public class Campo implements Serializable {
 	}
 	
 	@Transient	
-	public final EquipaSetCollection equipa = new EquipaSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPO_EQUIPA, ORMConstants.KEY_EQUIPA_CAMPO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.EquipaSetCollection equipa = new com.projetoea.escolasfutebol.classesjava.EquipaSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPO_EQUIPA, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_EQUIPA_CAMPO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Jogo(java.util.Set value) {
 		this.ORM_jogo = value;
@@ -98,7 +100,7 @@ public class Campo implements Serializable {
 	}
 	
 	@Transient	
-	public final JogoSetCollection jogo = new JogoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPO_JOGO, ORMConstants.KEY_JOGO_CAMPO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.JogoSetCollection jogo = new com.projetoea.escolasfutebol.classesjava.JogoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPO_JOGO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGO_CAMPO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

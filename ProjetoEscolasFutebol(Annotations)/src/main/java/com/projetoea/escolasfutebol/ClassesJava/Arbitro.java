@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,7 +23,7 @@ public class Arbitro implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_ARBITRO_JOGO) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ARBITRO_JOGO) {
 			return ORM_jogo;
 		}
 		
@@ -38,16 +40,16 @@ public class Arbitro implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="ARBITRO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ARBITRO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_ARBITRO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_ARBITRO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@OneToOne(optional=false, targetEntity=Utilizador.class, fetch=FetchType.LAZY)	
+	@OneToOne(optional=false, targetEntity=com.projetoea.escolasfutebol.classesjava.Utilizador.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="utilizadorID", referencedColumnName="ID", nullable=false) })	
-	private Utilizador utilizador;
+	private com.projetoea.escolasfutebol.classesjava.Utilizador utilizador;
 	
-	@OneToMany(mappedBy="arbitro", targetEntity=Jogo.class)	
+	@OneToMany(mappedBy="arbitro", targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_jogo = new java.util.HashSet();
@@ -64,9 +66,9 @@ public class Arbitro implements Serializable {
 		return getID();
 	}
 	
-	public void setUtilizador(Utilizador value) {
+	public void setUtilizador(com.projetoea.escolasfutebol.classesjava.Utilizador value) {
 		if (this.utilizador != value) {
-			Utilizador lutilizador = this.utilizador;
+			com.projetoea.escolasfutebol.classesjava.Utilizador lutilizador = this.utilizador;
 			this.utilizador = value;
 			if (value != null) {
 				utilizador.setArbitro(this);
@@ -77,7 +79,7 @@ public class Arbitro implements Serializable {
 		}
 	}
 	
-	public Utilizador getUtilizador() {
+	public com.projetoea.escolasfutebol.classesjava.Utilizador getUtilizador() {
 		return utilizador;
 	}
 	
@@ -90,7 +92,7 @@ public class Arbitro implements Serializable {
 	}
 	
 	@Transient	
-	public final JogoSetCollection jogo = new JogoSetCollection(this, _ormAdapter, ORMConstants.KEY_ARBITRO_JOGO, ORMConstants.KEY_JOGO_ARBITRO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.JogoSetCollection jogo = new com.projetoea.escolasfutebol.classesjava.JogoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ARBITRO_JOGO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGO_ARBITRO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

@@ -1,20 +1,16 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.UserBean;
-import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
-import com.projetoea.escolasfutebol.VaadinUI;
 import com.vaadin.annotations.Theme;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
 
-import javax.rmi.CORBA.Util;
-import java.io.Console;
 import java.util.AbstractMap;
 
 import static java.lang.System.out;

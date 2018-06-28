@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -31,7 +33,7 @@ public class UtilizadorDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final AssociationExpression associacao;
 	
 	public UtilizadorDetachedCriteria() {
-		super(Utilizador.class, UtilizadorCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Utilizador.class, com.projetoea.escolasfutebol.classesjava.UtilizadorCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());
@@ -47,7 +49,7 @@ public class UtilizadorDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public UtilizadorDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, UtilizadorCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.UtilizadorCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());

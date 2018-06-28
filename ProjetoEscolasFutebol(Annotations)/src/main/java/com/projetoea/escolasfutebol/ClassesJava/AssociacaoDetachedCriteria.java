@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -23,7 +25,7 @@ public class AssociacaoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression escolas;
 	
 	public AssociacaoDetachedCriteria() {
-		super(Associacao.class, AssociacaoCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Associacao.class, com.projetoea.escolasfutebol.classesjava.AssociacaoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		diretorAssociacaoId = new IntegerExpression("diretorAssociacao.ID", this.getDetachedCriteria());
 		diretorAssociacao = new AssociationExpression("diretorAssociacao", this.getDetachedCriteria());
@@ -31,7 +33,7 @@ public class AssociacaoDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public AssociacaoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, AssociacaoCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.AssociacaoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		diretorAssociacaoId = new IntegerExpression("diretorAssociacao.ID", this.getDetachedCriteria());
 		diretorAssociacao = new AssociationExpression("diretorAssociacao", this.getDetachedCriteria());
@@ -42,8 +44,8 @@ public class AssociacaoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new UtilizadorDetachedCriteria(createCriteria("diretorAssociacao"));
 	}
 	
-	public EscolasDetachedCriteria createEscolasCriteria() {
-		return new EscolasDetachedCriteria(createCriteria("ORM_escolas"));
+	public com.projetoea.escolasfutebol.classesjava.EscolasDetachedCriteria createEscolasCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.EscolasDetachedCriteria(createCriteria("ORM_escolas"));
 	}
 	
 	public Associacao uniqueAssociacao(PersistentSession session) {

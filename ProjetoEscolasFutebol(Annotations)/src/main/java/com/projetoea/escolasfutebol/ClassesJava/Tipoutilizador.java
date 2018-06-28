@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,7 +23,7 @@ public class Tipoutilizador implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_TIPOUTILIZADOR_UTILIZADOR) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TIPOUTILIZADOR_UTILIZADOR) {
 			return ORM_utilizador;
 		}
 		
@@ -38,14 +40,14 @@ public class Tipoutilizador implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="TIPOUTILIZADOR_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TIPOUTILIZADOR_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_TIPOUTILIZADOR_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_TIPOUTILIZADOR_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
 	private String nome;
 	
-	@OneToMany(mappedBy="tipoutilizador", targetEntity=Utilizador.class)	
+	@OneToMany(mappedBy="tipoutilizador", targetEntity=com.projetoea.escolasfutebol.classesjava.Utilizador.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_utilizador = new java.util.HashSet();
@@ -79,7 +81,7 @@ public class Tipoutilizador implements Serializable {
 	}
 	
 	@Transient	
-	public final UtilizadorSetCollection utilizador = new UtilizadorSetCollection(this, _ormAdapter, ORMConstants.KEY_TIPOUTILIZADOR_UTILIZADOR, ORMConstants.KEY_UTILIZADOR_TIPOUTILIZADOR, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.UtilizadorSetCollection utilizador = new com.projetoea.escolasfutebol.classesjava.UtilizadorSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TIPOUTILIZADOR_UTILIZADOR, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_UTILIZADOR_TIPOUTILIZADOR, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

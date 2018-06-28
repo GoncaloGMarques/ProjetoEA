@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -23,7 +25,7 @@ public class ArbitroDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression jogo;
 	
 	public ArbitroDetachedCriteria() {
-		super(Arbitro.class, ArbitroCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Arbitro.class, com.projetoea.escolasfutebol.classesjava.ArbitroCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		utilizadorId = new IntegerExpression("utilizador.ID", this.getDetachedCriteria());
 		utilizador = new AssociationExpression("utilizador", this.getDetachedCriteria());
@@ -31,7 +33,7 @@ public class ArbitroDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public ArbitroDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, ArbitroCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.ArbitroCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		utilizadorId = new IntegerExpression("utilizador.ID", this.getDetachedCriteria());
 		utilizador = new AssociationExpression("utilizador", this.getDetachedCriteria());
@@ -42,8 +44,8 @@ public class ArbitroDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new UtilizadorDetachedCriteria(createCriteria("utilizador"));
 	}
 	
-	public JogoDetachedCriteria createJogoCriteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_jogo"));
+	public com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria createJogoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria(createCriteria("ORM_jogo"));
 	}
 	
 	public Arbitro uniqueArbitro(PersistentSession session) {

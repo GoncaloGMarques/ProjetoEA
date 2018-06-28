@@ -1,6 +1,6 @@
 package com.projetoea.escolasfutebol;
 
-import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
