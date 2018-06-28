@@ -1,20 +1,29 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
-import com.projetoea.escolasfutebol.ClassesJava.Escolas;
-import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.classesjava.Escolas;
+import com.projetoea.escolasfutebol.classesjava.TipoutilizadorDAO;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
+import com.vaadin.data.Binder;
 import com.vaadin.data.HasValue;
+import com.vaadin.data.Validator;
 import com.vaadin.data.ValueProvider;
+import com.vaadin.data.validator.EmailValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.UserError;
+import com.vaadin.shared.Registration;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
 
+import javax.swing.plaf.PopupMenuUI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.projetoea.escolasfutebol.EscolasfutebolApplication.applicationBeansContext;
 import static com.vaadin.ui.Grid.SelectionMode.SINGLE;
@@ -34,9 +43,14 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
 
     private Button create;
     private Button remove;
+    private Label createError;
 
+    Binder<Utilizador> criarEscolaBinder;
 
     private Window createWindow(){
+
+        criarEscolaBinder = new Binder<>();
+
         Window window = new Window("Criar Escola");
         window.setWidth(500.0f, Unit.PIXELS);
         window.center();
@@ -51,30 +65,70 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         diretorHeader.setStyleName("v-header-label");
 
         TextField nomeDiretor = new TextField("Nome Diretor");
-        TextField emailDiretor = new TextField("Email");
-        PasswordField passwordFieldDiretor = new PasswordField("Password");
+        nomeDiretor.setComponentError(new UserError("Nome deve ter pelo menos 6 letras"));
 
-        Label escolaHeader = new Label("Diretor");
+        TextField emailDiretor = new TextField("Email");
+        PasswordField passwordFieldDiretor = new PasswordField("Palavra-Pass");
+        PasswordField passwordCheckFieldDiretor = new PasswordField("Confirmar Palavra-Pass");
+
+        Label escolaHeader = new Label("Escola");
         escolaHeader.setIcon(VaadinIcons.ACADEMY_CAP);
         escolaHeader.setStyleName("v-header-label");
         TextField nomeEscolaField = new TextField("Nome Escola");
-        Button finishCreate = new Button("Criar Escola", event -> {
+        Button finishCreate = new Button("Criar Escola");
+
+        criarEscolaBinder.setBean(new Utilizador());
+
+        criarEscolaBinder.forField(nomeDiretor)
+                .asRequired("Nome nao pode estar em branco")
+                .bind(Utilizador::getNome, Utilizador::setNome);
+
+        criarEscolaBinder.forField(emailDiretor)
+                .asRequired("Email tem de ser preenchido")
+                .withValidator(new EmailValidator("O email nao e valido."))
+                .bind(Utilizador::getEmail, Utilizador::setEmail);
+
+        criarEscolaBinder.forField(passwordFieldDiretor)
+                .asRequired("Palavra-Pass tem de ser preenchida")
+                .withValidator(new StringLengthValidator("A palavra pass tem de ter pelo menos 4 letras",
+                        4, null))
+                .bind(Utilizador::getPassword, Utilizador::setPassword);
+
+        criarEscolaBinder.forField(passwordCheckFieldDiretor)
+                .asRequired("Tem de confirmar a Palavra-Pass")
+                .bind(Utilizador::getPassword, (user, password) -> {});
+
+        criarEscolaBinder.withValidator(Validator.from(user -> {
+            if(passwordCheckFieldDiretor.getValue().isEmpty() || passwordCheckFieldDiretor.getValue().isEmpty())
+                return true;
+            else return Objects.equals(passwordCheckFieldDiretor.getValue(), passwordCheckFieldDiretor.getValue());
+        }, "As Palavra-Pass devem ser iguais"));
+
+        createError = new Label(null);
+        createError.setStyleName("v-error-label");
+        finishCreate.addClickListener(event -> {
             try {
-                Utilizador utilizador = diretorAssociacaoBean.createUtilizador(nomeDiretor.getValue(),
-                        emailDiretor.getValue(), passwordFieldDiretor.getValue(), 2);
+                Utilizador binderBean = criarEscolaBinder.getBean();
+                binderBean.setTipoutilizador(TipoutilizadorDAO.loadTipoutilizadorByQuery("ID = 2", null));
+                Utilizador utilizador = diretorAssociacaoBean.createUtilizador(binderBean.getNome(),
+                        binderBean.getEmail(), binderBean.getPassword(), binderBean.getTipoutilizador().getID());
                 diretorAssociacaoBean.criarEscola(nomeEscolaField.getValue(), 1, utilizador);
             } catch (PersistentException e) {
+                createError.setValue("Erro a criar escola! Tente de novo");
                 e.printStackTrace();
             }
             //Do i really need to close the window?
             window.close();
             getUI().getPage().reload();
         });
+        finishCreate.setEnabled(false);
+        criarEscolaBinder.addStatusChangeListener(event -> finishCreate.setEnabled(criarEscolaBinder.isValid()));
 
         content.addComponent(diretorHeader);
         content.addComponent(nomeDiretor);
         content.addComponent(emailDiretor);
         content.addComponent(passwordFieldDiretor);
+        content.addComponent(passwordCheckFieldDiretor);
 
         content.addComponent(escolaHeader);
         content.addComponent(nomeEscolaField);
@@ -153,9 +207,9 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         return escolas;
     }
 
-    private void createGrid(Grid grid){
-        grid.addColumn((ValueProvider) o -> ((Escolas)o).getNome()).setCaption("Nome");
-        grid.addColumn((ValueProvider) o -> ((Escolas)o).getDiretorEscola().getNome()).setCaption("Diretor");
+    private void createGrid(Grid<Escolas> grid){
+        grid.addColumn(Escolas::getNome).setCaption("Nome");
+        grid.addColumn(o -> o.getDiretorEscola().getNome()).setCaption("Diretor");
     }
 
     @Override

@@ -46,7 +46,7 @@ public class CampeonatoView extends Composite implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            Participantecampeonato[] test = guestBean.GetParticipantesCampeonato();
+            Participantecampeonato[] test = guestBean.getParticipantesCampeonato();
             ConstructParticipantesTable(test, classificacaoPanel);
         } catch (PersistentException e) {
             e.printStackTrace();

@@ -7,9 +7,11 @@ import org.orm.PersistentTransaction;
 
 import java.util.Random;
 
+import static com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.*;
+
 public class CreateEscolasFutebolBetterData {
     public void createTestData() throws PersistentException {
-        PersistentTransaction t = EscolasFutebolBetterPersistentManager.instance().getSession().beginTransaction();
+        PersistentTransaction t = instance().getSession().beginTransaction();
         try {
             //region Inicializacao dos Campos
             Campo campo = CampoDAO.createCampo();
@@ -182,7 +184,7 @@ public class CreateEscolasFutebolBetterData {
                 createEscolasFutebolBetterData.createTestData();
             }
             finally {
-                EscolasFutebolBetterPersistentManager.instance().disposePersistentManager();
+                instance().disposePersistentManager();
             }
         }
         catch (Exception e) {
