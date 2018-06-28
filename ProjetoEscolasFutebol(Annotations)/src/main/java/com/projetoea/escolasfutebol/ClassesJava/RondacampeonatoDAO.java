@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 import org.hibernate.Query;
 import org.hibernate.LockMode;
@@ -19,7 +21,7 @@ import java.util.List;
 public class RondacampeonatoDAO {
 	public static Rondacampeonato loadRondacampeonatoByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondacampeonatoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +32,7 @@ public class RondacampeonatoDAO {
 	
 	public static Rondacampeonato getRondacampeonatoByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getRondacampeonatoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +41,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato loadRondacampeonatoByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato loadRondacampeonatoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondacampeonatoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +52,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato getRondacampeonatoByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato getRondacampeonatoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getRondacampeonatoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -63,7 +65,7 @@ public class RondacampeonatoDAO {
 	
 	public static Rondacampeonato loadRondacampeonatoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Rondacampeonato) session.load(Rondacampeonato.class, new Integer(ID));
+			return (Rondacampeonato) session.load(com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class RondacampeonatoDAO {
 	
 	public static Rondacampeonato getRondacampeonatoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Rondacampeonato) session.get(Rondacampeonato.class, new Integer(ID));
+			return (Rondacampeonato) session.get(com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -81,9 +83,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato loadRondacampeonatoByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato loadRondacampeonatoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Rondacampeonato) session.load(Rondacampeonato.class, new Integer(ID), lockMode);
+			return (Rondacampeonato) session.load(com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -91,9 +93,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato getRondacampeonatoByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato getRondacampeonatoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Rondacampeonato) session.get(Rondacampeonato.class, new Integer(ID), lockMode);
+			return (Rondacampeonato) session.get(com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +105,7 @@ public class RondacampeonatoDAO {
 	
 	public static List queryRondacampeonato(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryRondacampeonato(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +114,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static List queryRondacampeonato(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryRondacampeonato(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryRondacampeonato(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +127,7 @@ public class RondacampeonatoDAO {
 	
 	public static Rondacampeonato[] listRondacampeonatoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listRondacampeonatoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +136,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato[] listRondacampeonatoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato[] listRondacampeonatoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listRondacampeonatoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -146,7 +148,7 @@ public class RondacampeonatoDAO {
 	}
 	
 	public static List queryRondacampeonato(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondacampeonato as Rondacampeonato");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondacampeonato as Rondacampeonato");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -161,8 +163,8 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static List queryRondacampeonato(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondacampeonato as Rondacampeonato");
+	public static List queryRondacampeonato(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondacampeonato as Rondacampeonato");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -189,7 +191,7 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato[] listRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato[] listRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryRondacampeonato(session, condition, orderBy, lockMode);
 			return (Rondacampeonato[]) list.toArray(new Rondacampeonato[list.size()]);
@@ -202,7 +204,7 @@ public class RondacampeonatoDAO {
 	
 	public static Rondacampeonato loadRondacampeonatoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondacampeonatoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +213,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static Rondacampeonato loadRondacampeonatoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato loadRondacampeonatoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondacampeonatoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +232,7 @@ public class RondacampeonatoDAO {
 			return null;
 	}
 	
-	public static Rondacampeonato loadRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondacampeonato loadRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Rondacampeonato[] rondacampeonatos = listRondacampeonatoByQuery(session, condition, orderBy, lockMode);
 		if (rondacampeonatos != null && rondacampeonatos.length > 0)
 			return rondacampeonatos[0];
@@ -240,7 +242,7 @@ public class RondacampeonatoDAO {
 	
 	public static java.util.Iterator iterateRondacampeonatoByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateRondacampeonatoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +251,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateRondacampeonatoByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateRondacampeonatoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateRondacampeonatoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -261,7 +263,7 @@ public class RondacampeonatoDAO {
 	}
 	
 	public static java.util.Iterator iterateRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondacampeonato as Rondacampeonato");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondacampeonato as Rondacampeonato");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -276,8 +278,8 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondacampeonato as Rondacampeonato");
+	public static java.util.Iterator iterateRondacampeonatoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondacampeonato as Rondacampeonato");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -294,12 +296,12 @@ public class RondacampeonatoDAO {
 	}
 	
 	public static Rondacampeonato createRondacampeonato() {
-		return new Rondacampeonato();
+		return new com.projetoea.escolasfutebol.classesjava.Rondacampeonato();
 	}
 	
-	public static boolean save(Rondacampeonato rondacampeonato) throws PersistentException {
+	public static boolean save(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().saveObject(rondacampeonato);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().saveObject(rondacampeonato);
 			return true;
 		}
 		catch (Exception e) {
@@ -308,9 +310,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static boolean delete(Rondacampeonato rondacampeonato) throws PersistentException {
+	public static boolean delete(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().deleteObject(rondacampeonato);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().deleteObject(rondacampeonato);
 			return true;
 		}
 		catch (Exception e) {
@@ -319,13 +321,13 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Rondacampeonato rondacampeonato)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato)throws PersistentException {
 		try {
 			if (rondacampeonato.getCampeonato() != null) {
 				rondacampeonato.getCampeonato().rondacampeonato.remove(rondacampeonato);
 			}
 			
-			Jogo[] lJogos = rondacampeonato.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = rondacampeonato.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setRondacampeonato(null);
 			}
@@ -337,13 +339,13 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Rondacampeonato rondacampeonato, PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato, org.orm.PersistentSession session)throws PersistentException {
 		try {
 			if (rondacampeonato.getCampeonato() != null) {
 				rondacampeonato.getCampeonato().rondacampeonato.remove(rondacampeonato);
 			}
 			
-			Jogo[] lJogos = rondacampeonato.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = rondacampeonato.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setRondacampeonato(null);
 			}
@@ -360,9 +362,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static boolean refresh(Rondacampeonato rondacampeonato) throws PersistentException {
+	public static boolean refresh(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(rondacampeonato);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().refresh(rondacampeonato);
 			return true;
 		}
 		catch (Exception e) {
@@ -371,9 +373,9 @@ public class RondacampeonatoDAO {
 		}
 	}
 	
-	public static boolean evict(Rondacampeonato rondacampeonato) throws PersistentException {
+	public static boolean evict(com.projetoea.escolasfutebol.classesjava.Rondacampeonato rondacampeonato) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().evict(rondacampeonato);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().evict(rondacampeonato);
 			return true;
 		}
 		catch (Exception e) {

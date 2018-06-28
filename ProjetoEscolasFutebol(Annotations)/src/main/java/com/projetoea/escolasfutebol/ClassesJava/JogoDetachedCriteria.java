@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -38,7 +40,7 @@ public class JogoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression eventojogo;
 	
 	public JogoDetachedCriteria() {
-		super(Jogo.class, JogoCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Jogo.class, com.projetoea.escolasfutebol.classesjava.JogoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		data = new TimestampExpression("data", this.getDetachedCriteria());
 		arbitroId = new IntegerExpression("arbitro.ID", this.getDetachedCriteria());
@@ -61,7 +63,7 @@ public class JogoDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public JogoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, JogoCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.JogoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		data = new TimestampExpression("data", this.getDetachedCriteria());
 		arbitroId = new IntegerExpression("arbitro.ID", this.getDetachedCriteria());
@@ -111,8 +113,8 @@ public class JogoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new RondacampeonatoDetachedCriteria(createCriteria("rondacampeonato"));
 	}
 	
-	public EventojogoDetachedCriteria createEventojogoCriteria() {
-		return new EventojogoDetachedCriteria(createCriteria("ORM_eventojogo"));
+	public com.projetoea.escolasfutebol.classesjava.EventojogoDetachedCriteria createEventojogoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.EventojogoDetachedCriteria(createCriteria("ORM_eventojogo"));
 	}
 	
 	public Jogo uniqueJogo(PersistentSession session) {

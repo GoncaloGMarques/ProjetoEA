@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,12 +11,12 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
 
+import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
-
-import java.util.List;
 
 public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
@@ -28,7 +28,7 @@ public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression grupo;
 	
 	public TorneioDetachedCriteria() {
-		super(Torneio.class, TorneioCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Torneio.class, com.projetoea.escolasfutebol.classesjava.TorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		datainicio = new TimestampExpression("datainicio", this.getDetachedCriteria());
 		datafim = new TimestampExpression("datafim", this.getDetachedCriteria());
@@ -39,7 +39,7 @@ public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public TorneioDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, TorneioCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.TorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		datainicio = new TimestampExpression("datainicio", this.getDetachedCriteria());
 		datafim = new TimestampExpression("datafim", this.getDetachedCriteria());
@@ -49,16 +49,16 @@ public class TorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 		grupo = new CollectionExpression("ORM_grupo", this.getDetachedCriteria());
 	}
 	
-	public RondatorneioDetachedCriteria createRondatorneioCriteria() {
-		return new RondatorneioDetachedCriteria(createCriteria("ORM_rondatorneio"));
+	public com.projetoea.escolasfutebol.classesjava.RondatorneioDetachedCriteria createRondatorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.RondatorneioDetachedCriteria(createCriteria("ORM_rondatorneio"));
 	}
 	
-	public PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
-		return new PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
+	public com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
 	}
 	
-	public GrupoDetachedCriteria createGrupoCriteria() {
-		return new GrupoDetachedCriteria(createCriteria("ORM_grupo"));
+	public com.projetoea.escolasfutebol.classesjava.GrupoDetachedCriteria createGrupoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.GrupoDetachedCriteria(createCriteria("ORM_grupo"));
 	}
 	
 	public Torneio uniqueTorneio(PersistentSession session) {

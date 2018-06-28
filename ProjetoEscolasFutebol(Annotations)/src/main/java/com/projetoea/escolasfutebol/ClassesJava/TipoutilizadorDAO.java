@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 import org.hibernate.Query;
 import org.hibernate.LockMode;
@@ -19,7 +21,7 @@ import java.util.List;
 public class TipoutilizadorDAO {
 	public static Tipoutilizador loadTipoutilizadorByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTipoutilizadorByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +32,7 @@ public class TipoutilizadorDAO {
 	
 	public static Tipoutilizador getTipoutilizadorByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getTipoutilizadorByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +41,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador loadTipoutilizadorByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador loadTipoutilizadorByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTipoutilizadorByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +52,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador getTipoutilizadorByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador getTipoutilizadorByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getTipoutilizadorByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -63,7 +65,7 @@ public class TipoutilizadorDAO {
 	
 	public static Tipoutilizador loadTipoutilizadorByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Tipoutilizador) session.load(Tipoutilizador.class, new Integer(ID));
+			return (Tipoutilizador) session.load(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class TipoutilizadorDAO {
 	
 	public static Tipoutilizador getTipoutilizadorByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Tipoutilizador) session.get(Tipoutilizador.class, new Integer(ID));
+			return (Tipoutilizador) session.get(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -81,9 +83,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador loadTipoutilizadorByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador loadTipoutilizadorByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tipoutilizador) session.load(Tipoutilizador.class, new Integer(ID), lockMode);
+			return (Tipoutilizador) session.load(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -91,9 +93,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador getTipoutilizadorByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador getTipoutilizadorByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tipoutilizador) session.get(Tipoutilizador.class, new Integer(ID), lockMode);
+			return (Tipoutilizador) session.get(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +105,7 @@ public class TipoutilizadorDAO {
 	
 	public static List queryTipoutilizador(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryTipoutilizador(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +114,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static List queryTipoutilizador(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryTipoutilizador(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryTipoutilizador(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +127,7 @@ public class TipoutilizadorDAO {
 	
 	public static Tipoutilizador[] listTipoutilizadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listTipoutilizadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +136,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador[] listTipoutilizadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador[] listTipoutilizadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listTipoutilizadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -146,7 +148,7 @@ public class TipoutilizadorDAO {
 	}
 	
 	public static List queryTipoutilizador(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Tipoutilizador as Tipoutilizador");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Tipoutilizador as Tipoutilizador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -161,8 +163,8 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static List queryTipoutilizador(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Tipoutilizador as Tipoutilizador");
+	public static List queryTipoutilizador(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Tipoutilizador as Tipoutilizador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -189,7 +191,7 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador[] listTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador[] listTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryTipoutilizador(session, condition, orderBy, lockMode);
 			return (Tipoutilizador[]) list.toArray(new Tipoutilizador[list.size()]);
@@ -202,7 +204,7 @@ public class TipoutilizadorDAO {
 	
 	public static Tipoutilizador loadTipoutilizadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTipoutilizadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +213,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static Tipoutilizador loadTipoutilizadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador loadTipoutilizadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadTipoutilizadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +232,7 @@ public class TipoutilizadorDAO {
 			return null;
 	}
 	
-	public static Tipoutilizador loadTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Tipoutilizador loadTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Tipoutilizador[] tipoutilizadors = listTipoutilizadorByQuery(session, condition, orderBy, lockMode);
 		if (tipoutilizadors != null && tipoutilizadors.length > 0)
 			return tipoutilizadors[0];
@@ -240,7 +242,7 @@ public class TipoutilizadorDAO {
 	
 	public static java.util.Iterator iterateTipoutilizadorByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateTipoutilizadorByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +251,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateTipoutilizadorByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateTipoutilizadorByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateTipoutilizadorByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -261,7 +263,7 @@ public class TipoutilizadorDAO {
 	}
 	
 	public static java.util.Iterator iterateTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Tipoutilizador as Tipoutilizador");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Tipoutilizador as Tipoutilizador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -276,8 +278,8 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Tipoutilizador as Tipoutilizador");
+	public static java.util.Iterator iterateTipoutilizadorByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Tipoutilizador as Tipoutilizador");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -294,12 +296,12 @@ public class TipoutilizadorDAO {
 	}
 	
 	public static Tipoutilizador createTipoutilizador() {
-		return new Tipoutilizador();
+		return new com.projetoea.escolasfutebol.classesjava.Tipoutilizador();
 	}
 	
-	public static boolean save(Tipoutilizador tipoutilizador) throws PersistentException {
+	public static boolean save(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().saveObject(tipoutilizador);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().saveObject(tipoutilizador);
 			return true;
 		}
 		catch (Exception e) {
@@ -308,9 +310,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static boolean delete(Tipoutilizador tipoutilizador) throws PersistentException {
+	public static boolean delete(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().deleteObject(tipoutilizador);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().deleteObject(tipoutilizador);
 			return true;
 		}
 		catch (Exception e) {
@@ -319,9 +321,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Tipoutilizador tipoutilizador)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador)throws PersistentException {
 		try {
-			Utilizador[] lUtilizadors = tipoutilizador.utilizador.toArray();
+			com.projetoea.escolasfutebol.classesjava.Utilizador[] lUtilizadors = tipoutilizador.utilizador.toArray();
 			for(int i = 0; i < lUtilizadors.length; i++) {
 				lUtilizadors[i].setTipoutilizador(null);
 			}
@@ -333,9 +335,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Tipoutilizador tipoutilizador, PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			Utilizador[] lUtilizadors = tipoutilizador.utilizador.toArray();
+			com.projetoea.escolasfutebol.classesjava.Utilizador[] lUtilizadors = tipoutilizador.utilizador.toArray();
 			for(int i = 0; i < lUtilizadors.length; i++) {
 				lUtilizadors[i].setTipoutilizador(null);
 			}
@@ -352,9 +354,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static boolean refresh(Tipoutilizador tipoutilizador) throws PersistentException {
+	public static boolean refresh(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(tipoutilizador);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().refresh(tipoutilizador);
 			return true;
 		}
 		catch (Exception e) {
@@ -363,9 +365,9 @@ public class TipoutilizadorDAO {
 		}
 	}
 	
-	public static boolean evict(Tipoutilizador tipoutilizador) throws PersistentException {
+	public static boolean evict(com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().evict(tipoutilizador);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().evict(tipoutilizador);
 			return true;
 		}
 		catch (Exception e) {

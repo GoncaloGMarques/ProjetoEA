@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 import org.orm.cfg.JDBCConnectionSetting;
 import org.hibernate.*;
@@ -34,26 +36,26 @@ public class EscolasFutebolBetterPersistentManager extends PersistentManager {
 	@Override
 	public Configuration createConfiguration() {
 		Configuration configuration = new Configuration();
-		configuration.addAnnotatedClass(Campo.class);
-		configuration.addAnnotatedClass(Escolas.class);
-		configuration.addAnnotatedClass(Equipa.class);
-		configuration.addAnnotatedClass(Jogador.class);
-		configuration.addAnnotatedClass(Campeonato.class);
-		configuration.addAnnotatedClass(Jogo.class);
-		configuration.addAnnotatedClass(Arbitro.class);
-		configuration.addAnnotatedClass(Tipoeventojogo.class);
-		configuration.addAnnotatedClass(Utilizador.class);
-		configuration.addAnnotatedClass(Eventojogo.class);
-		configuration.addAnnotatedClass(EventojogoPK.class);
-		configuration.addAnnotatedClass(Associacao.class);
-		configuration.addAnnotatedClass(Torneio.class);
-		configuration.addAnnotatedClass(Fase.class);
-		configuration.addAnnotatedClass(Rondatorneio.class);
-		configuration.addAnnotatedClass(Rondacampeonato.class);
-		configuration.addAnnotatedClass(Partcipantetorneio.class);
-		configuration.addAnnotatedClass(Grupo.class);
-		configuration.addAnnotatedClass(Participantecampeonato.class);
-		configuration.addAnnotatedClass(Tipoutilizador.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Campo.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Escolas.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Equipa.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Jogador.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Campeonato.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Jogo.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Arbitro.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Utilizador.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Eventojogo.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.EventojogoPK.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Associacao.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Torneio.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Fase.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Partcipantetorneio.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Grupo.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Participantecampeonato.class);
+		configuration.addAnnotatedClass(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class);
 		configuration.buildMappings();
 		return configuration;
 	}

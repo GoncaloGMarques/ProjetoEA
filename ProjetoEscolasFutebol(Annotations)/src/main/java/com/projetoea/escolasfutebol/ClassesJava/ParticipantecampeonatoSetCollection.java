@@ -11,7 +11,7 @@
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-package com.projetoea.escolasfutebol.ClassesJava;
+package com.projetoea.escolasfutebol.classesjava;
 
 import org.orm.*;
 
@@ -97,7 +97,7 @@ public class ParticipantecampeonatoSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return com.projetoea.escolasfutebol.ClassesJava.EscolasFutebolBetterPersistentManager.instance();
+		return com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

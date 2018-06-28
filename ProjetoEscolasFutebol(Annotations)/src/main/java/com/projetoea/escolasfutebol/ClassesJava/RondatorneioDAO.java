@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 import org.hibernate.Query;
 import org.hibernate.LockMode;
@@ -19,7 +21,7 @@ import java.util.List;
 public class RondatorneioDAO {
 	public static Rondatorneio loadRondatorneioByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondatorneioByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -30,7 +32,7 @@ public class RondatorneioDAO {
 	
 	public static Rondatorneio getRondatorneioByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getRondatorneioByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -39,9 +41,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio loadRondatorneioByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio loadRondatorneioByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondatorneioByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -50,9 +52,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio getRondatorneioByORMID(int ID, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio getRondatorneioByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return getRondatorneioByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -63,7 +65,7 @@ public class RondatorneioDAO {
 	
 	public static Rondatorneio loadRondatorneioByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Rondatorneio) session.load(Rondatorneio.class, new Integer(ID));
+			return (Rondatorneio) session.load(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class RondatorneioDAO {
 	
 	public static Rondatorneio getRondatorneioByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			return (Rondatorneio) session.get(Rondatorneio.class, new Integer(ID));
+			return (Rondatorneio) session.get(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -81,9 +83,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio loadRondatorneioByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio loadRondatorneioByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Rondatorneio) session.load(Rondatorneio.class, new Integer(ID), lockMode);
+			return (Rondatorneio) session.load(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -91,9 +93,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio getRondatorneioByORMID(PersistentSession session, int ID, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio getRondatorneioByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Rondatorneio) session.get(Rondatorneio.class, new Integer(ID), lockMode);
+			return (Rondatorneio) session.get(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +105,7 @@ public class RondatorneioDAO {
 	
 	public static List queryRondatorneio(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryRondatorneio(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -112,9 +114,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static List queryRondatorneio(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static List queryRondatorneio(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return queryRondatorneio(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -125,7 +127,7 @@ public class RondatorneioDAO {
 	
 	public static Rondatorneio[] listRondatorneioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listRondatorneioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -134,9 +136,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio[] listRondatorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio[] listRondatorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return listRondatorneioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -146,7 +148,7 @@ public class RondatorneioDAO {
 	}
 	
 	public static List queryRondatorneio(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondatorneio as Rondatorneio");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondatorneio as Rondatorneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -161,8 +163,8 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static List queryRondatorneio(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondatorneio as Rondatorneio");
+	public static List queryRondatorneio(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondatorneio as Rondatorneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -189,7 +191,7 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio[] listRondatorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio[] listRondatorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryRondatorneio(session, condition, orderBy, lockMode);
 			return (Rondatorneio[]) list.toArray(new Rondatorneio[list.size()]);
@@ -202,7 +204,7 @@ public class RondatorneioDAO {
 	
 	public static Rondatorneio loadRondatorneioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondatorneioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -211,9 +213,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static Rondatorneio loadRondatorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio loadRondatorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return loadRondatorneioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -230,7 +232,7 @@ public class RondatorneioDAO {
 			return null;
 	}
 	
-	public static Rondatorneio loadRondatorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static Rondatorneio loadRondatorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		Rondatorneio[] rondatorneios = listRondatorneioByQuery(session, condition, orderBy, lockMode);
 		if (rondatorneios != null && rondatorneios.length > 0)
 			return rondatorneios[0];
@@ -240,7 +242,7 @@ public class RondatorneioDAO {
 	
 	public static java.util.Iterator iterateRondatorneioByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateRondatorneioByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -249,9 +251,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateRondatorneioByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateRondatorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = EscolasFutebolBetterPersistentManager.instance().getSession();
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
 			return iterateRondatorneioByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -261,7 +263,7 @@ public class RondatorneioDAO {
 	}
 	
 	public static java.util.Iterator iterateRondatorneioByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondatorneio as Rondatorneio");
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondatorneio as Rondatorneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -276,8 +278,8 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateRondatorneioByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From Rondatorneio as Rondatorneio");
+	public static java.util.Iterator iterateRondatorneioByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Rondatorneio as Rondatorneio");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
 		if (orderBy != null)
@@ -294,12 +296,12 @@ public class RondatorneioDAO {
 	}
 	
 	public static Rondatorneio createRondatorneio() {
-		return new Rondatorneio();
+		return new com.projetoea.escolasfutebol.classesjava.Rondatorneio();
 	}
 	
-	public static boolean save(Rondatorneio rondatorneio) throws PersistentException {
+	public static boolean save(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().saveObject(rondatorneio);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().saveObject(rondatorneio);
 			return true;
 		}
 		catch (Exception e) {
@@ -308,9 +310,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static boolean delete(Rondatorneio rondatorneio) throws PersistentException {
+	public static boolean delete(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().deleteObject(rondatorneio);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().deleteObject(rondatorneio);
 			return true;
 		}
 		catch (Exception e) {
@@ -319,7 +321,7 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Rondatorneio rondatorneio)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio)throws PersistentException {
 		try {
 			if (rondatorneio.getFase() != null) {
 				rondatorneio.getFase().rondatorneio.remove(rondatorneio);
@@ -329,7 +331,7 @@ public class RondatorneioDAO {
 				rondatorneio.getTorneio().rondatorneio.remove(rondatorneio);
 			}
 			
-			Jogo[] lJogos = rondatorneio.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = rondatorneio.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setRondatorneio(null);
 			}
@@ -341,7 +343,7 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(Rondatorneio rondatorneio, PersistentSession session)throws PersistentException {
+	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio, org.orm.PersistentSession session)throws PersistentException {
 		try {
 			if (rondatorneio.getFase() != null) {
 				rondatorneio.getFase().rondatorneio.remove(rondatorneio);
@@ -351,7 +353,7 @@ public class RondatorneioDAO {
 				rondatorneio.getTorneio().rondatorneio.remove(rondatorneio);
 			}
 			
-			Jogo[] lJogos = rondatorneio.jogo.toArray();
+			com.projetoea.escolasfutebol.classesjava.Jogo[] lJogos = rondatorneio.jogo.toArray();
 			for(int i = 0; i < lJogos.length; i++) {
 				lJogos[i].setRondatorneio(null);
 			}
@@ -368,9 +370,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static boolean refresh(Rondatorneio rondatorneio) throws PersistentException {
+	public static boolean refresh(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().refresh(rondatorneio);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().refresh(rondatorneio);
 			return true;
 		}
 		catch (Exception e) {
@@ -379,9 +381,9 @@ public class RondatorneioDAO {
 		}
 	}
 	
-	public static boolean evict(Rondatorneio rondatorneio) throws PersistentException {
+	public static boolean evict(com.projetoea.escolasfutebol.classesjava.Rondatorneio rondatorneio) throws PersistentException {
 		try {
-			EscolasFutebolBetterPersistentManager.instance().getSession().evict(rondatorneio);
+			com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession().evict(rondatorneio);
 			return true;
 		}
 		catch (Exception e) {

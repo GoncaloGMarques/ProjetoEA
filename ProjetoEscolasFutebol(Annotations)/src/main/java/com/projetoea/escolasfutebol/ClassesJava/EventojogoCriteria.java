@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -23,6 +25,8 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 	public final AssociationExpression jogo;
 	public final IntegerExpression tipoeventojogoId;
 	public final AssociationExpression tipoeventojogo;
+	public final IntegerExpression jogadorId;
+	public final AssociationExpression jogador;
 	
 	public EventojogoCriteria(Criteria criteria) {
 		super(criteria);
@@ -32,6 +36,8 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 		jogo = new AssociationExpression("ORM_Jogo", this);
 		tipoeventojogoId = new IntegerExpression("ORM_Tipoeventojogo.ID", this);
 		tipoeventojogo = new AssociationExpression("ORM_Tipoeventojogo", this);
+		jogadorId = new IntegerExpression("jogador.ID", this);
+		jogador = new AssociationExpression("jogador", this);
 	}
 	
 	public EventojogoCriteria(PersistentSession session) {
@@ -39,7 +45,7 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 	}
 	
 	public EventojogoCriteria() throws PersistentException {
-		this(EscolasFutebolBetterPersistentManager.instance().getSession());
+		this(com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession());
 	}
 	
 	public JogoCriteria createJogoCriteria() {
@@ -48,6 +54,10 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 	
 	public TipoeventojogoCriteria createTipoeventojogoCriteria() {
 		return new TipoeventojogoCriteria(createCriteria("ORM_Tipoeventojogo"));
+	}
+	
+	public JogadorCriteria createJogadorCriteria() {
+		return new JogadorCriteria(createCriteria("jogador"));
 	}
 	
 	public Eventojogo uniqueEventojogo() {

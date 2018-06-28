@@ -11,7 +11,7 @@
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-package com.projetoea.escolasfutebol.ClassesJava;
+package com.projetoea.escolasfutebol.classesjava;
 
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
@@ -45,7 +45,7 @@ public class ParticipantecampeonatoCriteria extends AbstractORMCriteria {
 	}
 	
 	public ParticipantecampeonatoCriteria() throws PersistentException {
-		this(com.projetoea.escolasfutebol.ClassesJava.EscolasFutebolBetterPersistentManager.instance().getSession());
+		this(com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession());
 	}
 	
 	public CampeonatoCriteria createCampeonatoCriteria() {

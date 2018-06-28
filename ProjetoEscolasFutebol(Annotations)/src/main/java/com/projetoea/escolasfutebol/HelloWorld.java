@@ -1,10 +1,8 @@
 package com.projetoea.escolasfutebol;
 
-import com.projetoea.escolasfutebol.ClassesJava.Campo;
-import com.projetoea.escolasfutebol.ClassesJava.CampoDAO;
+import com.projetoea.escolasfutebol.classesjava.Campo;
+import com.projetoea.escolasfutebol.classesjava.CampoDAO;
 import org.orm.PersistentException;
-
-import java.util.List;
 
 public class HelloWorld {
     private String message;

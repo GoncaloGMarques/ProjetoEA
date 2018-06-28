@@ -1,8 +1,7 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
-import com.projetoea.escolasfutebol.ClassesJava.UtilizadorDAO;
-import com.vaadin.server.VaadinSession;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
+import com.projetoea.escolasfutebol.classesjava.UtilizadorDAO;
 import org.orm.PersistentException;
 
 public class UserBean {

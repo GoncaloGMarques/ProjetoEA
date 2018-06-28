@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_ARBITRO_JOGO = -108615917;
 	
@@ -50,6 +52,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_ESCOLAS_EQUIPA = -909556436;
 	
+	final int KEY_EVENTOJOGO_JOGADOR = 282686571;
+	
 	final int KEY_EVENTOJOGO_JOGO = -1706097814;
 	
 	final int KEY_EVENTOJOGO_TIPOEVENTOJOGO = 1421409267;
@@ -61,6 +65,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_GRUPO_TORNEIO = 311177470;
 	
 	final int KEY_JOGADOR_EQUIPA = -2065152408;
+	
+	final int KEY_JOGADOR_EVENTOJOGO = 681304121;
 	
 	final int KEY_JOGO_ARBITRO = -1146683065;
 	

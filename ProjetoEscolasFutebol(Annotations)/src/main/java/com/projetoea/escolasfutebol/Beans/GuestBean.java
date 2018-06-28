@@ -1,6 +1,6 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.ClassesJava.*;
+import com.projetoea.escolasfutebol.classesjava.*;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Component;
 

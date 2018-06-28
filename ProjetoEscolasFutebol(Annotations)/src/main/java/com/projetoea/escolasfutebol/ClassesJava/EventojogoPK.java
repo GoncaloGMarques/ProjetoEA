@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Embeddable
@@ -61,29 +63,29 @@ public class EventojogoPK implements Serializable {
 		return this.ID;
 	}
 	
-	@ManyToOne(targetEntity=Jogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
-	private Jogo jogo;
+	private com.projetoea.escolasfutebol.classesjava.Jogo jogo;
 	
-	public void setJogo(Jogo value)  {
+	public void setJogo(com.projetoea.escolasfutebol.classesjava.Jogo value)  {
 		this.jogo =  value;
 	}
 	
-	public Jogo getJogo()  {
+	public com.projetoea.escolasfutebol.classesjava.Jogo getJogo()  {
 		return this.jogo;
 	}
 	
-	@ManyToOne(targetEntity=Tipoeventojogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
-	private Tipoeventojogo tipoeventojogo;
+	private com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo;
 	
-	public void setTipoeventojogo(Tipoeventojogo value)  {
+	public void setTipoeventojogo(com.projetoea.escolasfutebol.classesjava.Tipoeventojogo value)  {
 		this.tipoeventojogo =  value;
 	}
 	
-	public Tipoeventojogo getTipoeventojogo()  {
+	public com.projetoea.escolasfutebol.classesjava.Tipoeventojogo getTipoeventojogo()  {
 		return this.tipoeventojogo;
 	}
 	

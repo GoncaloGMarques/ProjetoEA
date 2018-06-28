@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -26,7 +28,7 @@ public class RondatorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression jogo;
 	
 	public RondatorneioDetachedCriteria() {
-		super(Rondatorneio.class, RondatorneioCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Rondatorneio.class, com.projetoea.escolasfutebol.classesjava.RondatorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		data = new IntegerExpression("data", this.getDetachedCriteria());
 		faseId = new IntegerExpression("fase.ID", this.getDetachedCriteria());
@@ -37,7 +39,7 @@ public class RondatorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public RondatorneioDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, RondatorneioCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.RondatorneioCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		data = new IntegerExpression("data", this.getDetachedCriteria());
 		faseId = new IntegerExpression("fase.ID", this.getDetachedCriteria());
@@ -55,8 +57,8 @@ public class RondatorneioDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new TorneioDetachedCriteria(createCriteria("torneio"));
 	}
 	
-	public JogoDetachedCriteria createJogoCriteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_jogo"));
+	public com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria createJogoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria(createCriteria("ORM_jogo"));
 	}
 	
 	public Rondatorneio uniqueRondatorneio(PersistentSession session) {

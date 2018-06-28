@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,10 +23,10 @@ public class Campeonato implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO) {
 			return ORM_participantecampeonato;
 		}
-		else if (key == ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO) {
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO) {
 			return ORM_rondacampeonato;
 		}
 		
@@ -41,19 +43,19 @@ public class Campeonato implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="CAMPEONATO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="CAMPEONATO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_CAMPEONATO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_CAMPEONATO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
 	private String nome;
 	
-	@OneToMany(mappedBy="campeonato", targetEntity=Participantecampeonato.class)	
+	@OneToMany(mappedBy="campeonato", targetEntity=com.projetoea.escolasfutebol.classesjava.Participantecampeonato.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_participantecampeonato = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="campeonato", targetEntity=Rondacampeonato.class)	
+	@OneToMany(mappedBy="campeonato", targetEntity=com.projetoea.escolasfutebol.classesjava.Rondacampeonato.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_rondacampeonato = new java.util.HashSet();
@@ -87,7 +89,7 @@ public class Campeonato implements Serializable {
 	}
 	
 	@Transient	
-	public final ParticipantecampeonatoSetCollection participantecampeonato = new ParticipantecampeonatoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO, ORMConstants.KEY_PARTICIPANTECAMPEONATO_CAMPEONATO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoSetCollection participantecampeonato = new com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPEONATO_PARTICIPANTECAMPEONATO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_PARTICIPANTECAMPEONATO_CAMPEONATO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Rondacampeonato(java.util.Set value) {
 		this.ORM_rondacampeonato = value;
@@ -98,7 +100,7 @@ public class Campeonato implements Serializable {
 	}
 	
 	@Transient	
-	public final RondacampeonatoSetCollection rondacampeonato = new RondacampeonatoSetCollection(this, _ormAdapter, ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO, ORMConstants.KEY_RONDACAMPEONATO_CAMPEONATO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.RondacampeonatoSetCollection rondacampeonato = new com.projetoea.escolasfutebol.classesjava.RondacampeonatoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_CAMPEONATO_RONDACAMPEONATO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDACAMPEONATO_CAMPEONATO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

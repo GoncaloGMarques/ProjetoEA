@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -32,7 +34,7 @@ public class EquipaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression participantecampeonato;
 	
 	public EquipaDetachedCriteria() {
-		super(Equipa.class, EquipaCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Equipa.class, com.projetoea.escolasfutebol.classesjava.EquipaCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		escalao = new IntegerExpression("escalao", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
@@ -49,7 +51,7 @@ public class EquipaDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public EquipaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, EquipaCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.EquipaCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		escalao = new IntegerExpression("escalao", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
@@ -73,28 +75,28 @@ public class EquipaDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new EscolasDetachedCriteria(createCriteria("escolas"));
 	}
 	
-	public JogadorDetachedCriteria createJogadorCriteria() {
-		return new JogadorDetachedCriteria(createCriteria("ORM_jogador"));
+	public com.projetoea.escolasfutebol.classesjava.JogadorDetachedCriteria createJogadorCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogadorDetachedCriteria(createCriteria("ORM_jogador"));
 	}
 	
-	public JogoDetachedCriteria createJogoCriteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_jogo"));
+	public com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria createJogoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria(createCriteria("ORM_jogo"));
 	}
 	
-	public JogoDetachedCriteria createJogo1Criteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_jogo1"));
+	public com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria createJogo1Criteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria(createCriteria("ORM_jogo1"));
 	}
 	
-	public JogoDetachedCriteria createJogo2Criteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_jogo2"));
+	public com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria createJogo2Criteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogoDetachedCriteria(createCriteria("ORM_jogo2"));
 	}
 	
-	public PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
-		return new PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
+	public com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
 	}
 	
-	public ParticipantecampeonatoDetachedCriteria createParticipantecampeonatoCriteria() {
-		return new ParticipantecampeonatoDetachedCriteria(createCriteria("ORM_participantecampeonato"));
+	public com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoDetachedCriteria createParticipantecampeonatoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoDetachedCriteria(createCriteria("ORM_participantecampeonato"));
 	}
 	
 	public Equipa uniqueEquipa(PersistentSession session) {

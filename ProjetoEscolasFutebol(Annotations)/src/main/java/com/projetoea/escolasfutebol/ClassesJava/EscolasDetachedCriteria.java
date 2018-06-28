@@ -11,13 +11,12 @@
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-package com.projetoea.escolasfutebol.ClassesJava;
+package com.projetoea.escolasfutebol.classesjava;
 
+import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
-
-import java.util.List;
 
 public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
@@ -29,7 +28,7 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression equipa;
 	
 	public EscolasDetachedCriteria() {
-		super(com.projetoea.escolasfutebol.ClassesJava.Escolas.class, com.projetoea.escolasfutebol.ClassesJava.EscolasCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Escolas.class, com.projetoea.escolasfutebol.classesjava.EscolasCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		associacaoId = new IntegerExpression("associacao.ID", this.getDetachedCriteria());
@@ -40,7 +39,7 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public EscolasDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, com.projetoea.escolasfutebol.ClassesJava.EscolasCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.EscolasCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		associacaoId = new IntegerExpression("associacao.ID", this.getDetachedCriteria());
@@ -58,8 +57,8 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new UtilizadorDetachedCriteria(createCriteria("diretorEscola"));
 	}
 	
-	public com.projetoea.escolasfutebol.ClassesJava.EquipaDetachedCriteria createEquipaCriteria() {
-		return new com.projetoea.escolasfutebol.ClassesJava.EquipaDetachedCriteria(createCriteria("ORM_equipa"));
+	public com.projetoea.escolasfutebol.classesjava.EquipaDetachedCriteria createEquipaCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.EquipaDetachedCriteria(createCriteria("ORM_equipa"));
 	}
 	
 	public Escolas uniqueEscolas(PersistentSession session) {

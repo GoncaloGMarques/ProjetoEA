@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,16 +23,16 @@ public class Partcipantetorneio implements Serializable {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_PARTCIPANTETORNEIO_TORNEIO) {
-			this.torneio = (Torneio) owner;
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_PARTCIPANTETORNEIO_TORNEIO) {
+			this.torneio = (com.projetoea.escolasfutebol.classesjava.Torneio) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_PARTCIPANTETORNEIO_EQUIPA) {
-			this.equipa = (Equipa) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_PARTCIPANTETORNEIO_EQUIPA) {
+			this.equipa = (com.projetoea.escolasfutebol.classesjava.Equipa) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_PARTCIPANTETORNEIO_GRUPO) {
-			this.grupo = (Grupo) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_PARTCIPANTETORNEIO_GRUPO) {
+			this.grupo = (com.projetoea.escolasfutebol.classesjava.Grupo) owner;
 		}
 	}
 	
@@ -44,24 +46,24 @@ public class Partcipantetorneio implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="PARTCIPANTETORNEIO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="PARTCIPANTETORNEIO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_PARTCIPANTETORNEIO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_PARTCIPANTETORNEIO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
-	@ManyToOne(targetEntity=Torneio.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Torneio.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="torneioID", referencedColumnName="ID", nullable=false) })	
-	private Torneio torneio;
+	private com.projetoea.escolasfutebol.classesjava.Torneio torneio;
 	
-	@ManyToOne(targetEntity=Equipa.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Equipa.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="equipaID", referencedColumnName="ID", nullable=false) })	
-	private Equipa equipa;
+	private com.projetoea.escolasfutebol.classesjava.Equipa equipa;
 	
-	@ManyToOne(targetEntity=Grupo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Grupo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="grupoID", referencedColumnName="ID", nullable=false) })	
-	private Grupo grupo;
+	private com.projetoea.escolasfutebol.classesjava.Grupo grupo;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -75,7 +77,7 @@ public class Partcipantetorneio implements Serializable {
 		return getID();
 	}
 	
-	public void setTorneio(Torneio value) {
+	public void setTorneio(com.projetoea.escolasfutebol.classesjava.Torneio value) {
 		if (torneio != null) {
 			torneio.partcipantetorneio.remove(this);
 		}
@@ -84,22 +86,22 @@ public class Partcipantetorneio implements Serializable {
 		}
 	}
 	
-	public Torneio getTorneio() {
+	public com.projetoea.escolasfutebol.classesjava.Torneio getTorneio() {
 		return torneio;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Torneio(Torneio value) {
+	public void setORM_Torneio(com.projetoea.escolasfutebol.classesjava.Torneio value) {
 		this.torneio = value;
 	}
 	
-	private Torneio getORM_Torneio() {
+	private com.projetoea.escolasfutebol.classesjava.Torneio getORM_Torneio() {
 		return torneio;
 	}
 	
-	public void setEquipa(Equipa value) {
+	public void setEquipa(com.projetoea.escolasfutebol.classesjava.Equipa value) {
 		if (equipa != null) {
 			equipa.partcipantetorneio.remove(this);
 		}
@@ -108,22 +110,22 @@ public class Partcipantetorneio implements Serializable {
 		}
 	}
 	
-	public Equipa getEquipa() {
+	public com.projetoea.escolasfutebol.classesjava.Equipa getEquipa() {
 		return equipa;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Equipa(Equipa value) {
+	public void setORM_Equipa(com.projetoea.escolasfutebol.classesjava.Equipa value) {
 		this.equipa = value;
 	}
 	
-	private Equipa getORM_Equipa() {
+	private com.projetoea.escolasfutebol.classesjava.Equipa getORM_Equipa() {
 		return equipa;
 	}
 	
-	public void setGrupo(Grupo value) {
+	public void setGrupo(com.projetoea.escolasfutebol.classesjava.Grupo value) {
 		if (grupo != null) {
 			grupo.partcipantetorneio.remove(this);
 		}
@@ -132,18 +134,18 @@ public class Partcipantetorneio implements Serializable {
 		}
 	}
 	
-	public Grupo getGrupo() {
+	public com.projetoea.escolasfutebol.classesjava.Grupo getGrupo() {
 		return grupo;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Grupo(Grupo value) {
+	public void setORM_Grupo(com.projetoea.escolasfutebol.classesjava.Grupo value) {
 		this.grupo = value;
 	}
 	
-	private Grupo getORM_Grupo() {
+	private com.projetoea.escolasfutebol.classesjava.Grupo getORM_Grupo() {
 		return grupo;
 	}
 	

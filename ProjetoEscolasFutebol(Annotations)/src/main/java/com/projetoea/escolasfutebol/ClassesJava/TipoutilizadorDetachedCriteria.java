@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -22,21 +24,21 @@ public class TipoutilizadorDetachedCriteria extends AbstractORMDetachedCriteria 
 	public final CollectionExpression utilizador;
 	
 	public TipoutilizadorDetachedCriteria() {
-		super(Tipoutilizador.class, TipoutilizadorCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, com.projetoea.escolasfutebol.classesjava.TipoutilizadorCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		utilizador = new CollectionExpression("ORM_utilizador", this.getDetachedCriteria());
 	}
 	
 	public TipoutilizadorDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, TipoutilizadorCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.TipoutilizadorCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		utilizador = new CollectionExpression("ORM_utilizador", this.getDetachedCriteria());
 	}
 	
-	public UtilizadorDetachedCriteria createUtilizadorCriteria() {
-		return new UtilizadorDetachedCriteria(createCriteria("ORM_utilizador"));
+	public com.projetoea.escolasfutebol.classesjava.UtilizadorDetachedCriteria createUtilizadorCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.UtilizadorDetachedCriteria(createCriteria("ORM_utilizador"));
 	}
 	
 	public Tipoutilizador uniqueTipoutilizador(PersistentSession session) {

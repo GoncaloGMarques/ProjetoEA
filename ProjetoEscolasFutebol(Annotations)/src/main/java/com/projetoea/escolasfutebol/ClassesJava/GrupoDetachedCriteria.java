@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
@@ -24,7 +26,7 @@ public class GrupoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final CollectionExpression partcipantetorneio;
 	
 	public GrupoDetachedCriteria() {
-		super(Grupo.class, GrupoCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Grupo.class, com.projetoea.escolasfutebol.classesjava.GrupoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		torneioId = new IntegerExpression("torneio.ID", this.getDetachedCriteria());
@@ -33,7 +35,7 @@ public class GrupoDetachedCriteria extends AbstractORMDetachedCriteria {
 	}
 	
 	public GrupoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, GrupoCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.GrupoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		torneioId = new IntegerExpression("torneio.ID", this.getDetachedCriteria());
@@ -45,8 +47,8 @@ public class GrupoDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new TorneioDetachedCriteria(createCriteria("torneio"));
 	}
 	
-	public PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
-		return new PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
+	public com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria createPartcipantetorneioCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.PartcipantetorneioDetachedCriteria(createCriteria("ORM_partcipantetorneio"));
 	}
 	
 	public Grupo uniqueGrupo(PersistentSession session) {

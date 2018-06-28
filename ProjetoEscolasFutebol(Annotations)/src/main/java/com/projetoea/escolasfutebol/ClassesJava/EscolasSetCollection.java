@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 
 public class EscolasSetCollection extends org.orm.util.ORMSet {
@@ -70,7 +72,6 @@ public class EscolasSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>nome</li>
-	 * <li>diretoescolaID</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -83,7 +84,6 @@ public class EscolasSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>nome</li>
-	 * <li>diretoescolaID</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
@@ -93,7 +93,7 @@ public class EscolasSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolBetterPersistentManager.instance();
+		return com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

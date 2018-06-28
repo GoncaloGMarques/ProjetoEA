@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,8 +11,10 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-import javax.persistence.*;
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="torneio")
@@ -21,13 +23,13 @@ public class Torneio implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_TORNEIO_RONDATORNEIO) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_RONDATORNEIO) {
 			return ORM_rondatorneio;
 		}
-		else if (key == ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO) {
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO) {
 			return ORM_partcipantetorneio;
 		}
-		else if (key == ORMConstants.KEY_TORNEIO_GRUPO) {
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_GRUPO) {
 			return ORM_grupo;
 		}
 		
@@ -44,8 +46,8 @@ public class Torneio implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="TORNEIO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="TORNEIO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_TORNEIO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_TORNEIO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="datainicio", nullable=true)	
@@ -57,17 +59,17 @@ public class Torneio implements Serializable {
 	@Column(name="nome", nullable=true, length=255)	
 	private String nome;
 	
-	@OneToMany(mappedBy="torneio", targetEntity=Rondatorneio.class)	
+	@OneToMany(mappedBy="torneio", targetEntity=com.projetoea.escolasfutebol.classesjava.Rondatorneio.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_rondatorneio = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="torneio", targetEntity=Partcipantetorneio.class)	
+	@OneToMany(mappedBy="torneio", targetEntity=com.projetoea.escolasfutebol.classesjava.Partcipantetorneio.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_partcipantetorneio = new java.util.HashSet();
 	
-	@OneToMany(mappedBy="torneio", targetEntity=Grupo.class)	
+	@OneToMany(mappedBy="torneio", targetEntity=com.projetoea.escolasfutebol.classesjava.Grupo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_grupo = new java.util.HashSet();
@@ -117,7 +119,7 @@ public class Torneio implements Serializable {
 	}
 	
 	@Transient	
-	public final RondatorneioSetCollection rondatorneio = new RondatorneioSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_RONDATORNEIO, ORMConstants.KEY_RONDATORNEIO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.RondatorneioSetCollection rondatorneio = new com.projetoea.escolasfutebol.classesjava.RondatorneioSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_RONDATORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_TORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Partcipantetorneio(java.util.Set value) {
 		this.ORM_partcipantetorneio = value;
@@ -128,7 +130,7 @@ public class Torneio implements Serializable {
 	}
 	
 	@Transient	
-	public final PartcipantetorneioSetCollection partcipantetorneio = new PartcipantetorneioSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO, ORMConstants.KEY_PARTCIPANTETORNEIO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.PartcipantetorneioSetCollection partcipantetorneio = new com.projetoea.escolasfutebol.classesjava.PartcipantetorneioSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_PARTCIPANTETORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_PARTCIPANTETORNEIO_TORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Grupo(java.util.Set value) {
 		this.ORM_grupo = value;
@@ -139,7 +141,7 @@ public class Torneio implements Serializable {
 	}
 	
 	@Transient	
-	public final GrupoSetCollection grupo = new GrupoSetCollection(this, _ormAdapter, ORMConstants.KEY_TORNEIO_GRUPO, ORMConstants.KEY_GRUPO_TORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.GrupoSetCollection grupo = new com.projetoea.escolasfutebol.classesjava.GrupoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_TORNEIO_GRUPO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_GRUPO_TORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

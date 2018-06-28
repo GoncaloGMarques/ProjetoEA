@@ -11,15 +11,12 @@
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
-package com.projetoea.escolasfutebol.ClassesJava;
-
-import org.hibernate.criterion.DetachedCriteria;
-import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMDetachedCriteria;
-import org.orm.criteria.AssociationExpression;
-import org.orm.criteria.IntegerExpression;
+package com.projetoea.escolasfutebol.classesjava;
 
 import java.util.List;
+import org.hibernate.criterion.DetachedCriteria;
+import org.orm.PersistentSession;
+import org.orm.criteria.*;
 
 public class ParticipantecampeonatoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
@@ -32,7 +29,7 @@ public class ParticipantecampeonatoDetachedCriteria extends AbstractORMDetachedC
 	public final IntegerExpression golossofridos;
 	
 	public ParticipantecampeonatoDetachedCriteria() {
-		super(com.projetoea.escolasfutebol.ClassesJava.Participantecampeonato.class, com.projetoea.escolasfutebol.ClassesJava.ParticipantecampeonatoCriteria.class);
+		super(com.projetoea.escolasfutebol.classesjava.Participantecampeonato.class, com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		campeonatoId = new IntegerExpression("campeonato.ID", this.getDetachedCriteria());
 		campeonato = new AssociationExpression("campeonato", this.getDetachedCriteria());
@@ -44,7 +41,7 @@ public class ParticipantecampeonatoDetachedCriteria extends AbstractORMDetachedC
 	}
 	
 	public ParticipantecampeonatoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, com.projetoea.escolasfutebol.ClassesJava.ParticipantecampeonatoCriteria.class);
+		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.ParticipantecampeonatoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		campeonatoId = new IntegerExpression("campeonato.ID", this.getDetachedCriteria());
 		campeonato = new AssociationExpression("campeonato", this.getDetachedCriteria());

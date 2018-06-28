@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,7 +23,7 @@ public class Rondatorneio implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_RONDATORNEIO_JOGO) {
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_JOGO) {
 			return ORM_jogo;
 		}
 		
@@ -29,12 +31,12 @@ public class Rondatorneio implements Serializable {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_RONDATORNEIO_FASE) {
-			this.fase = (Fase) owner;
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_FASE) {
+			this.fase = (com.projetoea.escolasfutebol.classesjava.Fase) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_RONDATORNEIO_TORNEIO) {
-			this.torneio = (Torneio) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_TORNEIO) {
+			this.torneio = (com.projetoea.escolasfutebol.classesjava.Torneio) owner;
 		}
 	}
 	
@@ -52,24 +54,24 @@ public class Rondatorneio implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="RONDATORNEIO_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="RONDATORNEIO_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_RONDATORNEIO_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_RONDATORNEIO_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="data", nullable=true, length=10)	
 	private Integer data;
 	
-	@ManyToOne(targetEntity=Fase.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Fase.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="faseID", referencedColumnName="ID", nullable=false) })	
-	private Fase fase;
+	private com.projetoea.escolasfutebol.classesjava.Fase fase;
 	
-	@ManyToOne(targetEntity=Torneio.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Torneio.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="torneioID", referencedColumnName="ID") })	
-	private Torneio torneio;
+	private com.projetoea.escolasfutebol.classesjava.Torneio torneio;
 	
-	@OneToMany(mappedBy="rondatorneio", targetEntity=Jogo.class)	
+	@OneToMany(mappedBy="rondatorneio", targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_jogo = new java.util.HashSet();
@@ -98,7 +100,7 @@ public class Rondatorneio implements Serializable {
 		return data;
 	}
 	
-	public void setFase(Fase value) {
+	public void setFase(com.projetoea.escolasfutebol.classesjava.Fase value) {
 		if (fase != null) {
 			fase.rondatorneio.remove(this);
 		}
@@ -107,22 +109,22 @@ public class Rondatorneio implements Serializable {
 		}
 	}
 	
-	public Fase getFase() {
+	public com.projetoea.escolasfutebol.classesjava.Fase getFase() {
 		return fase;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Fase(Fase value) {
+	public void setORM_Fase(com.projetoea.escolasfutebol.classesjava.Fase value) {
 		this.fase = value;
 	}
 	
-	private Fase getORM_Fase() {
+	private com.projetoea.escolasfutebol.classesjava.Fase getORM_Fase() {
 		return fase;
 	}
 	
-	public void setTorneio(Torneio value) {
+	public void setTorneio(com.projetoea.escolasfutebol.classesjava.Torneio value) {
 		if (torneio != null) {
 			torneio.rondatorneio.remove(this);
 		}
@@ -131,18 +133,18 @@ public class Rondatorneio implements Serializable {
 		}
 	}
 	
-	public Torneio getTorneio() {
+	public com.projetoea.escolasfutebol.classesjava.Torneio getTorneio() {
 		return torneio;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Torneio(Torneio value) {
+	public void setORM_Torneio(com.projetoea.escolasfutebol.classesjava.Torneio value) {
 		this.torneio = value;
 	}
 	
-	private Torneio getORM_Torneio() {
+	private com.projetoea.escolasfutebol.classesjava.Torneio getORM_Torneio() {
 		return torneio;
 	}
 	
@@ -155,7 +157,7 @@ public class Rondatorneio implements Serializable {
 	}
 	
 	@Transient	
-	public final JogoSetCollection jogo = new JogoSetCollection(this, _ormAdapter, ORMConstants.KEY_RONDATORNEIO_JOGO, ORMConstants.KEY_JOGO_RONDATORNEIO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final com.projetoea.escolasfutebol.classesjava.JogoSetCollection jogo = new com.projetoea.escolasfutebol.classesjava.JogoSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_RONDATORNEIO_JOGO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGO_RONDATORNEIO, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

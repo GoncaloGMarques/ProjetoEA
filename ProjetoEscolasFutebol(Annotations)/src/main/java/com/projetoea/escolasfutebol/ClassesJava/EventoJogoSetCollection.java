@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,9 +11,11 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.orm.*;
 
-class EventojogoSetCollection extends org.orm.util.ORMSet {
+public class EventojogoSetCollection extends org.orm.util.ORMSet {
 	public EventojogoSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
 		super(owner, adapter, ownerKey, targetKey, true, collType);
 	}
@@ -91,7 +93,7 @@ class EventojogoSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return EscolasFutebolBetterPersistentManager.instance();
+		return com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance();
 	}
 	
 }

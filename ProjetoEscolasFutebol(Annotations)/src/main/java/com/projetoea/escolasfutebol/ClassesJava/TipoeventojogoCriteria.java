@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -33,11 +35,11 @@ public class TipoeventojogoCriteria extends AbstractORMCriteria {
 	}
 	
 	public TipoeventojogoCriteria() throws PersistentException {
-		this(EscolasFutebolBetterPersistentManager.instance().getSession());
+		this(com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession());
 	}
 	
-	public EventojogoCriteria createEventojogoCriteria() {
-		return new EventojogoCriteria(createCriteria("ORM_eventojogo"));
+	public com.projetoea.escolasfutebol.classesjava.EventojogoCriteria createEventojogoCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.EventojogoCriteria(createCriteria("ORM_eventojogo"));
 	}
 	
 	public Tipoeventojogo uniqueTipoeventojogo() {

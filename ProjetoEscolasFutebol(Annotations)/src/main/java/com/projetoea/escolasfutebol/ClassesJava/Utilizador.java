@@ -1,4 +1,4 @@
-package com.projetoea.escolasfutebol.ClassesJava; /**
+/**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
  * 
  * This is an automatic generated file. It will be regenerated every time 
@@ -11,6 +11,8 @@ package com.projetoea.escolasfutebol.ClassesJava; /**
  * Licensee: Gonçalo Marques(Universidade do Minho)
  * License Type: Academic
  */
+package com.projetoea.escolasfutebol.classesjava;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -21,20 +23,20 @@ public class Utilizador implements Serializable {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_UTILIZADOR_TIPOUTILIZADOR) {
-			this.tipoutilizador = (Tipoutilizador) owner;
+		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_UTILIZADOR_TIPOUTILIZADOR) {
+			this.tipoutilizador = (com.projetoea.escolasfutebol.classesjava.Tipoutilizador) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_UTILIZADOR_ARBITRO) {
-			this.arbitro = (Arbitro) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_UTILIZADOR_ARBITRO) {
+			this.arbitro = (com.projetoea.escolasfutebol.classesjava.Arbitro) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_UTILIZADOR_ESCOLAS) {
-			this.escolas = (Escolas) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_UTILIZADOR_ESCOLAS) {
+			this.escolas = (com.projetoea.escolasfutebol.classesjava.Escolas) owner;
 		}
 		
-		else if (key == ORMConstants.KEY_UTILIZADOR_ASSOCIACAO) {
-			this.associacao = (Associacao) owner;
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_UTILIZADOR_ASSOCIACAO) {
+			this.associacao = (com.projetoea.escolasfutebol.classesjava.Associacao) owner;
 		}
 	}
 	
@@ -48,8 +50,8 @@ public class Utilizador implements Serializable {
 	
 	@Column(name="ID", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="UTILIZADOR_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="UTILIZADOR_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_UTILIZADOR_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_UTILIZADOR_ID_GENERATOR", strategy="native")	
 	private int ID;
 	
 	@Column(name="Nome", nullable=true, length=255)	
@@ -61,22 +63,22 @@ public class Utilizador implements Serializable {
 	@Column(name="Password", nullable=true, length=255)	
 	private String password;
 	
-	@ManyToOne(targetEntity=Tipoutilizador.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoutilizador.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipoutilizadorID", referencedColumnName="ID", nullable=false) })	
-	private Tipoutilizador tipoutilizador;
+	private com.projetoea.escolasfutebol.classesjava.Tipoutilizador tipoutilizador;
 	
-	@OneToOne(mappedBy="utilizador", targetEntity=Arbitro.class, fetch=FetchType.LAZY)	
+	@OneToOne(mappedBy="utilizador", targetEntity=com.projetoea.escolasfutebol.classesjava.Arbitro.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	private Arbitro arbitro;
+	private com.projetoea.escolasfutebol.classesjava.Arbitro arbitro;
 	
-	@OneToOne(mappedBy="diretorEscola", targetEntity=Escolas.class, fetch=FetchType.LAZY)	
+	@OneToOne(mappedBy="diretorEscola", targetEntity=com.projetoea.escolasfutebol.classesjava.Escolas.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	private Escolas escolas;
+	private com.projetoea.escolasfutebol.classesjava.Escolas escolas;
 	
-	@OneToOne(mappedBy="diretorAssociacao", targetEntity=Associacao.class, fetch=FetchType.LAZY)	
+	@OneToOne(mappedBy="diretorAssociacao", targetEntity=com.projetoea.escolasfutebol.classesjava.Associacao.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
-	private Associacao associacao;
+	private com.projetoea.escolasfutebol.classesjava.Associacao associacao;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -114,7 +116,7 @@ public class Utilizador implements Serializable {
 		return password;
 	}
 	
-	public void setTipoutilizador(Tipoutilizador value) {
+	public void setTipoutilizador(com.projetoea.escolasfutebol.classesjava.Tipoutilizador value) {
 		if (tipoutilizador != null) {
 			tipoutilizador.utilizador.remove(this);
 		}
@@ -123,24 +125,24 @@ public class Utilizador implements Serializable {
 		}
 	}
 	
-	public Tipoutilizador getTipoutilizador() {
+	public com.projetoea.escolasfutebol.classesjava.Tipoutilizador getTipoutilizador() {
 		return tipoutilizador;
 	}
 	
 	/**
 	 * This method is for internal use only.
 	 */
-	public void setORM_Tipoutilizador(Tipoutilizador value) {
+	public void setORM_Tipoutilizador(com.projetoea.escolasfutebol.classesjava.Tipoutilizador value) {
 		this.tipoutilizador = value;
 	}
 	
-	private Tipoutilizador getORM_Tipoutilizador() {
+	private com.projetoea.escolasfutebol.classesjava.Tipoutilizador getORM_Tipoutilizador() {
 		return tipoutilizador;
 	}
 	
-	public void setArbitro(Arbitro value) {
+	public void setArbitro(com.projetoea.escolasfutebol.classesjava.Arbitro value) {
 		if (this.arbitro != value) {
-			Arbitro larbitro = this.arbitro;
+			com.projetoea.escolasfutebol.classesjava.Arbitro larbitro = this.arbitro;
 			this.arbitro = value;
 			if (value != null) {
 				arbitro.setUtilizador(this);
@@ -151,13 +153,13 @@ public class Utilizador implements Serializable {
 		}
 	}
 	
-	public Arbitro getArbitro() {
+	public com.projetoea.escolasfutebol.classesjava.Arbitro getArbitro() {
 		return arbitro;
 	}
 	
-	public void setEscolas(Escolas value) {
+	public void setEscolas(com.projetoea.escolasfutebol.classesjava.Escolas value) {
 		if (this.escolas != value) {
-			Escolas lescolas = this.escolas;
+			com.projetoea.escolasfutebol.classesjava.Escolas lescolas = this.escolas;
 			this.escolas = value;
 			if (value != null) {
 				escolas.setDiretorEscola(this);
@@ -168,13 +170,13 @@ public class Utilizador implements Serializable {
 		}
 	}
 	
-	public Escolas getEscolas() {
+	public com.projetoea.escolasfutebol.classesjava.Escolas getEscolas() {
 		return escolas;
 	}
 	
-	public void setAssociacao(Associacao value) {
+	public void setAssociacao(com.projetoea.escolasfutebol.classesjava.Associacao value) {
 		if (this.associacao != value) {
-			Associacao lassociacao = this.associacao;
+			com.projetoea.escolasfutebol.classesjava.Associacao lassociacao = this.associacao;
 			this.associacao = value;
 			if (value != null) {
 				associacao.setDiretorAssociacao(this);
@@ -185,7 +187,7 @@ public class Utilizador implements Serializable {
 		}
 	}
 	
-	public Associacao getAssociacao() {
+	public com.projetoea.escolasfutebol.classesjava.Associacao getAssociacao() {
 		return associacao;
 	}
 	

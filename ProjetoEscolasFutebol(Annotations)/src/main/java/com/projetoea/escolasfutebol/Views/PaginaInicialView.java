@@ -1,27 +1,17 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.GuestBean;
-import com.projetoea.escolasfutebol.Beans.UserBean;
-import com.projetoea.escolasfutebol.ClassesJava.Jogo;
-import com.projetoea.escolasfutebol.ClassesJava.JogoDAO;
+import com.projetoea.escolasfutebol.classesjava.Jogo;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
-import com.projetoea.escolasfutebol.VaadinUI;
-import com.vaadin.data.HasValue;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinService;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
-import javafx.scene.layout.Pane;
 import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.List;
 
 @SpringView
 public class PaginaInicialView extends Composite implements View {
