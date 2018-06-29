@@ -63,29 +63,29 @@ public class EventojogoPK implements Serializable {
 		return this.ID;
 	}
 	
-	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Jogo jogo;
 	
-	public void setJogo(com.projetoea.escolasfutebol.ClassesJava.Jogo value)  {
+	public void setJogo(com.projetoea.escolasfutebol.classesjava.Jogo value)  {
 		this.jogo =  value;
 	}
 	
-	public com.projetoea.escolasfutebol.ClassesJava.Jogo getJogo()  {
+	public com.projetoea.escolasfutebol.classesjava.Jogo getJogo()  {
 		return this.jogo;
 	}
 	
-	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo;
 	
-	public void setTipoeventojogo(com.projetoea.escolasfutebol.ClassesJava.Tipoeventojogo value)  {
+	public void setTipoeventojogo(com.projetoea.escolasfutebol.classesjava.Tipoeventojogo value)  {
 		this.tipoeventojogo =  value;
 	}
 	
-	public com.projetoea.escolasfutebol.ClassesJava.Tipoeventojogo getTipoeventojogo()  {
+	public com.projetoea.escolasfutebol.classesjava.Tipoeventojogo getTipoeventojogo()  {
 		return this.tipoeventojogo;
 	}
 	

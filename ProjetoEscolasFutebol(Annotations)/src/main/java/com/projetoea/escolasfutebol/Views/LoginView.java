@@ -7,6 +7,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.UserError;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
@@ -52,6 +53,7 @@ public class LoginView  extends Composite implements View {
 
         usernameField = new TextField("Username");
         usernameField.setIcon(VaadinIcons.USER_CHECK);
+        usernameField.setPlaceholder("Nome");
         horizontalLayout.addComponent(usernameField);
         horizontalLayout.addComponent(errorUsernameLabel);
 

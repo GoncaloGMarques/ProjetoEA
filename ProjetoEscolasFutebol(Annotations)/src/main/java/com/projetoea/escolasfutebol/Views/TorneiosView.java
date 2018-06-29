@@ -71,8 +71,8 @@ public class TorneiosView extends Composite implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            Torneio[] TorneiosEmJogo = guestBean.GetTorneiosEmJogo();
-            Torneio[] TorneiosTerminados = guestBean.GetTorneiosTerminados();
+            Torneio[] TorneiosEmJogo = guestBean.getTorneiosEmJogo();
+            Torneio[] TorneiosTerminados = guestBean.getTorneiosTerminados();
             ConstructTorneiosTable(TorneiosEmJogo, panelTorneiosEmJogo);
             ConstructTorneiosTable(TorneiosTerminados, panelTorneiosTerminados);
         } catch (PersistentException e) {

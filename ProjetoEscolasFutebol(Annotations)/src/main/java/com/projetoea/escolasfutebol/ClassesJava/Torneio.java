@@ -14,6 +14,7 @@
 package com.projetoea.escolasfutebol.classesjava;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
@@ -51,10 +52,10 @@ public class Torneio implements Serializable {
 	private int ID;
 	
 	@Column(name="datainicio", nullable=true)	
-	private java.sql.Timestamp datainicio;
+	private Timestamp datainicio;
 	
 	@Column(name="datafim", nullable=true)	
-	private java.sql.Timestamp datafim;
+	private Timestamp datafim;
 	
 	@Column(name="nome", nullable=true, length=255)	
 	private String nome;
@@ -86,19 +87,19 @@ public class Torneio implements Serializable {
 		return getID();
 	}
 	
-	public void setDatainicio(java.sql.Timestamp value) {
+	public void setDatainicio(Timestamp value) {
 		this.datainicio = value;
 	}
 	
-	public java.sql.Timestamp getDatainicio() {
+	public Timestamp getDatainicio() {
 		return datainicio;
 	}
 	
-	public void setDatafim(java.sql.Timestamp value) {
+	public void setDatafim(Timestamp value) {
 		this.datafim = value;
 	}
 	
-	public java.sql.Timestamp getDatafim() {
+	public Timestamp getDatafim() {
 		return datafim;
 	}
 	

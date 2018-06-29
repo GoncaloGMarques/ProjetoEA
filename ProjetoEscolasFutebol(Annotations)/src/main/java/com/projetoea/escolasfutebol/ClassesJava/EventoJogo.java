@@ -13,12 +13,12 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="eventojogo")
-@IdClass(EventojogoPK.class)
+@IdClass(com.projetoea.escolasfutebol.classesjava.EventojogoPK.class)
 public class Eventojogo implements Serializable {
 	public Eventojogo() {
 	}
