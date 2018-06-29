@@ -1,11 +1,15 @@
 package com.projetoea.escolasfutebol.Beans;
 
 import com.projetoea.escolasfutebol.classesjava.*;
+import javafx.util.converter.TimeStringConverter;
 import org.orm.PersistentException;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DiretorAssociacaoBean extends UserBean {
 
@@ -38,9 +42,8 @@ public class DiretorAssociacaoBean extends UserBean {
 
     public Torneio[] getFuturosTorneios() throws PersistentException
     {
-        Torneio[] torneios = TorneioDAO.listTorneioByQuery(
+        return TorneioDAO.listTorneioByQuery(
                 "datafim > CURRENT_TIMESTAMP() AND datainicio > CURRENT_TIMESTAMP()" , "datainicio");
-        return torneios;
     }
 
     public Torneio criarTorneio(String nome, Timestamp dataInicio, Timestamp dataFim) throws PersistentException {
@@ -56,21 +59,96 @@ public class DiretorAssociacaoBean extends UserBean {
         return EquipaDAO.loadEquipaByQuery("Nome = " + nome, null);
     }
 
-    public Grupo criarGrupoTorneio(String nomeGrupo, Torneio torneio){
+    //TODO: Test this method
+    public Grupo criarGrupoTorneio(String nomeGrupo, Torneio torneio) throws PersistentException {
         Grupo grupo = GrupoDAO.createGrupo();
         grupo.setTorneio(torneio);
         if(nomeGrupo.contains(torneio.getNome() + "_"))
             nomeGrupo = torneio.getNome() + "_" + nomeGrupo;
         grupo.setNome(nomeGrupo);
+        GrupoDAO.save(grupo);
         return grupo;
     }
 
-    public Partcipantetorneio addicionarEquipasToTorneio(Equipa equipa, Grupo grupo, Torneio torneio) throws PersistentException {
+    //TODO: Test this method
+    public Partcipantetorneio adicionarEquipasToTorneio(Equipa equipa, Grupo grupo, Torneio torneio) throws PersistentException {
         Partcipantetorneio partcipantetorneio = PartcipantetorneioDAO.createPartcipantetorneio();
-        partcipantetorneio.setEquipa(null);
-        partcipantetorneio.setGrupo(null);
-        partcipantetorneio.setTorneio(null);
+        partcipantetorneio.setEquipa(equipa);
+        partcipantetorneio.setGrupo(grupo);
+        partcipantetorneio.setTorneio(torneio);
         PartcipantetorneioDAO.save(partcipantetorneio);
         return partcipantetorneio;
+    }
+
+    public List<Equipa> getEquipasSemTorneio(int page, int entriesPerPage) throws PersistentException {
+        boolean teamFound;
+        List<Partcipantetorneio> participantesTorneio;
+        List<Equipa> equipas;
+        List<Equipa> equipasSemTorneio = new ArrayList<>();
+
+        int start;
+        int end = 0;
+
+        int equipasTableSize = EquipaDAO.queryEquipaEntriesCount();
+        Equipa auxLoopEquipa;
+        while (end < equipasTableSize) {
+
+            start = page * entriesPerPage;
+            end = start + entriesPerPage;
+
+            participantesTorneio = Arrays.asList(PartcipantetorneioDAO.listPartcipantetorneioByQuery(
+                    null, null, String.valueOf(entriesPerPage), String.valueOf(start)));
+            equipas = Arrays.asList(EquipaDAO.listEquipaByQuery(
+                    null, null, String.valueOf(entriesPerPage), String.valueOf(start)));
+            if(equipas.size() == 0)
+                break;
+
+            for (Equipa equipa : equipas)
+            {
+                auxLoopEquipa = equipa;
+                teamFound = true;
+                for (Partcipantetorneio equipaTorneio : participantesTorneio)
+                {
+                    if (equipa.getID() == equipaTorneio.getEquipa().getID())
+                    {
+                        teamFound = false;
+                        break;
+                    }
+                }
+                if (teamFound)
+                    equipasSemTorneio.add(auxLoopEquipa);
+            }
+            if (equipasSemTorneio.size() > entriesPerPage / 2) break;
+            else page += 1;
+        }
+        return equipasSemTorneio.stream().limit(entriesPerPage).collect(Collectors.toList());
+    }
+
+    public Rondatorneio criarRondaTorneio(int numEquipas, Torneio torneio) throws PersistentException {
+        Rondatorneio newRonda = RondatorneioDAO.createRondatorneio();
+        int fase = numEquipas / 2;
+        Fase faseDO = FaseDAO.loadFaseByQuery("nomefase = " + fase, null);
+        newRonda.setFase(faseDO);
+        newRonda.setTorneio(torneio);
+        RondatorneioDAO.save(newRonda);
+        return newRonda;
+    }
+
+    public void criarJogosRonda(LocalDateTime inicioJogo, Equipa equipaCasa, Equipa equipaFora, Rondatorneio rondatorneio) throws PersistentException {
+        for (int i = 0; i < rondatorneio.getFase().getNomefase(); i++) {
+            criarJogo(inicioJogo, equipaCasa, equipaFora, rondatorneio);
+        }
+    }
+
+    public Jogo criarJogo(LocalDateTime inicioJogo, Equipa equipaCasa, Equipa equipaFora, Rondatorneio rondatorneio) throws PersistentException {
+        Jogo newJogo = JogoDAO.createJogo();
+        newJogo.setEquipaCasa(equipaCasa);
+        newJogo.setEquipaFora(equipaFora);
+        newJogo.setArbitro(ArbitroDAO.getArbitroByORMID(1));
+        newJogo.setRondatorneio(rondatorneio);
+        newJogo.setCampo(equipaCasa.getCampo());
+        newJogo.setData(Timestamp.valueOf(inicioJogo));
+        JogoDAO.save(newJogo);
+        return newJogo;
     }
 }

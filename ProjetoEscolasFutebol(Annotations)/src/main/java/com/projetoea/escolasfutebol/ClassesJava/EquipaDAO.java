@@ -13,9 +13,11 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
+import org.hibernate.criterion.Projections;
 import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+
+import javax.persistence.EntityManager;
 import java.util.List;
 
 public class EquipaDAO {
@@ -135,6 +137,17 @@ public class EquipaDAO {
 			throw new PersistentException(e);
 		}
 	}
+
+    public static Equipa[] listEquipaByQuery(String condition, String orderBy, String limit, String offset) throws PersistentException {
+        try {
+            PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
+            return listEquipaByQuery(session, condition, orderBy, limit, offset);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistentException(e);
+        }
+    }
 	
 	public static Equipa[] listEquipaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
@@ -146,7 +159,41 @@ public class EquipaDAO {
 			throw new PersistentException(e);
 		}
 	}
-	
+
+	public static int queryEquipaEntriesCount() throws PersistentException {
+        PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
+        Number equipaCount = 0;
+        try {
+            equipaCount = (Number) session.createCriteria(Equipa.class)
+                    .setProjection(Projections.rowCount())
+                    .uniqueResult();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return equipaCount.intValue();
+    }
+
+	public static List queryEquipa(PersistentSession session, String condition, String orderBy, String limit, String offset) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Equipa as Equipa");
+		if (condition != null)
+			sb.append(" Where ").append(condition);
+		if (orderBy != null)
+			sb.append(" Order By ").append(orderBy);
+		try {
+			Query query = session.createQuery(sb.toString());
+            if(limit != null)
+                query.setMaxResults(Integer.parseInt(limit));
+            if(offset != null)
+                query.setFirstResult(Integer.parseInt(offset));
+            return query.list();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+
 	public static List queryEquipa(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Equipa as Equipa");
 		if (condition != null)
@@ -179,7 +226,18 @@ public class EquipaDAO {
 			throw new PersistentException(e);
 		}
 	}
-	
+
+    public static Equipa[] listEquipaByQuery(PersistentSession session, String condition, String orderBy, String limit, String offset) throws PersistentException {
+        try {
+            List list = queryEquipa(session, condition, orderBy, limit, offset);
+            return (Equipa[]) list.toArray(new Equipa[list.size()]);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistentException(e);
+        }
+    }
+
 	public static Equipa[] listEquipaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		try {
 			List list = queryEquipa(session, condition, orderBy);
