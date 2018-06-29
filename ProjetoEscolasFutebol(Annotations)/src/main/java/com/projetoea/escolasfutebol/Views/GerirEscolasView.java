@@ -1,14 +1,13 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
-import com.projetoea.escolasfutebol.ClassesJava.Escolas;
-import com.projetoea.escolasfutebol.ClassesJava.Utilizador;
+import com.projetoea.escolasfutebol.classesjava.Escolas;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.vaadin.data.HasValue;
 import com.vaadin.data.ValueProvider;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;

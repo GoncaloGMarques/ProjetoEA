@@ -1,7 +1,7 @@
 package com.projetoea.escolasfutebol;
 
-import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
+import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;

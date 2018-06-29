@@ -1,11 +1,9 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.ClassesJava.*;
+import com.projetoea.escolasfutebol.classesjava.*;
 import org.orm.PersistentException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class DiretorAssociacaoBean extends UserBean {

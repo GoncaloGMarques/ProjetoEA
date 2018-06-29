@@ -26,6 +26,7 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression diretorEscolaId;
 	public final AssociationExpression diretorEscola;
 	public final CollectionExpression equipa;
+	public final CollectionExpression jogador;
 	
 	public EscolasDetachedCriteria() {
 		super(com.projetoea.escolasfutebol.classesjava.Escolas.class, com.projetoea.escolasfutebol.classesjava.EscolasCriteria.class);
@@ -36,6 +37,7 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 		diretorEscolaId = new IntegerExpression("diretorEscola.ID", this.getDetachedCriteria());
 		diretorEscola = new AssociationExpression("diretorEscola", this.getDetachedCriteria());
 		equipa = new CollectionExpression("ORM_equipa", this.getDetachedCriteria());
+		jogador = new CollectionExpression("ORM_jogador", this.getDetachedCriteria());
 	}
 	
 	public EscolasDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -47,6 +49,7 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 		diretorEscolaId = new IntegerExpression("diretorEscola.ID", this.getDetachedCriteria());
 		diretorEscola = new AssociationExpression("diretorEscola", this.getDetachedCriteria());
 		equipa = new CollectionExpression("ORM_equipa", this.getDetachedCriteria());
+		jogador = new CollectionExpression("ORM_jogador", this.getDetachedCriteria());
 	}
 	
 	public AssociacaoDetachedCriteria createAssociacaoCriteria() {
@@ -59,6 +62,10 @@ public class EscolasDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public com.projetoea.escolasfutebol.classesjava.EquipaDetachedCriteria createEquipaCriteria() {
 		return new com.projetoea.escolasfutebol.classesjava.EquipaDetachedCriteria(createCriteria("ORM_equipa"));
+	}
+	
+	public com.projetoea.escolasfutebol.classesjava.JogadorDetachedCriteria createJogadorCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogadorDetachedCriteria(createCriteria("ORM_jogador"));
 	}
 	
 	public Escolas uniqueEscolas(PersistentSession session) {

@@ -13,8 +13,8 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="jogador")
@@ -33,6 +33,10 @@ public class Jogador implements Serializable {
 	private void this_setOwner(Object owner, int key) {
 		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGADOR_EQUIPA) {
 			this.equipa = (com.projetoea.escolasfutebol.classesjava.Equipa) owner;
+		}
+		
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGADOR_ESCOLAS) {
+			this.escolas = (com.projetoea.escolasfutebol.classesjava.Escolas) owner;
 		}
 	}
 	
@@ -73,6 +77,11 @@ public class Jogador implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="equipaID", referencedColumnName="ID") })	
 	private com.projetoea.escolasfutebol.classesjava.Equipa equipa;
+	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Escolas.class, fetch=FetchType.LAZY)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
+	@JoinColumns({ @JoinColumn(name="escolasID", referencedColumnName="ID", nullable=false) })	
+	private com.projetoea.escolasfutebol.classesjava.Escolas escolas;
 	
 	@OneToMany(mappedBy="jogador", targetEntity=com.projetoea.escolasfutebol.classesjava.Eventojogo.class)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
@@ -169,6 +178,30 @@ public class Jogador implements Serializable {
 	
 	private com.projetoea.escolasfutebol.classesjava.Equipa getORM_Equipa() {
 		return equipa;
+	}
+	
+	public void setEscolas(com.projetoea.escolasfutebol.classesjava.Escolas value) {
+		if (escolas != null) {
+			escolas.jogador.remove(this);
+		}
+		if (value != null) {
+			value.jogador.add(this);
+		}
+	}
+	
+	public com.projetoea.escolasfutebol.classesjava.Escolas getEscolas() {
+		return escolas;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	public void setORM_Escolas(com.projetoea.escolasfutebol.classesjava.Escolas value) {
+		this.escolas = value;
+	}
+	
+	private com.projetoea.escolasfutebol.classesjava.Escolas getORM_Escolas() {
+		return escolas;
 	}
 	
 	private void setORM_Eventojogo(java.util.Set value) {

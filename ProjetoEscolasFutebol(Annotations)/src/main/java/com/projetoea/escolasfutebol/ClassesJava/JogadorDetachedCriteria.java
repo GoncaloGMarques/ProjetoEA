@@ -27,6 +27,8 @@ public class JogadorDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression golos;
 	public final IntegerExpression equipaId;
 	public final AssociationExpression equipa;
+	public final IntegerExpression escolasId;
+	public final AssociationExpression escolas;
 	public final CollectionExpression eventojogo;
 	
 	public JogadorDetachedCriteria() {
@@ -39,6 +41,8 @@ public class JogadorDetachedCriteria extends AbstractORMDetachedCriteria {
 		golos = new IntegerExpression("golos", this.getDetachedCriteria());
 		equipaId = new IntegerExpression("equipa.ID", this.getDetachedCriteria());
 		equipa = new AssociationExpression("equipa", this.getDetachedCriteria());
+		escolasId = new IntegerExpression("escolas.ID", this.getDetachedCriteria());
+		escolas = new AssociationExpression("escolas", this.getDetachedCriteria());
 		eventojogo = new CollectionExpression("ORM_eventojogo", this.getDetachedCriteria());
 	}
 	
@@ -52,11 +56,17 @@ public class JogadorDetachedCriteria extends AbstractORMDetachedCriteria {
 		golos = new IntegerExpression("golos", this.getDetachedCriteria());
 		equipaId = new IntegerExpression("equipa.ID", this.getDetachedCriteria());
 		equipa = new AssociationExpression("equipa", this.getDetachedCriteria());
+		escolasId = new IntegerExpression("escolas.ID", this.getDetachedCriteria());
+		escolas = new AssociationExpression("escolas", this.getDetachedCriteria());
 		eventojogo = new CollectionExpression("ORM_eventojogo", this.getDetachedCriteria());
 	}
 	
 	public EquipaDetachedCriteria createEquipaCriteria() {
 		return new EquipaDetachedCriteria(createCriteria("equipa"));
+	}
+	
+	public EscolasDetachedCriteria createEscolasCriteria() {
+		return new EscolasDetachedCriteria(createCriteria("escolas"));
 	}
 	
 	public com.projetoea.escolasfutebol.classesjava.EventojogoDetachedCriteria createEventojogoCriteria() {

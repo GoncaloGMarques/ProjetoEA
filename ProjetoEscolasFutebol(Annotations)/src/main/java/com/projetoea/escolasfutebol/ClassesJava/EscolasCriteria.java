@@ -26,6 +26,7 @@ public class EscolasCriteria extends AbstractORMCriteria {
 	public final IntegerExpression diretorEscolaId;
 	public final AssociationExpression diretorEscola;
 	public final CollectionExpression equipa;
+	public final CollectionExpression jogador;
 	
 	public EscolasCriteria(Criteria criteria) {
 		super(criteria);
@@ -36,6 +37,7 @@ public class EscolasCriteria extends AbstractORMCriteria {
 		diretorEscolaId = new IntegerExpression("diretorEscola.ID", this);
 		diretorEscola = new AssociationExpression("diretorEscola", this);
 		equipa = new CollectionExpression("ORM_equipa", this);
+		jogador = new CollectionExpression("ORM_jogador", this);
 	}
 	
 	public EscolasCriteria(PersistentSession session) {
@@ -56,6 +58,10 @@ public class EscolasCriteria extends AbstractORMCriteria {
 	
 	public com.projetoea.escolasfutebol.classesjava.EquipaCriteria createEquipaCriteria() {
 		return new com.projetoea.escolasfutebol.classesjava.EquipaCriteria(createCriteria("ORM_equipa"));
+	}
+	
+	public com.projetoea.escolasfutebol.classesjava.JogadorCriteria createJogadorCriteria() {
+		return new com.projetoea.escolasfutebol.classesjava.JogadorCriteria(createCriteria("ORM_jogador"));
 	}
 	
 	public Escolas uniqueEscolas() {

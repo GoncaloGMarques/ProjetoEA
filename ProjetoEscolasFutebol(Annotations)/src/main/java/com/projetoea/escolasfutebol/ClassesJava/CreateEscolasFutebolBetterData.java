@@ -91,6 +91,7 @@ public class CreateEscolasFutebolBetterData {
 
             Jogador jogador = JogadorDAO.createJogador();
             jogador.setEquipa(equipaA);
+            jogador.setEscolas(escolas);
             JogadorDAO.save(jogador);
 
             Campeonato campeonato = CampeonatoDAO.createCampeonato();

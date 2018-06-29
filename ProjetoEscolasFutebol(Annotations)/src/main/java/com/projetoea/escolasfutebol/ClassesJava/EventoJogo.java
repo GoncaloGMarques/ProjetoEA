@@ -13,8 +13,8 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="eventojogo")

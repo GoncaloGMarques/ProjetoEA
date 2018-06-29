@@ -68,11 +68,11 @@ public class EventojogoPK implements Serializable {
 	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Jogo jogo;
 	
-	public void setJogo(com.projetoea.escolasfutebol.classesjava.Jogo value)  {
+	public void setJogo(com.projetoea.escolasfutebol.ClassesJava.Jogo value)  {
 		this.jogo =  value;
 	}
 	
-	public com.projetoea.escolasfutebol.classesjava.Jogo getJogo()  {
+	public com.projetoea.escolasfutebol.ClassesJava.Jogo getJogo()  {
 		return this.jogo;
 	}
 	
@@ -81,11 +81,11 @@ public class EventojogoPK implements Serializable {
 	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo;
 	
-	public void setTipoeventojogo(com.projetoea.escolasfutebol.classesjava.Tipoeventojogo value)  {
+	public void setTipoeventojogo(com.projetoea.escolasfutebol.ClassesJava.Tipoeventojogo value)  {
 		this.tipoeventojogo =  value;
 	}
 	
-	public com.projetoea.escolasfutebol.classesjava.Tipoeventojogo getTipoeventojogo()  {
+	public com.projetoea.escolasfutebol.ClassesJava.Tipoeventojogo getTipoeventojogo()  {
 		return this.tipoeventojogo;
 	}
 	

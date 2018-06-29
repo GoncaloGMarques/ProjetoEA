@@ -48,17 +48,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="diretoescolaID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="associacaoID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -216,6 +205,18 @@
       <ReferencedColumn>equipa.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="escolasID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>escolas.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -531,6 +532,18 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="jogadorID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>jogador.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="associacao" Unlogged="false" PKClustered="0">
     <Column name="ID">
@@ -821,6 +834,42 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="pontos">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <DefaultValue>0</DefaultValue>
+      <UserTypes/>
+    </Column>
+    <Column name="golosmarcados">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <DefaultValue>0</DefaultValue>
+      <UserTypes/>
+    </Column>
+    <Column name="golossofridos">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <DefaultValue>0</DefaultValue>
+      <UserTypes/>
+    </Column>
   </Entity>
   <Entity name="tipoutilizador" Unlogged="false" PKClustered="0">
     <Column name="ID">
@@ -859,6 +908,8 @@
   <ForeignKey name="FKequipa139633">
     <ReferenceTable>equipa</ReferenceTable>
     <ReferencedTable>escolas</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>escolasID</Column>
     </Columns>
@@ -869,6 +920,8 @@
   <ForeignKey name="FKjogador486715">
     <ReferenceTable>jogador</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>equipaID</Column>
     </Columns>
@@ -879,6 +932,8 @@
   <ForeignKey name="FKeventojogo473670">
     <ReferenceTable>eventojogo</ReferenceTable>
     <ReferencedTable>jogo</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>jogoID</Column>
     </Columns>
@@ -889,6 +944,8 @@
   <ForeignKey name="FKeventojogo564699">
     <ReferenceTable>eventojogo</ReferenceTable>
     <ReferencedTable>tipoeventojogo</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>tipoeventojogoID</Column>
     </Columns>
@@ -899,6 +956,8 @@
   <ForeignKey name="FKjogo487263">
     <ReferenceTable>jogo</ReferenceTable>
     <ReferencedTable>arbitro</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>arbitroID</Column>
     </Columns>
@@ -909,6 +968,8 @@
   <ForeignKey name="FKescolas152761">
     <ReferenceTable>escolas</ReferenceTable>
     <ReferencedTable>associacao</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>associacaoID</Column>
     </Columns>
@@ -919,6 +980,8 @@
   <ForeignKey name="FKjogo198147">
     <ReferenceTable>jogo</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>equipaCasaID</Column>
     </Columns>
@@ -929,6 +992,8 @@
   <ForeignKey name="FKjogo411092">
     <ReferenceTable>jogo</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>equipaForaID</Column>
     </Columns>
@@ -939,6 +1004,8 @@
   <ForeignKey name="FKjogo796157">
     <ReferenceTable>jogo</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>vencedorID</Column>
     </Columns>
@@ -949,6 +1016,8 @@
   <ForeignKey name="FKrondatorne979485">
     <ReferenceTable>rondatorneio</ReferenceTable>
     <ReferencedTable>fase</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>faseID</Column>
     </Columns>
@@ -959,6 +1028,8 @@
   <ForeignKey name="FKrondatorne336066">
     <ReferenceTable>rondatorneio</ReferenceTable>
     <ReferencedTable>torneio</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>torneioID</Column>
     </Columns>
@@ -989,6 +1060,8 @@
   <ForeignKey name="FKpartcipant653190">
     <ReferenceTable>partcipantetorneio</ReferenceTable>
     <ReferencedTable>torneio</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>torneioID</Column>
     </Columns>
@@ -999,6 +1072,8 @@
   <ForeignKey name="FKpartcipant977763">
     <ReferenceTable>partcipantetorneio</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>equipaID</Column>
     </Columns>
@@ -1019,6 +1094,8 @@
   <ForeignKey name="FKpartcipant961378">
     <ReferenceTable>partcipantetorneio</ReferenceTable>
     <ReferencedTable>grupo</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>grupoID</Column>
     </Columns>
@@ -1029,6 +1106,8 @@
   <ForeignKey name="FKjogo695100">
     <ReferenceTable>jogo</ReferenceTable>
     <ReferencedTable>rondacampeonato</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>rondacampeonatoID</Column>
     </Columns>
@@ -1049,6 +1128,8 @@
   <ForeignKey name="FKparticipan731242">
     <ReferenceTable>participantecampeonato</ReferenceTable>
     <ReferencedTable>equipa</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>equipaID</Column>
     </Columns>
@@ -1069,6 +1150,8 @@
   <ForeignKey name="FKarbitro417124">
     <ReferenceTable>arbitro</ReferenceTable>
     <ReferencedTable>utilizador</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>utilizadorID</Column>
     </Columns>
@@ -1079,6 +1162,8 @@
   <ForeignKey name="FKescolas743340">
     <ReferenceTable>escolas</ReferenceTable>
     <ReferencedTable>utilizador</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>diretorEscolaID</Column>
     </Columns>
@@ -1089,6 +1174,8 @@
   <ForeignKey name="FKassociacao111673">
     <ReferenceTable>associacao</ReferenceTable>
     <ReferencedTable>utilizador</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>diretorAssociacaoID</Column>
     </Columns>
@@ -1099,8 +1186,34 @@
   <ForeignKey name="FKutilizador439572">
     <ReferenceTable>utilizador</ReferenceTable>
     <ReferencedTable>tipoutilizador</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
     <Columns>
       <Column>tipoutilizadorID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKeventojogo110224">
+    <ReferenceTable>eventojogo</ReferenceTable>
+    <ReferencedTable>jogador</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
+    <Columns>
+      <Column>jogadorID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKjogador574435">
+    <ReferenceTable>jogador</ReferenceTable>
+    <ReferencedTable>escolas</ReferencedTable>
+    <OnUpdate>Cascade</OnUpdate>
+    <OnDelete>Cascade</OnDelete>
+    <Columns>
+      <Column>escolasID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>
