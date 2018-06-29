@@ -1,11 +1,10 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.classesjava.Equipa;
-import com.projetoea.escolasfutebol.classesjava.EquipaDAO;
-import com.projetoea.escolasfutebol.classesjava.Jogador;
-import com.projetoea.escolasfutebol.classesjava.JogadorDAO;
+import com.projetoea.escolasfutebol.classesjava.*;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 
 @Component
 public class DiretorEscolaBean {
@@ -15,18 +14,30 @@ public class DiretorEscolaBean {
     }
 
     public boolean setEquipa(Equipa equipa, Jogador jogador) throws PersistentException {
-        JogadorDAO.getJogadorByORMID(jogador.getID()).setEquipa(EquipaDAO.getEquipaByORMID(equipa.getID()));
-        JogadorDAO.save(JogadorDAO.getJogadorByORMID(jogador.getID()));
-        JogadorDAO.refresh(JogadorDAO.getJogadorByORMID(jogador.getID()));
-        EquipaDAO.refresh(EquipaDAO.getEquipaByORMID(equipa.getID()));
+        JogadorDAO.getJogadorByORMID(jogador.getORMID()).setEquipa(EquipaDAO.getEquipaByORMID(equipa.getORMID()));
+        JogadorDAO.save(JogadorDAO.getJogadorByORMID(jogador.getORMID()));
+        JogadorDAO.refresh(JogadorDAO.getJogadorByORMID(jogador.getORMID()));
+        EquipaDAO.refresh(EquipaDAO.getEquipaByORMID(equipa.getORMID()));
         return true;
+    }
+
+    public void createEquipa(int id, ArrayList<Jogador> jogadoresAdicionar, String nomeEquipa) throws PersistentException {
+        Equipa equipa = EquipaDAO.createEquipa();
+        equipa.setCampo(CampoDAO.getCampoByORMID(1));
+        equipa.setEscolas(EscolasDAO.loadEscolasByQuery("ID = "+ id, null));
+        equipa.setNome(nomeEquipa);
+        EquipaDAO.save(equipa);
+        for (Jogador jogador: jogadoresAdicionar) {
+            JogadorDAO.getJogadorByORMID(jogador.getORMID()).setEquipa(EquipaDAO.getEquipaByORMID(equipa.getORMID()));
+            JogadorDAO.save(JogadorDAO.getJogadorByORMID(jogador.getORMID()));
+        }
     }
 
     public boolean removeFromEquipa(Jogador jogador) throws PersistentException
     {
-        JogadorDAO.getJogadorByORMID(jogador.getID()).setEquipa(null);
-        JogadorDAO.save(JogadorDAO.getJogadorByORMID(jogador.getID()));
-        JogadorDAO.refresh(JogadorDAO.getJogadorByORMID(jogador.getID()));
+        JogadorDAO.getJogadorByORMID(jogador.getORMID()).setEquipa(null);
+        JogadorDAO.save(JogadorDAO.getJogadorByORMID(jogador.getORMID()));
+        JogadorDAO.refresh(JogadorDAO.getJogadorByORMID(jogador.getORMID()));
         return true;
     }
 
