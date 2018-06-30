@@ -4,9 +4,7 @@ import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
 import com.projetoea.escolasfutebol.classesjava.Escolas;
 import com.projetoea.escolasfutebol.classesjava.TipoutilizadorDAO;
 import com.projetoea.escolasfutebol.classesjava.Utilizador;
-import com.vaadin.data.Binder;
-import com.vaadin.data.HasValue;
-import com.vaadin.data.Validator;
+import com.vaadin.data.*;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.icons.VaadinIcons;
@@ -28,7 +26,7 @@ import static com.vaadin.ui.Grid.SelectionMode.SINGLE;
 @SpringView
 public class GerirEscolasView extends Composite implements View, HasValue.ValueChangeListener<Escolas> {
 
-    DiretorAssociacaoBean diretorAssociacaoBean = applicationBeansContext.getBean("DiretorAssociacaoBean",
+    private DiretorAssociacaoBean diretorAssociacaoBean = applicationBeansContext.getBean("DiretorAssociacaoBean",
             DiretorAssociacaoBean.class);
 
     private Escolas currentlyEditing;
@@ -41,7 +39,7 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
     private Button remove;
     private Label createError;
 
-    Binder<Utilizador> criarEscolaBinder;
+    private Binder<Utilizador> criarEscolaBinder;
 
     private Window createWindow(){
 
@@ -137,6 +135,7 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         Window createEscolaWindow = createWindow();
         getUI().getUI().addWindow(createEscolaWindow);
     };
+
     private Button.ClickListener removeEscolaOnClick = (Button.ClickListener) event -> {
         try {
             diretorAssociacaoBean.removerEscola(currentlyEditing);

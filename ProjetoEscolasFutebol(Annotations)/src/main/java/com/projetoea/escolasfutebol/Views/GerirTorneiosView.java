@@ -5,7 +5,6 @@ import com.projetoea.escolasfutebol.Beans.GuestBean;
 import com.projetoea.escolasfutebol.classesjava.*;
 import com.vaadin.data.Binder;
 import com.vaadin.data.Validator;
-import com.vaadin.data.ValueProvider;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -17,8 +16,6 @@ import org.orm.PersistentException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -336,9 +333,9 @@ public class GerirTorneiosView extends Composite implements View {
                 else equipasEscolhidas.removeIf(iterEquipa -> iterEquipa.getID() == equipa.getID());
             });
 
-            addComponentLinha(boxLinha, Alignment.MIDDLE_CENTER, itemHorizontalLayout);
-            addLinha(e.getNome(), Alignment.MIDDLE_CENTER, itemHorizontalLayout);
-            addLinha(e.getEscolas().getNome(), Alignment.MIDDLE_CENTER, itemHorizontalLayout);
+            addComponentLinha(boxLinha, itemHorizontalLayout);
+            addLinha(e.getNome(), itemHorizontalLayout);
+            addLinha(e.getEscolas().getNome(), itemHorizontalLayout);
             //panelVerticalLayout
             panelLayout.addComponent(itemHorizontalLayout);
             itemHorizontalLayout.setSizeFull();
@@ -373,15 +370,15 @@ public class GerirTorneiosView extends Composite implements View {
         }
     }
 
-    private void addComponentLinha(Component component, Alignment alignment, HorizontalLayout hl){
+    private void addComponentLinha(Component component, HorizontalLayout hl){
         hl.addComponent(component);
-        hl.setComponentAlignment(component, alignment);
+        hl.setComponentAlignment(component, Alignment.MIDDLE_CENTER);
     }
 
-    private void addLinha(String value, Alignment alignment, HorizontalLayout hl)
+    private void addLinha(String value, HorizontalLayout hl)
     {
         Label l = new Label(value);
         hl.addComponent(l);
-        hl.setComponentAlignment(l, alignment);
+        hl.setComponentAlignment(l, Alignment.MIDDLE_CENTER);
     }
 }
