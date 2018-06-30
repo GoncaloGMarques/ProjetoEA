@@ -98,7 +98,7 @@ public class Jogo implements Serializable {
 	
 	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Equipa.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns({ @JoinColumn(name="vencedorID", referencedColumnName="ID", nullable=false) })	
+	@JoinColumns({ @JoinColumn(name="vencedorID", referencedColumnName="ID") })	
 	private com.projetoea.escolasfutebol.classesjava.Equipa vencedor;
 	
 	@Column(name="golosEquipaCasa", nullable=true, length=10)	
