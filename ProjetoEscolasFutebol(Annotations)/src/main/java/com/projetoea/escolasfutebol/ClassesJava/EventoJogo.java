@@ -13,49 +13,13 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="eventojogo")
-@IdClass(com.projetoea.escolasfutebol.classesjava.EventojogoPK.class)
 public class Eventojogo implements Serializable {
 	public Eventojogo() {
-	}
-	
-	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof Eventojogo))
-			return false;
-		Eventojogo eventojogo = (Eventojogo)aObj;
-		if (getID() != eventojogo.getID())
-			return false;
-		if (getJogo() == null) {
-			if (eventojogo.getJogo() != null)
-				return false;
-		}
-		else if (!getJogo().equals(eventojogo.getJogo()))
-			return false;
-		if (getTipoeventojogo() == null) {
-			if (eventojogo.getTipoeventojogo() != null)
-				return false;
-		}
-		else if (!getTipoeventojogo().equals(eventojogo.getTipoeventojogo()))
-			return false;
-		return true;
-	}
-	
-	public int hashCode() {
-		int hashcode = 0;
-		hashcode = hashcode + (int) getID();
-		if (getJogo() != null) {
-			hashcode = hashcode + (int) getJogo().getORMID();
-		}
-		if (getTipoeventojogo() != null) {
-			hashcode = hashcode + (int) getTipoeventojogo().getORMID();
-		}
-		return hashcode;
 	}
 	
 	private void this_setOwner(Object owner, int key) {
@@ -89,57 +53,31 @@ public class Eventojogo implements Serializable {
 	@Column(name="Minuto", nullable=false, length=10)	
 	private int minuto;
 	
-	@PrimaryKeyJoinColumn	
 	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Jogo jogo;
 	
-	@Column(name="jogoID", nullable=false, insertable=false, updatable=false)	
-	@Id	
-	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_EVENTOJOGO_JOGOID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_EVENTOJOGO_JOGOID_GENERATOR", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="jogo"))	
-	private int jogoId;
-	
-	private void setJogoId(int value) {
-		this.jogoId = value;
-	}
-	
-	public int getJogoId() {
-		return jogoId;
-	}
-	
-	@PrimaryKeyJoinColumn	
 	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo;
-	
-	@Column(name="tipoeventojogoID", nullable=false, insertable=false, updatable=false)	
-	@Id	
-	@GeneratedValue(generator="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_EVENTOJOGO_TIPOEVENTOJOGOID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_PROJETOEA_ESCOLASFUTEBOL_CLASSESJAVA_EVENTOJOGO_TIPOEVENTOJOGOID_GENERATOR", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="tipoeventojogo"))	
-	private int tipoeventojogoId;
-	
-	private void setTipoeventojogoId(int value) {
-		this.tipoeventojogoId = value;
-	}
-	
-	public int getTipoeventojogoId() {
-		return tipoeventojogoId;
-	}
 	
 	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogador.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="jogadorID", referencedColumnName="ID") })	
 	private com.projetoea.escolasfutebol.classesjava.Jogador jogador;
 	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setMinuto(int value) {
@@ -223,7 +161,7 @@ public class Eventojogo implements Serializable {
 	}
 	
 	public String toString() {
-		return String.valueOf(getID() + " " + ((getJogo() == null) ? "" : String.valueOf(getJogo().getORMID())) + " " + ((getTipoeventojogo() == null) ? "" : String.valueOf(getTipoeventojogo().getORMID())));
+		return String.valueOf(getID());
 	}
 	
 }

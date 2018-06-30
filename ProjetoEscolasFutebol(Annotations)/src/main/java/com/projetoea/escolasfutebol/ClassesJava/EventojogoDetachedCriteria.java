@@ -32,10 +32,10 @@ public class EventojogoDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, com.projetoea.escolasfutebol.classesjava.EventojogoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		minuto = new IntegerExpression("minuto", this.getDetachedCriteria());
-		jogoId = new IntegerExpression("ORM_Jogo.ID", this.getDetachedCriteria());
-		jogo = new AssociationExpression("ORM_Jogo", this.getDetachedCriteria());
-		tipoeventojogoId = new IntegerExpression("ORM_Tipoeventojogo.ID", this.getDetachedCriteria());
-		tipoeventojogo = new AssociationExpression("ORM_Tipoeventojogo", this.getDetachedCriteria());
+		jogoId = new IntegerExpression("jogo.ID", this.getDetachedCriteria());
+		jogo = new AssociationExpression("jogo", this.getDetachedCriteria());
+		tipoeventojogoId = new IntegerExpression("tipoeventojogo.ID", this.getDetachedCriteria());
+		tipoeventojogo = new AssociationExpression("tipoeventojogo", this.getDetachedCriteria());
 		jogadorId = new IntegerExpression("jogador.ID", this.getDetachedCriteria());
 		jogador = new AssociationExpression("jogador", this.getDetachedCriteria());
 	}
@@ -44,20 +44,20 @@ public class EventojogoDetachedCriteria extends AbstractORMDetachedCriteria {
 		super(aDetachedCriteria, com.projetoea.escolasfutebol.classesjava.EventojogoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		minuto = new IntegerExpression("minuto", this.getDetachedCriteria());
-		jogoId = new IntegerExpression("ORM_Jogo.ID", this.getDetachedCriteria());
-		jogo = new AssociationExpression("ORM_Jogo", this.getDetachedCriteria());
-		tipoeventojogoId = new IntegerExpression("ORM_Tipoeventojogo.ID", this.getDetachedCriteria());
-		tipoeventojogo = new AssociationExpression("ORM_Tipoeventojogo", this.getDetachedCriteria());
+		jogoId = new IntegerExpression("jogo.ID", this.getDetachedCriteria());
+		jogo = new AssociationExpression("jogo", this.getDetachedCriteria());
+		tipoeventojogoId = new IntegerExpression("tipoeventojogo.ID", this.getDetachedCriteria());
+		tipoeventojogo = new AssociationExpression("tipoeventojogo", this.getDetachedCriteria());
 		jogadorId = new IntegerExpression("jogador.ID", this.getDetachedCriteria());
 		jogador = new AssociationExpression("jogador", this.getDetachedCriteria());
 	}
 	
 	public JogoDetachedCriteria createJogoCriteria() {
-		return new JogoDetachedCriteria(createCriteria("ORM_Jogo"));
+		return new JogoDetachedCriteria(createCriteria("jogo"));
 	}
 	
 	public TipoeventojogoDetachedCriteria createTipoeventojogoCriteria() {
-		return new TipoeventojogoDetachedCriteria(createCriteria("ORM_Tipoeventojogo"));
+		return new TipoeventojogoDetachedCriteria(createCriteria("tipoeventojogo"));
 	}
 	
 	public JogadorDetachedCriteria createJogadorCriteria() {
