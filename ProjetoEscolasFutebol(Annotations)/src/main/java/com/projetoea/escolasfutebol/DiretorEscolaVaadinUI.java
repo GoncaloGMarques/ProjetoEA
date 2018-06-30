@@ -46,6 +46,7 @@ public class DiretorEscolaVaadinUI extends UI {
         addMenuEntry(menuLinks, "Torneios", "torneios");
         addMenuEntry(menuLinks, "Campeonato", "campeonato");
         addMenuEntry(menuLinks, "Gerir Equipas", "gerirequipas");
+        addMenuEntry(menuLinks, "Adicionar Jogadores", "gerirjogadores");
 
 
         menuLinks.setStyleName("v-horizontal-layout-menuLinks");
@@ -77,6 +78,7 @@ public class DiretorEscolaVaadinUI extends UI {
         navigator.addView("torneios", TorneiosView.class);
         navigator.addView("campeonato", CampeonatoView.class);
         navigator.addView("gerirequipas", GerirEquipasView.class);
+        navigator.addView("gerirjogadores", GerirJogadoresView.class);
     }
 
 

@@ -41,4 +41,13 @@ public class DiretorEscolaBean {
         return true;
     }
 
+    public void createPlayer(String nome, int idade, Equipa equipa, Escolas escolas) throws PersistentException {
+        Jogador jogador = JogadorDAO.createJogador();
+        jogador.setNome(nome);
+        jogador.setIdade(idade);
+        jogador.setEscolas(escolas);
+        if(equipa != null)
+            jogador.setEquipa(equipa);
+        JogadorDAO.save(jogador);
+    }
 }
