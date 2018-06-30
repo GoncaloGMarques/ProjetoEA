@@ -32,10 +32,10 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		minuto = new IntegerExpression("minuto", this);
-		jogoId = new IntegerExpression("ORM_Jogo.ID", this);
-		jogo = new AssociationExpression("ORM_Jogo", this);
-		tipoeventojogoId = new IntegerExpression("ORM_Tipoeventojogo.ID", this);
-		tipoeventojogo = new AssociationExpression("ORM_Tipoeventojogo", this);
+		jogoId = new IntegerExpression("jogo.ID", this);
+		jogo = new AssociationExpression("jogo", this);
+		tipoeventojogoId = new IntegerExpression("tipoeventojogo.ID", this);
+		tipoeventojogo = new AssociationExpression("tipoeventojogo", this);
 		jogadorId = new IntegerExpression("jogador.ID", this);
 		jogador = new AssociationExpression("jogador", this);
 	}
@@ -49,11 +49,11 @@ public class EventojogoCriteria extends AbstractORMCriteria {
 	}
 	
 	public JogoCriteria createJogoCriteria() {
-		return new JogoCriteria(createCriteria("ORM_Jogo"));
+		return new JogoCriteria(createCriteria("jogo"));
 	}
 	
 	public TipoeventojogoCriteria createTipoeventojogoCriteria() {
-		return new TipoeventojogoCriteria(createCriteria("ORM_Tipoeventojogo"));
+		return new TipoeventojogoCriteria(createCriteria("tipoeventojogo"));
 	}
 	
 	public JogadorCriteria createJogadorCriteria() {

@@ -19,10 +19,10 @@ import org.hibernate.LockMode;
 import java.util.List;
 
 public class EventojogoDAO {
-	public static Eventojogo loadEventojogoByORMID(int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo) throws PersistentException {
+	public static Eventojogo loadEventojogoByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
-			return loadEventojogoByORMID(session, ID, jogo, tipoeventojogo);
+			return loadEventojogoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -30,10 +30,10 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo getEventojogoByORMID(int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo) throws PersistentException {
+	public static Eventojogo getEventojogoByORMID(int ID) throws PersistentException {
 		try {
 			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
-			return getEventojogoByORMID(session, ID, jogo, tipoeventojogo);
+			return getEventojogoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -41,10 +41,10 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo loadEventojogoByORMID(int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Eventojogo loadEventojogoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
-			return loadEventojogoByORMID(session, ID, jogo, tipoeventojogo, lockMode);
+			return loadEventojogoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -52,10 +52,10 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo getEventojogoByORMID(int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Eventojogo getEventojogoByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
-			return getEventojogoByORMID(session, ID, jogo, tipoeventojogo, lockMode);
+			return getEventojogoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -63,14 +63,9 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo loadEventojogoByORMID(PersistentSession session, int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo) throws PersistentException {
+	public static Eventojogo loadEventojogoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			EventojogoPK eventojogo = new com.projetoea.escolasfutebol.classesjava.EventojogoPK();
-			eventojogo.setID(ID);
-			eventojogo.setJogo(jogo);
-			eventojogo.setTipoeventojogo(tipoeventojogo);
-			
-			return (Eventojogo) session.load(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, eventojogo);
+			return (Eventojogo) session.load(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -78,14 +73,9 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo getEventojogoByORMID(PersistentSession session, int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo) throws PersistentException {
+	public static Eventojogo getEventojogoByORMID(PersistentSession session, int ID) throws PersistentException {
 		try {
-			EventojogoPK eventojogo = new com.projetoea.escolasfutebol.classesjava.EventojogoPK();
-			eventojogo.setID(ID);
-			eventojogo.setJogo(jogo);
-			eventojogo.setTipoeventojogo(tipoeventojogo);
-			
-			return (Eventojogo) session.get(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, eventojogo);
+			return (Eventojogo) session.get(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -93,14 +83,9 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo loadEventojogoByORMID(PersistentSession session, int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Eventojogo loadEventojogoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			EventojogoPK eventojogo = new com.projetoea.escolasfutebol.classesjava.EventojogoPK();
-			eventojogo.setID(ID);
-			eventojogo.setJogo(jogo);
-			eventojogo.setTipoeventojogo(tipoeventojogo);
-			
-			return (Eventojogo) session.load(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, eventojogo, lockMode);
+			return (Eventojogo) session.load(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -108,14 +93,9 @@ public class EventojogoDAO {
 		}
 	}
 	
-	public static Eventojogo getEventojogoByORMID(PersistentSession session, int ID, com.projetoea.escolasfutebol.classesjava.Jogo jogo, com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static Eventojogo getEventojogoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			EventojogoPK eventojogo = new com.projetoea.escolasfutebol.classesjava.EventojogoPK();
-			eventojogo.setID(ID);
-			eventojogo.setJogo(jogo);
-			eventojogo.setTipoeventojogo(tipoeventojogo);
-			
-			return (Eventojogo) session.get(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, eventojogo, lockMode);
+			return (Eventojogo) session.get(com.projetoea.escolasfutebol.classesjava.Eventojogo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -343,17 +323,13 @@ public class EventojogoDAO {
 	
 	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Eventojogo eventojogo)throws PersistentException {
 		try {
-			com.projetoea.escolasfutebol.classesjava.Jogo jogo = eventojogo.getJogo();
 			if (eventojogo.getJogo() != null) {
 				eventojogo.getJogo().eventojogo.remove(eventojogo);
 			}
-			eventojogo.setORM_Jogo(jogo);
 			
-			com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo = eventojogo.getTipoeventojogo();
 			if (eventojogo.getTipoeventojogo() != null) {
 				eventojogo.getTipoeventojogo().eventojogo.remove(eventojogo);
 			}
-			eventojogo.setORM_Tipoeventojogo(tipoeventojogo);
 			
 			if (eventojogo.getJogador() != null) {
 				eventojogo.getJogador().eventojogo.remove(eventojogo);
@@ -369,17 +345,13 @@ public class EventojogoDAO {
 	
 	public static boolean deleteAndDissociate(com.projetoea.escolasfutebol.classesjava.Eventojogo eventojogo, org.orm.PersistentSession session)throws PersistentException {
 		try {
-			com.projetoea.escolasfutebol.classesjava.Jogo jogo = eventojogo.getJogo();
 			if (eventojogo.getJogo() != null) {
 				eventojogo.getJogo().eventojogo.remove(eventojogo);
 			}
-			eventojogo.setORM_Jogo(jogo);
 			
-			com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo = eventojogo.getTipoeventojogo();
 			if (eventojogo.getTipoeventojogo() != null) {
 				eventojogo.getTipoeventojogo().eventojogo.remove(eventojogo);
 			}
-			eventojogo.setORM_Tipoeventojogo(tipoeventojogo);
 			
 			if (eventojogo.getJogador() != null) {
 				eventojogo.getJogador().eventojogo.remove(eventojogo);
