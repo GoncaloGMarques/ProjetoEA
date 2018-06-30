@@ -1,10 +1,9 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.classesjava.Tipoutilizador;
-import com.projetoea.escolasfutebol.classesjava.TipoutilizadorDAO;
-import com.projetoea.escolasfutebol.classesjava.Utilizador;
-import com.projetoea.escolasfutebol.classesjava.UtilizadorDAO;
+import com.projetoea.escolasfutebol.classesjava.*;
 import org.orm.PersistentException;
+
+import java.util.List;
 
 public class UserBean {
 

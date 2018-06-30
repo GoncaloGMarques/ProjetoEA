@@ -2,10 +2,10 @@ package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
 import com.projetoea.escolasfutebol.Beans.GuestBean;
-import com.projetoea.escolasfutebol.classesjava.Equipa;
-import com.projetoea.escolasfutebol.classesjava.Torneio;
+import com.projetoea.escolasfutebol.classesjava.*;
 import com.vaadin.data.Binder;
 import com.vaadin.data.Validator;
+import com.vaadin.data.ValueProvider;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -16,8 +16,13 @@ import org.orm.PersistentException;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static com.projetoea.escolasfutebol.EscolasfutebolApplication.applicationBeansContext;
 
@@ -44,6 +49,12 @@ public class GerirTorneiosView extends Composite implements View {
 
     private DiretorAssociacaoBean diretorAssociacaoBean = applicationBeansContext.getBean(
             "DiretorAssociacaoBean",DiretorAssociacaoBean.class);
+    private GuestBean gueastBean = applicationBeansContext.getBean(
+            "GuestBean",GuestBean.class);
+
+    int pageCounter = 0;
+    List<Equipa> equipasEscolhidas = new ArrayList<>();
+    List<Equipa> equipasSemTorneio = null;
 
     public GerirTorneiosView() {
         horizontalLayout = new HorizontalLayout();
@@ -97,11 +108,13 @@ public class GerirTorneiosView extends Composite implements View {
 
     private Window createWindow() {
         Window createTorneioWindow = new Window("Criar Torneio");
-        createTorneioWindow.setWidth(500f, Unit.PIXELS);
+        createTorneioWindow.setWidth(1000f, Unit.PIXELS);
         createTorneioWindow.setModal(true);
         createTorneioWindow.center();
 
+        HorizontalLayout mainLayout = new HorizontalLayout();
         VerticalLayout verticalLayout = new VerticalLayout();
+        VerticalLayout leftVerticalLayout = new VerticalLayout();
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
         Label torneioHeader = new Label("Torneio");
@@ -158,11 +171,39 @@ public class GerirTorneiosView extends Composite implements View {
         Button createTorneio = new Button("Criar Torneio", event -> {
             try {
                 Torneio torneio = binderTorneio.getBean();
-                diretorAssociacaoBean.criarTorneio(torneio.getNome(), torneio.getDatainicio(), torneio.getDatafim());
+
+                //Criar Torneio
+                Torneio newTorneio = diretorAssociacaoBean.criarTorneio(torneio.getNome(), torneio.getDatainicio(), torneio.getDatafim());
+
+                //Criar Grupo
+                Grupo grupoTorneio = diretorAssociacaoBean.criarGrupoTorneio("Grupo0", newTorneio);
+
+                //Adicionar equipas ao torneio
+                //TODO: Todas as equipas ficam no mesmo Grupo
+                equipasEscolhidas.forEach(equipa -> {
+                    try {
+                        diretorAssociacaoBean.adicionarEquipasToTorneio(equipa, grupoTorneio, newTorneio);
+                    } catch (PersistentException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                //Criar Rondas dependendo das equipas
+                Rondatorneio rondatorneio = diretorAssociacaoBean.criarRondaTorneio(equipasEscolhidas.size(), newTorneio);
+
+                //Supondo que o Nome da fase e o numero de jogo nessa mesma fase!
+                //Criar jogos em relacao as Rondas do torneio
+                for (int i = 0; i < rondatorneio.getFase().getNomefase(); i+=2) {
+                    diretorAssociacaoBean.criarJogosRonda(
+                            newTorneio.getDatainicio().toLocalDateTime().plus(1, ChronoUnit.DAYS),
+                            equipasEscolhidas.get(i), equipasEscolhidas.get(i + 1), rondatorneio);
+                }
+
             } catch (PersistentException e) {
                 createError.setValue("Erro ao criar o Torneio! Tente de novo");
                 e.printStackTrace();
             }
+            createTorneioWindow.close();
         });
         createTorneio.setEnabled(false);
         binderTorneio.addStatusChangeListener(event -> createTorneio.setEnabled(binderTorneio.isValid()));
@@ -175,11 +216,71 @@ public class GerirTorneiosView extends Composite implements View {
         //CENAS EQUIPAS
         /////////////
 
-        /*
-          TODO: Criar duas tabelas SIDE by SIDE para por as equipas no Torneio
-          TODO: Carregar as equipas que podem participar em Torneios pode ser necessario (Se forem muitas equipas)
-                handle that shit
-        */
+        HorizontalLayout panelPageSelector = new HorizontalLayout();
+
+        Panel teamsPanel = new Panel();
+        VerticalLayout panelVerticalLayout = new VerticalLayout();
+        teamsPanel.setContent(panelVerticalLayout);
+
+        Label pageLabel = new Label();
+        pageLabel.setValue(String.valueOf(pageCounter));
+        Button advance = new Button(null, VaadinIcons.ARROW_RIGHT);
+        Button back = new Button(null, VaadinIcons.ARROW_LEFT);
+        advance.addClickListener(onClick -> {
+            pageCounter += 1;
+            pageLabel.setValue(String.valueOf(pageCounter));
+            equipasSemTorneio.clear();
+            //Load from
+            //  page * 10   --to-->  (page * 10) + 10
+            try {
+                equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
+                if(equipasSemTorneio.size() < 10) {
+                    advance.setEnabled(false);
+                    back.setEnabled(true);
+                }
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+            updateGrid(panelVerticalLayout);
+        });
+        back.addClickListener(onClick -> {
+            pageCounter -= 1;
+            pageLabel.setValue(String.valueOf(pageCounter));
+            equipasSemTorneio.clear();
+            //Load from
+            //  page * 10   --to-->  (page * 10) + 10
+            try {
+                equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
+                if(pageCounter == 0){
+                    back.setEnabled(false);
+                    advance.setEnabled(true);
+                }
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+            updateGrid(panelVerticalLayout);
+        });
+
+        panelPageSelector.addComponent(back);
+        panelPageSelector.addComponent(pageLabel);
+        panelPageSelector.addComponent(advance);
+
+        try {
+            equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+
+        if(pageCounter == 0) {
+            back.setEnabled(false);
+        }
+
+        if(equipasSemTorneio.size() < 10) {
+            advance.setEnabled(false);
+        }
+
+        updateGrid(panelVerticalLayout);
+
         //////////////
         //CENAS EQUIPAS
         /////////////
@@ -187,11 +288,61 @@ public class GerirTorneiosView extends Composite implements View {
         verticalLayout.addComponent(nomeTorneioField);
         verticalLayout.addComponent(dateTimeFieldInicio);
         verticalLayout.addComponent(dateTimeFieldFim);
+
         horizontalLayout.addComponents(createTorneio,createError);
+
         verticalLayout.addComponent(horizontalLayout);
 
-        createTorneioWindow.setContent(verticalLayout);
+        leftVerticalLayout.addComponent(teamsPanel);
+
+        leftVerticalLayout.addComponent(panelPageSelector);
+
+        mainLayout.addComponent(leftVerticalLayout);
+        mainLayout.addComponent(verticalLayout); //Este e o Right Vertical Layout
+
+        createTorneioWindow.setContent(mainLayout);
         return createTorneioWindow;
+    }
+
+    private void updateGrid(Layout panelLayout){
+        panelLayout.removeAllComponents();
+        Objects.requireNonNull(equipasSemTorneio).forEach(e -> {
+            if(equipasSemTorneio.indexOf(e) >= 10) return;
+            HorizontalLayout itemHorizontalLayout = new HorizontalLayout();
+
+            CheckBox boxLinha = new CheckBox(null, false);
+            if(equipasEscolhidas
+                    .stream()
+                    .anyMatch(equipa -> equipa.getID() == e.getID())){
+                boxLinha.setValue(true);
+            }
+
+
+            boxLinha.addValueChangeListener(checked -> {
+
+                //TODO: Review this
+                //Criar um novo objeto de equipa para
+                //prevenir que ao limpar a lista de equipas
+                //sem torneio seja apagada tbem a lista de equipas escolhidas
+                Equipa equipa = new Equipa();
+                equipa.setCampo(e.getCampo());
+                equipa.setEscalao(e.getEscalao());
+                equipa.setEscolas(e.getEscolas());
+                equipa.setNome(e.getNome());
+                equipa.setID(e.getID());
+                if(checked.getValue()) {
+                    equipasEscolhidas.add(equipa);
+                }
+                else equipasEscolhidas.removeIf(iterEquipa -> iterEquipa.getID() == equipa.getID());
+            });
+
+            addComponentLinha(boxLinha, Alignment.MIDDLE_CENTER, itemHorizontalLayout);
+            addLinha(e.getNome(), Alignment.MIDDLE_CENTER, itemHorizontalLayout);
+            addLinha(e.getEscolas().getNome(), Alignment.MIDDLE_CENTER, itemHorizontalLayout);
+            //panelVerticalLayout
+            panelLayout.addComponent(itemHorizontalLayout);
+            itemHorizontalLayout.setSizeFull();
+        });
     }
 
     private void setGridColumns(Grid<Torneio> grid){
@@ -220,5 +371,17 @@ public class GerirTorneiosView extends Composite implements View {
         } catch (PersistentException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addComponentLinha(Component component, Alignment alignment, HorizontalLayout hl){
+        hl.addComponent(component);
+        hl.setComponentAlignment(component, alignment);
+    }
+
+    private void addLinha(String value, Alignment alignment, HorizontalLayout hl)
+    {
+        Label l = new Label(value);
+        hl.addComponent(l);
+        hl.setComponentAlignment(l, alignment);
     }
 }
