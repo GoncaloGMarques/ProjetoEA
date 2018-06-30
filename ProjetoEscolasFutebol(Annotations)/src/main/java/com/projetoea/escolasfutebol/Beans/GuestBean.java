@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class GuestBean {
@@ -38,9 +40,18 @@ public class GuestBean {
         return torneios;
     }
 
+
+    public Participantecampeonato[] getParticipantesByCampeonato(Campeonato campeonato) throws PersistentException {
+        return ParticipantecampeonatoDAO.listParticipantecampeonatoByQuery("ID = " + campeonato.getID(),null);
+    }
+
     public Participantecampeonato[] getParticipantesCampeonato() throws PersistentException
     {
         Participantecampeonato[] participantes = ParticipantecampeonatoDAO.listParticipantecampeonatoByQuery(null,null);
         return participantes;
+    }
+
+    public List<Campeonato> getCampeonatos() throws PersistentException{
+        return Arrays.asList(CampeonatoDAO.listCampeonatoByQuery(null, null));
     }
 }

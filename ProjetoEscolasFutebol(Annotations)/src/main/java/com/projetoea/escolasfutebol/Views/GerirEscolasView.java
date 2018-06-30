@@ -174,7 +174,6 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
         remove.addStyleName("v-button");
         remove.setEnabled(false);
 
-
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.addComponent(create);
         horizontalLayout.addComponent(remove);

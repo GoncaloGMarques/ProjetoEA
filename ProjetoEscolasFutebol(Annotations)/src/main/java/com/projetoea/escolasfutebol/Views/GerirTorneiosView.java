@@ -49,9 +49,9 @@ public class GerirTorneiosView extends Composite implements View {
     private GuestBean gueastBean = applicationBeansContext.getBean(
             "GuestBean",GuestBean.class);
 
-    int pageCounter = 0;
-    List<Equipa> equipasEscolhidas = new ArrayList<>();
-    List<Equipa> equipasSemTorneio = null;
+    private int pageCounter = 0;
+    private List<Equipa> equipasEscolhidas = new ArrayList<>();
+    private List<Equipa> equipasSemTorneio = null;
 
     public GerirTorneiosView() {
         horizontalLayout = new HorizontalLayout();
@@ -65,23 +65,22 @@ public class GerirTorneiosView extends Composite implements View {
         horizontalLayout.addComponent(verticalLayoutRight);
 
         proximosTorneiosPanel = new Panel("Proximos Torneios");
-        proximosTorneiosPanel.setSizeUndefined();
         proximosTorneiosGrid = new Grid<>();
-        proximosTorneiosGrid.setSizeFull();
+        //proximosTorneiosGrid.setSizeFull();
         setGridColumns(proximosTorneiosGrid);
         proximosTorneiosPanel.setContent(proximosTorneiosGrid);
 
         torneiosLivePanel = new Panel("Torneios a decorrer");
         torneiosLivePanel.setSizeUndefined();
         torneiosLiveGrid = new Grid<>();
-        torneiosLiveGrid.setSizeFull();
+        //torneiosLiveGrid.setSizeFull();
         setGridColumns(torneiosLiveGrid);
         torneiosLivePanel.setContent(torneiosLiveGrid);
 
         torneiosTerminadosPanel = new Panel("Torneios terminados");
         torneiosTerminadosPanel.setSizeUndefined();
         torneiosTerminadosGrid = new Grid<>();
-        torneiosTerminadosGrid.setSizeFull();
+        //torneiosTerminadosGrid.setSizeFull();
         setGridColumns(torneiosTerminadosGrid);
         torneiosTerminadosPanel.setContent(torneiosTerminadosGrid);
 
@@ -98,6 +97,11 @@ public class GerirTorneiosView extends Composite implements View {
 
         verticalLayoutRight.addComponent(torneiosLivePanel);
         verticalLayoutRight.addComponent(torneiosTerminadosPanel);
+
+        proximosTorneiosPanel.setSizeFull();
+        verticalLayoutRight.setExpandRatio(torneiosLivePanel, 100.0f);
+        verticalLayoutRight.setExpandRatio(torneiosTerminadosPanel, 100.0f);
+        verticalLayoutLeft.setExpandRatio(proximosTorneiosPanel,100.0f);
 
         setCompositionRoot(horizontalLayout);
     }
@@ -188,9 +192,7 @@ public class GerirTorneiosView extends Composite implements View {
                 //Criar Rondas dependendo das equipas
                 Rondatorneio rondatorneio = diretorAssociacaoBean.criarRondaTorneio(equipasEscolhidas.size(), newTorneio);
 
-                //Supondo que o Nome da fase e o numero de jogo nessa mesma fase!
-                //Criar jogos em relacao as Rondas do torneio
-                for (int i = 0; i < rondatorneio.getFase().getNomefase(); i+=2) {
+                for (int i = 0; i < equipasEscolhidas.size(); i+=2) {
                     diretorAssociacaoBean.criarJogosRonda(
                             newTorneio.getDatainicio().toLocalDateTime().plus(1, ChronoUnit.DAYS),
                             equipasEscolhidas.get(i), equipasEscolhidas.get(i + 1), rondatorneio);
@@ -217,7 +219,9 @@ public class GerirTorneiosView extends Composite implements View {
 
         Panel teamsPanel = new Panel();
         VerticalLayout panelVerticalLayout = new VerticalLayout();
+        panelVerticalLayout.setSizeFull();
         teamsPanel.setContent(panelVerticalLayout);
+        teamsPanel.setSizeFull();
 
         Label pageLabel = new Label();
         pageLabel.setValue(String.valueOf(pageCounter));
@@ -227,8 +231,6 @@ public class GerirTorneiosView extends Composite implements View {
             pageCounter += 1;
             pageLabel.setValue(String.valueOf(pageCounter));
             equipasSemTorneio.clear();
-            //Load from
-            //  page * 10   --to-->  (page * 10) + 10
             try {
                 equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
                 if(equipasSemTorneio.size() < 10) {
@@ -244,8 +246,6 @@ public class GerirTorneiosView extends Composite implements View {
             pageCounter -= 1;
             pageLabel.setValue(String.valueOf(pageCounter));
             equipasSemTorneio.clear();
-            //Load from
-            //  page * 10   --to-->  (page * 10) + 10
             try {
                 equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
                 if(pageCounter == 0){
