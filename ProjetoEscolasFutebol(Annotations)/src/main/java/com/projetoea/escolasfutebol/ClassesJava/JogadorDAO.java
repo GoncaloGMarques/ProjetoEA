@@ -327,6 +327,10 @@ public class JogadorDAO {
 				jogador.getEquipa().jogador.remove(jogador);
 			}
 			
+			if (jogador.getEscolas() != null) {
+				jogador.getEscolas().jogador.remove(jogador);
+			}
+			
 			com.projetoea.escolasfutebol.classesjava.Eventojogo[] lEventojogos = jogador.eventojogo.toArray();
 			for(int i = 0; i < lEventojogos.length; i++) {
 				lEventojogos[i].setJogador(null);
@@ -343,6 +347,10 @@ public class JogadorDAO {
 		try {
 			if (jogador.getEquipa() != null) {
 				jogador.getEquipa().jogador.remove(jogador);
+			}
+			
+			if (jogador.getEscolas() != null) {
+				jogador.getEscolas().jogador.remove(jogador);
 			}
 			
 			com.projetoea.escolasfutebol.classesjava.Eventojogo[] lEventojogos = jogador.eventojogo.toArray();

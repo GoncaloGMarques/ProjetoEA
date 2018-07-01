@@ -16,8 +16,6 @@ import java.time.LocalTime;
 @SpringView
 public class PaginaInicialView extends Composite implements View {
 
-    @Autowired
-    private GuestBean bean;
     VerticalLayout vt;
     Panel JogosHojePanel;
 
@@ -53,7 +51,7 @@ public class PaginaInicialView extends Composite implements View {
         Jogo[] test;
         GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            test = guestBean.GetJogosHoje();
+            test = guestBean.getJogosHoje();
             ConstructJogosTable(test);
         } catch (PersistentException e) {
             e.printStackTrace();

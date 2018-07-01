@@ -13,9 +13,10 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
 import java.util.List;
 
 public class EscolasDAO {
@@ -68,6 +69,7 @@ public class EscolasDAO {
 			return (Escolas) session.load(com.projetoea.escolasfutebol.classesjava.Escolas.class, new Integer(ID));
 		}
 		catch (Exception e) {
+
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -335,6 +337,10 @@ public class EscolasDAO {
 			for(int i = 0; i < lEquipas.length; i++) {
 				lEquipas[i].setEscolas(null);
 			}
+			com.projetoea.escolasfutebol.classesjava.Jogador[] lJogadors = escolas.jogador.toArray();
+			for(int i = 0; i < lJogadors.length; i++) {
+				lJogadors[i].setEscolas(null);
+			}
 			return delete(escolas);
 		}
 		catch(Exception e) {
@@ -356,6 +362,10 @@ public class EscolasDAO {
 			com.projetoea.escolasfutebol.classesjava.Equipa[] lEquipas = escolas.equipa.toArray();
 			for(int i = 0; i < lEquipas.length; i++) {
 				lEquipas[i].setEscolas(null);
+			}
+			com.projetoea.escolasfutebol.classesjava.Jogador[] lJogadors = escolas.jogador.toArray();
+			for(int i = 0; i < lJogadors.length; i++) {
+				lJogadors[i].setEscolas(null);
 			}
 			try {
 				session.delete(escolas);

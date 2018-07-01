@@ -28,7 +28,7 @@ public class CalendarioView extends Composite implements View {
             public void valueChange(HasValue.ValueChangeEvent<LocalDate> valueChangeEvent) {
                 GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
                 try {
-                    Jogo[] test = guestBean.GetJogoByData(date.getValue());
+                    Jogo[] test = guestBean.getJogoByData(date.getValue());
                     ConstructJogosTable(test);
                 } catch (PersistentException e) {
                     e.printStackTrace();
@@ -74,7 +74,7 @@ public class CalendarioView extends Composite implements View {
         date.setValue(LocalDate.now());
         GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            Jogo[] test = guestBean.GetJogoByData(date.getValue());
+            Jogo[] test = guestBean.getJogoByData(date.getValue());
             ConstructJogosTable(test);
         } catch (PersistentException e) {
             e.printStackTrace();

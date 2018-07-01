@@ -1,14 +1,29 @@
 package com.projetoea.escolasfutebol.Beans;
 
-import com.projetoea.escolasfutebol.classesjava.Utilizador;
-import com.projetoea.escolasfutebol.classesjava.UtilizadorDAO;
+import com.projetoea.escolasfutebol.classesjava.*;
 import org.orm.PersistentException;
+
+import java.util.List;
 
 public class UserBean {
 
+    public Utilizador createUtilizador(String nome, String email, String password, int tipoUtilizador) throws PersistentException {
+        Utilizador newUser = UtilizadorDAO.createUtilizador();
+        newUser.setNome(nome);
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        Tipoutilizador tipoutilizador = TipoutilizadorDAO.loadTipoutilizadorByQuery("ID = " + tipoUtilizador, null);
+        newUser.setTipoutilizador(tipoutilizador);
+        UtilizadorDAO.save(newUser);
+        return newUser;
+    }
+
+    public Utilizador getUtilizadorByID(int ID) throws PersistentException {
+        return UtilizadorDAO.loadUtilizadorByQuery("ID = " + ID, "ID");
+    }
+
     public Utilizador getUtilizador(String name, String password) throws PersistentException {
-        Utilizador user = tryLogin(name,password);
-        return user;
+        return tryLogin(name,password);
     }
 
     private Utilizador tryLogin(String username, String password) throws PersistentException {

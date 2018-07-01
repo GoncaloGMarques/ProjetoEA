@@ -3,11 +3,13 @@ package com.projetoea.escolasfutebol;
 import com.projetoea.escolasfutebol.Beans.UserBean;
 import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.projetoea.escolasfutebol.Views.*;
+import com.projetoea.escolasfutebol.classesjava.UtilizadorDAO;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
+import org.orm.PersistentException;
 
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol/DiretorAssociacao")
@@ -26,8 +28,6 @@ public class DiretorAssociacaoVaadinUI extends UI {
     }
 
     public Label userName;
-    UserBean userBean;
-
 
     public static boolean logged = false;
     static VerticalLayout menuLinks;
@@ -36,10 +36,15 @@ public class DiretorAssociacaoVaadinUI extends UI {
         Label title = new Label("Menu");
         userName = new Label();
 
-        Utilizador user = getSession().getAttribute(Utilizador.class);
+        Utilizador user = null;//= getSession().getAttribute(Utilizador.class);
+        try {
+            user = UtilizadorDAO.loadUtilizadorByQuery("tipoutilizadorID = 1", null);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
 
         if(user != null) userName.setValue("Presidente " + user.getNome());
-        else userName.setValue("YOU SHOULD NOT BE HERE");
+        else return; //Do not render anything
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");

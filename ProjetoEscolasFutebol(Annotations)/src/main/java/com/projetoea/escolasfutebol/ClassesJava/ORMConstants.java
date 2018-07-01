@@ -52,6 +52,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_ESCOLAS_EQUIPA = -909556436;
 	
+	final int KEY_ESCOLAS_JOGADOR = 1940635757;
+	
 	final int KEY_EVENTOJOGO_JOGADOR = 282686571;
 	
 	final int KEY_EVENTOJOGO_JOGO = -1706097814;
@@ -65,6 +67,8 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_GRUPO_TORNEIO = 311177470;
 	
 	final int KEY_JOGADOR_EQUIPA = -2065152408;
+	
+	final int KEY_JOGADOR_ESCOLAS = 445594733;
 	
 	final int KEY_JOGADOR_EVENTOJOGO = 681304121;
 	

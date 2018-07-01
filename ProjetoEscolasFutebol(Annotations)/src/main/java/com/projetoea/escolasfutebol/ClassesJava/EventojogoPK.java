@@ -63,7 +63,7 @@ public class EventojogoPK implements Serializable {
 		return this.ID;
 	}
 	
-	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Jogo.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="jogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Jogo jogo;
@@ -76,7 +76,7 @@ public class EventojogoPK implements Serializable {
 		return this.jogo;
 	}
 	
-	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.projetoea.escolasfutebol.classesjava.Tipoeventojogo.class, fetch=FetchType.LAZY)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="tipoeventojogoID", referencedColumnName="ID", nullable=false) })	
 	private com.projetoea.escolasfutebol.classesjava.Tipoeventojogo tipoeventojogo;

@@ -1,22 +1,40 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.GuestBean;
+import com.projetoea.escolasfutebol.classesjava.Campeonato;
 import com.projetoea.escolasfutebol.classesjava.Participantecampeonato;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.Resource;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
 
+import java.util.List;
+
 @SpringView
 public class CampeonatoView extends Composite implements View {
-    Panel classificacaoPanel;
+    private GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
+    private Panel classificacaoPanel;
+    private ComboBox<Campeonato> campeonatosComboBox = new ComboBox<>();
 
     public CampeonatoView() {
         VerticalLayout vt = new VerticalLayout();
         vt.setSizeFull();
         Label classificacaoLabel = new Label("Classificacao:");
+
+        campeonatosComboBox.setCaption("Selecione um campeonato");
+        campeonatosComboBox.setEmptySelectionAllowed(false);
+        campeonatosComboBox.setPlaceholder("Nenhum Campeonato selecionado");
+        campeonatosComboBox.setWidth(350.0f, Unit.PIXELS);
+        campeonatosComboBox.setItemCaptionGenerator((ItemCaptionGenerator<Campeonato>) Campeonato::getNome);
+        campeonatosComboBox.addValueChangeListener(event -> {
+            Participantecampeonato[] participantesCampeonato = event.getValue().participantecampeonato.toArray();
+            ConstructParticipantesTable(participantesCampeonato, classificacaoPanel);
+        });
+        vt.addComponent(campeonatosComboBox);
+
         vt.addComponent(classificacaoLabel);
         Panel descriptionEmJogo = new Panel();
         HorizontalLayout DetalhesTabela = new HorizontalLayout();
@@ -44,10 +62,9 @@ public class CampeonatoView extends Composite implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        GuestBean guestBean = EscolasfutebolApplication.applicationBeansContext.getBean("GuestBean", GuestBean.class);
         try {
-            Participantecampeonato[] test = guestBean.GetParticipantesCampeonato();
-            ConstructParticipantesTable(test, classificacaoPanel);
+            List<Campeonato> campeonatos = guestBean.getCampeonatos();
+            campeonatosComboBox.setItems(campeonatos);
         } catch (PersistentException e) {
             e.printStackTrace();
         }

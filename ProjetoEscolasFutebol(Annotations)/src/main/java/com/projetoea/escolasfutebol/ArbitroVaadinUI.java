@@ -37,6 +37,7 @@ public class ArbitroVaadinUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
 
         Utilizador utilizador = getSession().getAttribute(Utilizador.class);
+
         out.println("Arbitro LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
 
         Label title = new Label("Menu");

@@ -27,6 +27,8 @@ public class JogadorCriteria extends AbstractORMCriteria {
 	public final IntegerExpression golos;
 	public final IntegerExpression equipaId;
 	public final AssociationExpression equipa;
+	public final IntegerExpression escolasId;
+	public final AssociationExpression escolas;
 	public final CollectionExpression eventojogo;
 	
 	public JogadorCriteria(Criteria criteria) {
@@ -39,6 +41,8 @@ public class JogadorCriteria extends AbstractORMCriteria {
 		golos = new IntegerExpression("golos", this);
 		equipaId = new IntegerExpression("equipa.ID", this);
 		equipa = new AssociationExpression("equipa", this);
+		escolasId = new IntegerExpression("escolas.ID", this);
+		escolas = new AssociationExpression("escolas", this);
 		eventojogo = new CollectionExpression("ORM_eventojogo", this);
 	}
 	
@@ -52,6 +56,10 @@ public class JogadorCriteria extends AbstractORMCriteria {
 	
 	public EquipaCriteria createEquipaCriteria() {
 		return new EquipaCriteria(createCriteria("equipa"));
+	}
+	
+	public EscolasCriteria createEscolasCriteria() {
+		return new EscolasCriteria(createCriteria("escolas"));
 	}
 	
 	public com.projetoea.escolasfutebol.classesjava.EventojogoCriteria createEventojogoCriteria() {

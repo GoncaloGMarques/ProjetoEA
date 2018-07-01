@@ -13,8 +13,8 @@
  */
 package com.projetoea.escolasfutebol.classesjava;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="equipa")
@@ -119,7 +119,7 @@ public class Equipa implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_participantecampeonato = new java.util.HashSet();
 	
-	private void setID(int value) {
+	public void setID(int value) {
 		this.ID = value;
 	}
 	

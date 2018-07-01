@@ -64,6 +64,16 @@
     padding-top: 7px;
     font-weight: bold;
   }
+  .v-warning-label {
+    color: rgb(255, 255, 0);
+    padding-top: 7px;
+    font-weight: bold;
+  }
+  .v-success-label {
+    color: rgb(0, 255, 0);
+    padding-top: 7px;
+    font-weight: bold;
+  }
 
   .v-error-label-Input {
     color: rgb(255, 0, 0);
@@ -71,10 +81,24 @@
     font-weight: bold;
   }
 
+  .v-header-label{
+    font-weight: bold;
+    font-size: large;
+  }
+
   .v-button-MenuLinks-Selected
   {
     background: rgb(21, 90, 0);
     box-shadow: none;
     border: none;
+  }
+
+  .v-button {
+    height: auto;
+  }
+
+  .v-grid-item-removed {
+    text-decoration: line-through;
+    background-color: rgba(255, 0, 0, 0.75);
   }
 }

@@ -26,6 +26,9 @@ public class Escolas implements Serializable {
 		if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_EQUIPA) {
 			return ORM_equipa;
 		}
+		else if (key == com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_JOGADOR) {
+			return ORM_jogador;
+		}
 		
 		return null;
 	}
@@ -75,6 +78,11 @@ public class Escolas implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set ORM_equipa = new java.util.HashSet();
+	
+	@OneToMany(mappedBy="escolas", targetEntity=com.projetoea.escolasfutebol.classesjava.Jogador.class)	
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
+	private java.util.Set ORM_jogador = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -147,6 +155,17 @@ public class Escolas implements Serializable {
 	
 	@Transient	
 	public final com.projetoea.escolasfutebol.classesjava.EquipaSetCollection equipa = new com.projetoea.escolasfutebol.classesjava.EquipaSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_EQUIPA, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_EQUIPA_ESCOLAS, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_Jogador(java.util.Set value) {
+		this.ORM_jogador = value;
+	}
+	
+	private java.util.Set getORM_Jogador() {
+		return ORM_jogador;
+	}
+	
+	@Transient	
+	public final com.projetoea.escolasfutebol.classesjava.JogadorSetCollection jogador = new com.projetoea.escolasfutebol.classesjava.JogadorSetCollection(this, _ormAdapter, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_ESCOLAS_JOGADOR, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_JOGADOR_ESCOLAS, com.projetoea.escolasfutebol.classesjava.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

@@ -135,6 +135,17 @@ public class PartcipantetorneioDAO {
 			throw new PersistentException(e);
 		}
 	}
+
+	public static Partcipantetorneio[] listPartcipantetorneioByQuery(String condition, String orderBy, String limit, String offset) throws PersistentException {
+		try {
+			PersistentSession session = com.projetoea.escolasfutebol.classesjava.EscolasFutebolBetterPersistentManager.instance().getSession();
+			return listPartcipantetorneioByQuery(session, condition, orderBy, limit, offset);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
 	
 	public static Partcipantetorneio[] listPartcipantetorneioByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
@@ -146,7 +157,7 @@ public class PartcipantetorneioDAO {
 			throw new PersistentException(e);
 		}
 	}
-	
+
 	public static List queryPartcipantetorneio(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Partcipantetorneio as Partcipantetorneio");
 		if (condition != null)
@@ -162,7 +173,7 @@ public class PartcipantetorneioDAO {
 			throw new PersistentException(e);
 		}
 	}
-	
+
 	public static List queryPartcipantetorneio(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Partcipantetorneio as Partcipantetorneio");
 		if (condition != null)
@@ -179,10 +190,41 @@ public class PartcipantetorneioDAO {
 			throw new PersistentException(e);
 		}
 	}
-	
+
+	public static List queryPartcipantetorneio(PersistentSession session, String condition, String orderBy, String limit, String offset) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From com.projetoea.escolasfutebol.classesjava.Partcipantetorneio as Partcipantetorneio");
+		if (condition != null)
+			sb.append(" Where ").append(condition);
+		if (orderBy != null)
+			sb.append(" Order By ").append(orderBy);
+		try {
+			Query query = session.createQuery(sb.toString());
+			if(limit != null)
+				query.setMaxResults(Integer.parseInt(limit));
+			if(offset != null)
+				query.setFirstResult(Integer.parseInt(offset));
+			return query.list();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+
 	public static Partcipantetorneio[] listPartcipantetorneioByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		try {
 			List list = queryPartcipantetorneio(session, condition, orderBy);
+			return (Partcipantetorneio[]) list.toArray(new Partcipantetorneio[list.size()]);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+
+	public static Partcipantetorneio[] listPartcipantetorneioByQuery(PersistentSession session, String condition, String orderBy, String limit, String offset) throws PersistentException {
+		try {
+			List list = queryPartcipantetorneio(session, condition, orderBy, limit, offset);
 			return (Partcipantetorneio[]) list.toArray(new Partcipantetorneio[list.size()]);
 		}
 		catch (Exception e) {
