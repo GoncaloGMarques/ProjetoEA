@@ -2,13 +2,16 @@ package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
 import com.projetoea.escolasfutebol.Beans.GuestBean;
-import com.projetoea.escolasfutebol.classesjava.*;
-import com.vaadin.data.Binder;
-import com.vaadin.data.Validator;
+import com.projetoea.escolasfutebol.classesjava.Equipa;
+import com.projetoea.escolasfutebol.classesjava.Grupo;
+import com.projetoea.escolasfutebol.classesjava.Rondatorneio;
+import com.projetoea.escolasfutebol.classesjava.Torneio;
+import com.vaadin.data.*;
+import com.vaadin.event.selection.MultiSelectionEvent;
+import com.vaadin.event.selection.MultiSelectionListener;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.SerializablePredicate;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
@@ -20,11 +23,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.projetoea.escolasfutebol.EscolasfutebolApplication.applicationBeansContext;
+import static com.projetoea.escolasfutebol.Notifications.showErrorNotification;
+import static com.projetoea.escolasfutebol.Notifications.showSuccessNotification;
 
 @SpringView
-public class GerirTorneiosView extends Composite implements View {
+public class GerirTorneiosView extends Composite implements View, MultiSelectionListener<Equipa> {
 
     private HorizontalLayout horizontalLayout;
     private VerticalLayout verticalLayoutLeft ;
@@ -34,14 +41,11 @@ public class GerirTorneiosView extends Composite implements View {
     private Grid<Torneio> torneiosLiveGrid;
     private Grid<Torneio> torneiosTerminadosGrid;
 
-    private Grid<Equipa> equipasLivres; //Todas as equipas que podem entrar neste torneio
-    private Grid<Equipa> equipasNoTorneio; //Estas equipas estao no torneio que esta a ser criado agora
+    private Grid<Equipa> equipasLivresGrid; //Todas as equipas que podem entrar neste torneio
 
     private Panel proximosTorneiosPanel;
     private Panel torneiosLivePanel;
     private Panel torneiosTerminadosPanel;
-    private Label createError;
-
     private Button criarTorneio;
 
     private DiretorAssociacaoBean diretorAssociacaoBean = applicationBeansContext.getBean(
@@ -50,8 +54,11 @@ public class GerirTorneiosView extends Composite implements View {
             "GuestBean",GuestBean.class);
 
     private int pageCounter = 0;
-    private List<Equipa> equipasEscolhidas = new ArrayList<>();
-    private List<Equipa> equipasSemTorneio = null;
+    private List<Equipa> currentlyEditing;
+    //private List<Equipa> equipasSemTorneio = null;
+    private Button createTorneio;
+    private Binder<Torneio> binderTorneio;
+
 
     public GerirTorneiosView() {
         horizontalLayout = new HorizontalLayout();
@@ -65,8 +72,10 @@ public class GerirTorneiosView extends Composite implements View {
         horizontalLayout.addComponent(verticalLayoutRight);
 
         proximosTorneiosPanel = new Panel("Proximos Torneios");
+        proximosTorneiosPanel.setResponsive(true);
+        proximosTorneiosPanel.setWidth(100.0f, Unit.PERCENTAGE);
         proximosTorneiosGrid = new Grid<>();
-        //proximosTorneiosGrid.setSizeFull();
+        proximosTorneiosGrid.setSizeFull();
         setGridColumns(proximosTorneiosGrid);
         proximosTorneiosPanel.setContent(proximosTorneiosGrid);
 
@@ -86,12 +95,11 @@ public class GerirTorneiosView extends Composite implements View {
 
         criarTorneio = new Button("Criar Torneio", VaadinIcons.PLUS);
         criarTorneio.addClickListener((Button.ClickListener) event -> {
-            getUI().getUI().addWindow(createWindow());
+            Window window = createWindow();
+            getUI().addWindow(window);
         });
 
-        /*
-        TODO: Ver informacoes de um Campeonato numa outra window
-        */
+        /* TODO: Ver informacoes de um Torneio numa outra window */
         verticalLayoutLeft.addComponent(criarTorneio);
         verticalLayoutLeft.addComponent(proximosTorneiosPanel);
 
@@ -106,23 +114,46 @@ public class GerirTorneiosView extends Composite implements View {
         setCompositionRoot(horizontalLayout);
     }
 
-
     private Window createWindow() {
         Window createTorneioWindow = new Window("Criar Torneio");
         createTorneioWindow.setWidth(1000f, Unit.PIXELS);
         createTorneioWindow.setModal(true);
-        createTorneioWindow.center();
+
+        Label infoLabel = new Label("INFORMACAO: Tem de ter mais de 1 equipa e o numero de equipas tem de ser par");
+
+        equipasLivresGrid = new Grid<>("Equipas disponiveis");
+        equipasLivresGrid.addColumn(Equipa::getNome).setCaption("Nome");
+        equipasLivresGrid.addColumn((ValueProvider<Equipa, Object>) equipa -> equipa.getEscolas().getNome()).setCaption("Escola");
+        equipasLivresGrid.addColumn((ValueProvider<Equipa, Object>) Equipa::getEscalao).setCaption("Escalao");
+
+        Stream<Equipa> equipasStream = null;
+        try {
+            equipasStream = diretorAssociacaoBean.getEquipas();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+
+        equipasLivresGrid.setItems(Objects.requireNonNull(equipasStream).collect(Collectors.toList()));
+        equipasLivresGrid.setSelectionMode(Grid.SelectionMode.MULTI);
+        equipasLivresGrid.asMultiSelect().addSelectionListener(this);
+
 
         HorizontalLayout mainLayout = new HorizontalLayout();
         VerticalLayout verticalLayout = new VerticalLayout();
         VerticalLayout leftVerticalLayout = new VerticalLayout();
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
+        verticalLayout.addComponent(infoLabel);
+
         Label torneioHeader = new Label("Torneio");
         torneioHeader.setIcon(VaadinIcons.TROPHY);
         torneioHeader.setStyleName("v-header-label");
 
-        Binder<Torneio> binderTorneio = new Binder<>();
+        createTorneio = new Button("Criar Torneio");
+
+        binderTorneio = new Binder<>();
+        binderTorneio.addStatusChangeListener((StatusChangeListener)
+                event -> createTorneio.setEnabled(event.getBinder().isValid()));
 
         //Nome
         TextField nomeTorneioField = new TextField("Nome");
@@ -134,7 +165,6 @@ public class GerirTorneiosView extends Composite implements View {
 
         //Data fim
         DateTimeField dateTimeFieldFim = new DateTimeField("Data Fim");
-
 
         binderTorneio.setBean(new Torneio());
 
@@ -155,21 +185,23 @@ public class GerirTorneiosView extends Composite implements View {
 
         binderTorneio.forField(dateTimeFieldFim)
                 .asRequired("Tem de ser inidicada uma data para o Fim do Evento")
+                .withValidator((Validator<LocalDateTime>) (value, context) -> {
+                    if(value.isBefore(LocalDateTime.now()))
+                        return ValidationResult.error("Data deve ser depois de hoje");
+                    if(value.isBefore(dateTimeFieldInicio.getValue()))
+                        return ValidationResult.error("Data deve ser depois da data de inicio");
+                    else return ValidationResult.ok();
+                })
                 .bind(torneio -> {
                             if(torneio.getDatafim() == null) return null;
                             return torneio.getDatafim().toLocalDateTime();
                         },
                         (torneio, localDateTime) -> torneio.setDatafim(Timestamp.valueOf(localDateTime)));
 
-        binderTorneio.withValidator(Validator.from((SerializablePredicate<Torneio>)
-                torneio ->
-                !torneio.getDatainicio().after(torneio.getDatainicio())
-                        && !torneio.getDatainicio().equals(torneio.getDatafim()),
-                "Data inicio tem de ser apos a de Fim"));
 
-        createError = new Label(null);
-        createError.setStyleName("v-error-label");
-        Button createTorneio = new Button("Criar Torneio", event -> {
+        //createError = new Label(null);
+        //createError.setStyleName("v-error-label");
+       createTorneio.addClickListener(event -> {
             try {
                 Torneio torneio = binderTorneio.getBean();
 
@@ -181,40 +213,42 @@ public class GerirTorneiosView extends Composite implements View {
 
                 //Adicionar equipas ao torneio
                 //TODO: Todas as equipas ficam no mesmo Grupo
-                equipasEscolhidas.forEach(equipa -> {
+                currentlyEditing.forEach(equipa -> {
                     try {
                         diretorAssociacaoBean.adicionarEquipasToTorneio(equipa, grupoTorneio, newTorneio);
                     } catch (PersistentException e) {
+                        showErrorNotification("Erro ao criar o Torneio! Tente de novo");
                         e.printStackTrace();
                     }
                 });
 
                 //Criar Rondas dependendo das equipas
-                Rondatorneio rondatorneio = diretorAssociacaoBean.criarRondaTorneio(equipasEscolhidas.size(), newTorneio);
+                Rondatorneio rondatorneio = diretorAssociacaoBean.criarRondaTorneio(currentlyEditing.size(), newTorneio);
 
-                for (int i = 0; i < equipasEscolhidas.size(); i+=2) {
+                for (int i = 0; i < currentlyEditing.size(); i+=2) {
                     diretorAssociacaoBean.criarJogosRonda(
                             newTorneio.getDatainicio().toLocalDateTime().plus(1, ChronoUnit.DAYS),
-                            equipasEscolhidas.get(i), equipasEscolhidas.get(i + 1), rondatorneio);
+                            currentlyEditing.get(i), currentlyEditing.get(i + 1), rondatorneio);
                 }
-
+                showSuccessNotification("Torneio criado com sucesso");
             } catch (PersistentException e) {
-                createError.setValue("Erro ao criar o Torneio! Tente de novo");
+                showErrorNotification("Erro ao criar o Torneio! Tente de novo");
                 e.printStackTrace();
             }
             createTorneioWindow.close();
         });
         createTorneio.setEnabled(false);
-        binderTorneio.addStatusChangeListener(event -> createTorneio.setEnabled(binderTorneio.isValid()));
+        binderTorneio.addStatusChangeListener(event -> {
+            createTorneio.setEnabled(binderTorneio.isValid());
+        });
         ///////////////
         //CENAS TORNEIO
         //////////////
 
 
-        //////////////
+        ///////////////
         //CENAS EQUIPAS
-        /////////////
-
+        ///////////////
         HorizontalLayout panelPageSelector = new HorizontalLayout();
 
         Panel teamsPanel = new Panel();
@@ -223,60 +257,7 @@ public class GerirTorneiosView extends Composite implements View {
         teamsPanel.setContent(panelVerticalLayout);
         teamsPanel.setSizeFull();
 
-        Label pageLabel = new Label();
-        pageLabel.setValue(String.valueOf(pageCounter));
-        Button advance = new Button(null, VaadinIcons.ARROW_RIGHT);
-        Button back = new Button(null, VaadinIcons.ARROW_LEFT);
-        advance.addClickListener(onClick -> {
-            pageCounter += 1;
-            pageLabel.setValue(String.valueOf(pageCounter));
-            equipasSemTorneio.clear();
-            try {
-                equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
-                if(equipasSemTorneio.size() < 10) {
-                    advance.setEnabled(false);
-                    back.setEnabled(true);
-                }
-            } catch (PersistentException e) {
-                e.printStackTrace();
-            }
-            updateGrid(panelVerticalLayout);
-        });
-        back.addClickListener(onClick -> {
-            pageCounter -= 1;
-            pageLabel.setValue(String.valueOf(pageCounter));
-            equipasSemTorneio.clear();
-            try {
-                equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
-                if(pageCounter == 0){
-                    back.setEnabled(false);
-                    advance.setEnabled(true);
-                }
-            } catch (PersistentException e) {
-                e.printStackTrace();
-            }
-            updateGrid(panelVerticalLayout);
-        });
-
-        panelPageSelector.addComponent(back);
-        panelPageSelector.addComponent(pageLabel);
-        panelPageSelector.addComponent(advance);
-
-        try {
-            equipasSemTorneio = diretorAssociacaoBean.getEquipasSemTorneio(pageCounter, 20);
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
-
-        if(pageCounter == 0) {
-            back.setEnabled(false);
-        }
-
-        if(equipasSemTorneio.size() < 10) {
-            advance.setEnabled(false);
-        }
-
-        updateGrid(panelVerticalLayout);
+        teamsPanel.setContent(equipasLivresGrid);
 
         //////////////
         //CENAS EQUIPAS
@@ -286,7 +267,7 @@ public class GerirTorneiosView extends Composite implements View {
         verticalLayout.addComponent(dateTimeFieldInicio);
         verticalLayout.addComponent(dateTimeFieldFim);
 
-        horizontalLayout.addComponents(createTorneio,createError);
+        horizontalLayout.addComponents(createTorneio);
 
         verticalLayout.addComponent(horizontalLayout);
 
@@ -299,47 +280,6 @@ public class GerirTorneiosView extends Composite implements View {
 
         createTorneioWindow.setContent(mainLayout);
         return createTorneioWindow;
-    }
-
-    private void updateGrid(Layout panelLayout){
-        panelLayout.removeAllComponents();
-        Objects.requireNonNull(equipasSemTorneio).forEach(e -> {
-            if(equipasSemTorneio.indexOf(e) >= 10) return;
-            HorizontalLayout itemHorizontalLayout = new HorizontalLayout();
-
-            CheckBox boxLinha = new CheckBox(null, false);
-            if(equipasEscolhidas
-                    .stream()
-                    .anyMatch(equipa -> equipa.getID() == e.getID())){
-                boxLinha.setValue(true);
-            }
-
-
-            boxLinha.addValueChangeListener(checked -> {
-
-                //TODO: Review this
-                //Criar um novo objeto de equipa para
-                //prevenir que ao limpar a lista de equipas
-                //sem torneio seja apagada tbem a lista de equipas escolhidas
-                Equipa equipa = new Equipa();
-                equipa.setCampo(e.getCampo());
-                equipa.setEscalao(e.getEscalao());
-                equipa.setEscolas(e.getEscolas());
-                equipa.setNome(e.getNome());
-                equipa.setID(e.getID());
-                if(checked.getValue()) {
-                    equipasEscolhidas.add(equipa);
-                }
-                else equipasEscolhidas.removeIf(iterEquipa -> iterEquipa.getID() == equipa.getID());
-            });
-
-            addComponentLinha(boxLinha, itemHorizontalLayout);
-            addLinha(e.getNome(), itemHorizontalLayout);
-            addLinha(e.getEscolas().getNome(), itemHorizontalLayout);
-            //panelVerticalLayout
-            panelLayout.addComponent(itemHorizontalLayout);
-            itemHorizontalLayout.setSizeFull();
-        });
     }
 
     private void setGridColumns(Grid<Torneio> grid){
@@ -370,15 +310,9 @@ public class GerirTorneiosView extends Composite implements View {
         }
     }
 
-    private void addComponentLinha(Component component, HorizontalLayout hl){
-        hl.addComponent(component);
-        hl.setComponentAlignment(component, Alignment.MIDDLE_CENTER);
-    }
-
-    private void addLinha(String value, HorizontalLayout hl)
-    {
-        Label l = new Label(value);
-        hl.addComponent(l);
-        hl.setComponentAlignment(l, Alignment.MIDDLE_CENTER);
+    @Override
+    public void selectionChange(MultiSelectionEvent<Equipa> event) {
+        currentlyEditing = new ArrayList<>(event.getAllSelectedItems());
+        createTorneio.setEnabled(!(currentlyEditing.size() <= 1) && (currentlyEditing.size() % 2 == 0) && binderTorneio.isValid());
     }
 }

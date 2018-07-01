@@ -1,6 +1,7 @@
 package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
+import com.projetoea.escolasfutebol.Notifications;
 import com.projetoea.escolasfutebol.classesjava.Escolas;
 import com.projetoea.escolasfutebol.classesjava.TipoutilizadorDAO;
 import com.projetoea.escolasfutebol.classesjava.Utilizador;
@@ -107,9 +108,13 @@ public class GerirEscolasView extends Composite implements View, HasValue.ValueC
                 Utilizador utilizador = diretorAssociacaoBean.createUtilizador(binderBean.getNome(),
                         binderBean.getEmail(), binderBean.getPassword(), binderBean.getTipoutilizador().getID());
                 diretorAssociacaoBean.criarEscola(nomeEscolaField.getValue(), 1, utilizador);
+                Notifications.showSuccessNotification("Escola criada com sucesso");
             } catch (PersistentException e) {
-                createError.setValue("Erro a criar escola! Tente de novo");
+                window.close();
+                Notifications.showErrorNotification("Erro a criar escola! Tente de novo");
+                getUI().getPage().reload();
                 e.printStackTrace();
+                return;
             }
             //Do i really need to close the window?
             window.close();

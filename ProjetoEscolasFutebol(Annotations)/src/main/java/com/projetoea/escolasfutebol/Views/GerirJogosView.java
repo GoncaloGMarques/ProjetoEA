@@ -2,6 +2,7 @@ package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.ArbitroBean;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
+import com.projetoea.escolasfutebol.Notifications;
 import com.projetoea.escolasfutebol.classesjava.*;
 import com.vaadin.data.HasValue;
 import com.vaadin.icons.VaadinIcons;
@@ -74,10 +75,11 @@ public class GerirJogosView extends Composite implements View {
             }
         } catch (PersistentException e) {
             e.printStackTrace();
+            Notifications.showErrorNotification("Nao foi possivel mostrar jogos");
         }
     }
 
-    Jogo currentJogo;
+    private Jogo currentJogo;
 
     private void ConstructJogosTable(Jogo[] listaJogos, Panel panelInserir, String value)
     {
@@ -113,6 +115,7 @@ public class GerirJogosView extends Composite implements View {
                         try {
                             window = createEditJogos();
                         } catch (PersistentException e) {
+                            Notifications.showErrorNotification("Erro ao criar ou editar jogos");
                             e.printStackTrace();
                         }
                         getUI().addWindow(window);

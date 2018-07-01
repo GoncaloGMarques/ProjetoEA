@@ -4,6 +4,7 @@ import com.projetoea.escolasfutebol.Beans.AppConfig;
 import com.projetoea.escolasfutebol.Beans.DiretorAssociacaoBean;
 import com.projetoea.escolasfutebol.Beans.GuestBean;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
+import com.projetoea.escolasfutebol.Notifications;
 import com.projetoea.escolasfutebol.classesjava.Campeonato;
 import com.projetoea.escolasfutebol.classesjava.Equipa;
 import com.projetoea.escolasfutebol.classesjava.Rondacampeonato;
@@ -198,9 +199,7 @@ public class GerirCampeonatosView extends Composite implements View, MultiSelect
         criarGravarCampeonato.setEnabled(false);
         criarGravarCampeonato.addClickListener(onClick -> {
 
-            //Avisar o user que pode demorar algum tempo
-            windowGeneralWarningLabel.setVisible(true);
-            windowGeneralWarningLabel.setValue("Pode levar algum tempo a executar esta operacao");
+            Notification.show("Pode levar algum tempo a executar esta operacao", Notification.Type.TRAY_NOTIFICATION);
 
             //Data base stuff
             try {
@@ -213,15 +212,14 @@ public class GerirCampeonatosView extends Composite implements View, MultiSelect
                 diretorAssociacaoBean.criarJogosCampeonato(new ArrayList<>(currentlyEditing), rondacampeonato);
 
                 //Sucesso
-                windowGeneralSuccessLabel.setVisible(true);
-                windowGeneralSuccessLabel.setValue("Campeonato criado com sucesso");
+                Notifications.showSuccessNotification("Campeonato criado com sucesso");
                 criarGravarCampeonato.setEnabled(false);
 
                 criarCampeonatoWindow.setClosable(true);
             } catch (PersistentException e) {
                 e.printStackTrace();
-                windowGeneralErrorLabel.setVisible(true);
-                windowGeneralErrorLabel.setValue("Erro ao criar Campeonato (Tente de novo)");
+                criarCampeonatoWindow.close();
+                Notifications.showErrorNotification("Erro ao criar Campeonato (Tente de novo)");
             }
         });
 
