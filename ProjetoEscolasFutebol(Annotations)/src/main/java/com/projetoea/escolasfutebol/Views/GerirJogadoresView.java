@@ -7,6 +7,7 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
 
@@ -61,6 +62,7 @@ public class GerirJogadoresView extends Composite implements View {
             try {
                 Utilizador user = getSession().getAttribute(Utilizador.class);
                 diretorEscolaBean.createPlayer(binderBean.getNome(), binderBean.getIdade(), equipaComboBox.getValue(),user.getEscolas());
+                Page.getCurrent().reload();
             } catch (PersistentException e) {
                 e.printStackTrace();
             }

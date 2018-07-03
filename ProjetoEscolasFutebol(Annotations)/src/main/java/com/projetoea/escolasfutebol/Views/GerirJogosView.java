@@ -40,7 +40,6 @@ public class GerirJogosView extends Composite implements View {
         leftSideVerticalLayout.setExpandRatio(listaJogosAEsperaPanel, 0.9f);
 
         VerticalLayout rightSideVerticalLayout = new VerticalLayout();
-        ht.addComponent(rightSideVerticalLayout);
         rightSideVerticalLayout.setSizeFull();
         Label proximosJogosLabel = new Label("Próximos Jogos:");
         rightSideVerticalLayout.addComponent(proximosJogosLabel);
@@ -48,6 +47,7 @@ public class GerirJogosView extends Composite implements View {
         listaProximosJogosPanel.setSizeFull();
         rightSideVerticalLayout.addComponent(listaProximosJogosPanel);
         rightSideVerticalLayout.setExpandRatio(listaProximosJogosPanel, 0.9f);
+        ht.addComponent(rightSideVerticalLayout);
         setCompositionRoot(ht);
     }
 
@@ -289,6 +289,7 @@ public class GerirJogosView extends Composite implements View {
                 try {
                     arbitroBean.setEventosJogo(listaEventosArray);
                     window.close();
+                    Notifications.showSuccessNotification("Jogo gravado");
                 } catch (PersistentException e) {
                     e.printStackTrace();
                 }

@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootApplication
 public class EscolasfutebolApplication {
@@ -14,6 +13,8 @@ public class EscolasfutebolApplication {
 
     public static void main(String[] args) {
         applicationBeansContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        System.setProperty(EscolasfutebolApplication.class.getPackage().getName() + "." + "disable-xsrf-protection", "true");
+        System.setProperty(EscolasfutebolApplication.class.getPackage().getName() + "." + "syncIdCheck", "false");
         SpringApplication.run(EscolasfutebolApplication.class, args);
     }
 

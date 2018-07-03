@@ -3,6 +3,7 @@ package com.projetoea.escolasfutebol;
 import com.projetoea.escolasfutebol.Views.*;
 import com.projetoea.escolasfutebol.classesjava.Utilizador;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -14,6 +15,7 @@ import static java.lang.System.out;
 
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol")
+@VaadinServletConfiguration(productionMode = false, ui = VaadinUI.class)
 public class VaadinUI extends UI {
 
     public Label userName;
@@ -66,7 +68,6 @@ public class VaadinUI extends UI {
         navigator.addView("torneios", TorneiosView.class);
         navigator.addView("campeonato", CampeonatoView.class);
     }
-
 
 
     private void addMenuEntry(Layout layout, String caption, String navigateTo){

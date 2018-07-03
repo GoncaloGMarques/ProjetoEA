@@ -2,12 +2,12 @@ package com.projetoea.escolasfutebol.Views;
 
 import com.projetoea.escolasfutebol.Beans.DiretorEscolaBean;
 import com.projetoea.escolasfutebol.EscolasfutebolApplication;
+import com.projetoea.escolasfutebol.Notifications;
 import com.projetoea.escolasfutebol.classesjava.*;
 import com.vaadin.data.HasValue;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.Page;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import org.orm.PersistentException;
@@ -201,14 +201,15 @@ public class GerirEquipasView extends Composite implements View {
                         diretorEscolaBean.removeFromEquipa(jogador);
                         EscolasDAO.refresh(EscolasDAO.getEscolasByORMID(UtilizadorDAO.getUtilizadorByORMID(user.getORMID()).getEscolas().getORMID()));
                         arrayEquipas = diretorEscolaBean.getEquipasDeEscola(EscolasDAO.getEscolasByORMID(UtilizadorDAO.loadUtilizadorByORMID(user.getORMID()).getEscolas().getORMID()).getORMID());
-
                         UpdateTable();
                     }
+                    window.close();
+                    Notifications.showSuccessNotification("Equipa editada");
                 } catch (PersistentException e) {
                     e.printStackTrace();
+                    window.close();
+                    Notifications.showErrorNotification("Erro ao editar. Por favor tente outra vez");
                 }
-                window.close();
-                Page.getCurrent().reload();
             }
         });
         rightSideVerticalLayout.addComponent(guardarHorizontalLayout);
@@ -353,6 +354,8 @@ public class GerirEquipasView extends Composite implements View {
                     EscolasDAO.refresh(EscolasDAO.getEscolasByORMID(UtilizadorDAO.getUtilizadorByORMID(user.getORMID()).getEscolas().getORMID()));
                     arrayEquipas = diretorEscolaBean.getEquipasDeEscola(EscolasDAO.getEscolasByORMID(UtilizadorDAO.loadUtilizadorByORMID(user.getORMID()).getEscolas().getORMID()).getORMID());
                     UpdateTable();
+                    Notifications.showSuccessNotification("Equipa adicionada");
+                    window.close();
 
                 } catch (PersistentException e) {
                     e.printStackTrace();
