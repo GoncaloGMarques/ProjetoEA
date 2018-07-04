@@ -23,7 +23,7 @@ public class LoginView  extends Composite implements View {
     private VerticalLayout verticalLayout;
     private Label errorUsernameLabel;
     private Label daoError;
-    private String emptyUsername = "Username cannot be empty!";
+    private String emptyUsername = "Nome de utilizador tem de ser preenchido";
 
     private TextField usernameField;
     private TextField passwordField;
@@ -68,11 +68,11 @@ public class LoginView  extends Composite implements View {
                     case 2:{updateUI("EscolasFutebol/DiretorEscola");} break;
                     case 3:{updateUI("EscolasFutebol/Arbitro");} break;
                     default:{
-                        daoError.setValue("Error Parsing 'Tipo Utilizador'");
+                        daoError.setValue("Error a criar 'Tipo Utilizador'");
                     } break;
                 }
             }else {
-                daoError.setValue("Could Not Login");
+                daoError.setValue("Nao foi possivel fazer login\nReescreva o nome e a password");
             }
         });
         loginUserBtn.setIcon(VaadinIcons.USER);

@@ -36,15 +36,12 @@ public class DiretorAssociacaoVaadinUI extends UI {
         Label title = new Label("Menu");
         userName = new Label();
 
-        Utilizador user = null;//= getSession().getAttribute(Utilizador.class);
-        try {
-            user = UtilizadorDAO.loadUtilizadorByQuery("tipoutilizadorID = 1", null);
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+        Utilizador user = getSession().getAttribute(Utilizador.class);
 
         if(user != null) userName.setValue("Presidente " + user.getNome());
         else return; //Do not render anything
+
+        Notifications.showSuccessNotification("Entrou como: Diretor Associacao\nBem Vindo");
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");

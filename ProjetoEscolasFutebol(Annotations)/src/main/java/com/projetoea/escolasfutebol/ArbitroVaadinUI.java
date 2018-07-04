@@ -38,13 +38,15 @@ public class ArbitroVaadinUI extends UI {
 
         Utilizador utilizador = getSession().getAttribute(Utilizador.class);
 
-        out.println("Arbitro LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
+        //out.println("Arbitro LOG: " + getSession().getAttribute(Utilizador.class) + "   STATUS: " + getSession().getState());
 
         Label title = new Label("Menu");
         userName = new Label("ERROR");
 
         if(utilizador != null) userName.setValue("Arbitro " + utilizador.getNome());
         else return;
+
+        Notifications.showSuccessNotification("Entrou como: Arbitro\nBem Vindo");
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Paging Inicial", "");

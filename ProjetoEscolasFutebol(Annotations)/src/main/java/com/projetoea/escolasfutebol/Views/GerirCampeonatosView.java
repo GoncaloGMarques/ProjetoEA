@@ -131,6 +131,13 @@ public class GerirCampeonatosView extends Composite implements View, MultiSelect
 
         binderCampeonato = new Binder<>();
         binderCampeonato.setBean(new Campeonato());
+        binderCampeonato.addStatusChangeListener((StatusChangeListener) event -> {
+            if(event.getBinder().isValid() && currentlyEditing.size() % 2 == 0 && currentlyEditing.size() != 0){
+                criarGravarCampeonato.setEnabled(true);
+            } else {
+                criarGravarCampeonato.setEnabled(false);
+            }
+        });
 
         mainLeftVerticalLayout = (VerticalLayout) createLeftLayout(mainLeftVerticalLayout);
         mainRightVerticalLayout = (VerticalLayout) createRightLayout(mainRightVerticalLayout);
@@ -211,6 +218,8 @@ public class GerirCampeonatosView extends Composite implements View, MultiSelect
                 Rondacampeonato rondacampeonato = diretorAssociacaoBean.criarRondaCampeonato(campeonato);
                 diretorAssociacaoBean.criarJogosCampeonato(new ArrayList<>(currentlyEditing), rondacampeonato);
 
+                criarCampeonatoWindow.close();
+
                 //Sucesso
                 Notifications.showSuccessNotification("Campeonato criado com sucesso");
                 criarGravarCampeonato.setEnabled(false);
@@ -239,10 +248,10 @@ public class GerirCampeonatosView extends Composite implements View, MultiSelect
     @Override
     public void selectionChange(MultiSelectionEvent<Equipa> event) {
         currentlyEditing = event.getAllSelectedItems();
-        if(currentlyEditing.size() % 2 == 0) {
-            criarGravarCampeonato.setEnabled(true);
+        if(currentlyEditing.size() % 2 == 0 && binderCampeonato.isValid() && currentlyEditing.size() != 0) {
             teamSelectionNotValid.setValue(null);
             teamSelectionNotValid.setVisible(false);
+            criarGravarCampeonato.setEnabled(true);
         } else {
             teamSelectionNotValid.setValue("Tem de ter um numero PAR de equipas selecionadas");
             criarGravarCampeonato.setEnabled(false);

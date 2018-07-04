@@ -35,9 +35,11 @@ public class DiretorEscolaVaadinUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
         Utilizador user = getSession().getAttribute(Utilizador.class);
-        userName = new Label();
+        userName = new Label("ERROR");
         if(user != null) userName.setValue("Diretor " + user.getNome());
-        else userName.setValue("YOU SHOULD NOT BE HERE");
+        else return;
+
+        Notifications.showSuccessNotification("Entrou como: Diretor Escola\nBem Vindo");
 
         menuLinks = new VerticalLayout();
         addMenuEntry(menuLinks, "Página Inicial", "");
