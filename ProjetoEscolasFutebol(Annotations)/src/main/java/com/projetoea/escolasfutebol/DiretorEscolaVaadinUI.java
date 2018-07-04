@@ -9,6 +9,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
+import java.util.Iterator;
+
 @Theme("darktheme")
 @SpringUI(path = "EscolasFutebol/DiretorEscola")
 public class DiretorEscolaVaadinUI extends UI {
@@ -75,7 +77,7 @@ public class DiretorEscolaVaadinUI extends UI {
 
         Navigator navigator = new Navigator(this, viewContainer);
         navigator.addView("", PaginaInicialView.class);
-        navigator.addView("Logout", LogoutView.class);
+        navigator.addView("logout", LogoutView.class);
         navigator.addView("calendario", CalendarioView.class);
         navigator.addView("torneios", TorneiosView.class);
         navigator.addView("campeonato", CampeonatoView.class);
@@ -86,10 +88,22 @@ public class DiretorEscolaVaadinUI extends UI {
 
 
     private void addMenuEntry(Layout layout, String caption, String navigateTo){
-        Button view1 = new Button(caption, e -> getNavigator().navigateTo(navigateTo));
+        Button view1 = new Button(caption, e -> {
+            getNavigator().navigateTo(navigateTo);
+            SetSelectedButton(e.getButton());
+        });
         view1.setWidth("100%");
         view1.setStyleName("v-button-MenuLinks");
         layout.addComponent(view1);
+    }
+
+    private void SetSelectedButton(Button triggered)
+    {
+        for (Iterator<Component> it = triggered.getParent().iterator(); it.hasNext(); ) {
+            Component bt = it.next();
+            bt.setStyleName("v-button-MenuLinks");
+        }
+        triggered.setStyleName("v-button-MenuLinks-Selected");
     }
 
     public static void UpdateLoginStatus()
